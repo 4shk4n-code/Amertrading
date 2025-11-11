@@ -49,8 +49,10 @@ export async function POST(request: NextRequest) {
   }
   processedEvents.add(eventKey);
   if (processedEvents.size > 100) {
-    const first = processedEvents.values().next().value;
-    processedEvents.delete(first);
+    const iterator = processedEvents.values().next();
+    if (!iterator.done && iterator.value) {
+      processedEvents.delete(iterator.value);
+    }
   }
 
   const event = body._eventType ?? "update";

@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  output: "standalone",
   experimental: {
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },

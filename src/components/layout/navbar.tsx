@@ -61,7 +61,7 @@ export function Navbar({ locale, messages }: NavbarProps) {
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((item) => (
-            <Link
+            <a
               key={item.key}
               href={item.slug}
               className={cn(
@@ -78,7 +78,7 @@ export function Navbar({ locale, messages }: NavbarProps) {
                   item.active && "scale-x-100",
                 )}
               />
-            </Link>
+            </a>
           ))}
         </nav>
         <div className="flex items-center gap-3">

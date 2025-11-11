@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { NextAuthOptions, getServerSession } from "next-auth";
+import NextAuth, { getServerSession } from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
@@ -8,11 +8,8 @@ const allowedEmails = process.env.ADMIN_ALLOWED_EMAILS
   ? process.env.ADMIN_ALLOWED_EMAILS.split(",").map((email) => email.trim())
   : [];
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: "database",
-  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -20,7 +17,7 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, _req) {
         const envUsername = process.env.ADMIN_USERNAME;
         const envPassword = process.env.ADMIN_PASSWORD;
 
@@ -46,7 +43,7 @@ export const authOptions: NextAuthOptions = {
             name: "Administrator",
             email,
             role: "admin",
-          } as unknown as Record<string, unknown>;
+          } as any;
         }
 
         return null;
@@ -59,7 +56,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }: any) {
       if (account?.provider === "credentials") {
         return true;
       }
@@ -69,7 +66,7 @@ export const authOptions: NextAuthOptions = {
       }
       return false;
     },
-    async session({ session, user }) {
+    async session({ session, user }: any) {
       if (session.user) {
         session.user.id = user.id;
         session.user.role = user.role ?? "admin";
@@ -81,7 +78,8 @@ export const authOptions: NextAuthOptions = {
     signIn: "/admin/signin",
     error: "/admin/signin",
   },
-};
+} as const;
 
-export const getAuthSession = () => getServerSession(authOptions);
+export const getAuthSession = () =>
+  getServerSession(authOptions as unknown as Parameters<typeof NextAuth>[2]);
 

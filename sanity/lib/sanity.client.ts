@@ -3,7 +3,10 @@ import { createClient } from "@sanity/client";
 const projectId = process.env.SANITY_PROJECT_ID;
 const dataset = process.env.SANITY_DATASET;
 
-export const hasSanityCredentials = Boolean(projectId && dataset);
+const isValidProjectId =
+  typeof projectId === "string" && /^[a-z0-9-]+$/.test(projectId);
+
+export const hasSanityCredentials = Boolean(isValidProjectId && dataset);
 
 export const sanityClient = hasSanityCredentials
   ? createClient({

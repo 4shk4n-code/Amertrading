@@ -514,27 +514,25 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                         {division.description}
                       </p>
                     </div>
-                    <Link
-                      href={
-                        divisionDomains[division.slug.current]
-                          ? divisionDomains[division.slug.current]
-                          : `/${locale}/divisions/${division.slug.current}`
-                      }
-                      target={
-                        divisionDomains[division.slug.current]
-                          ? "_blank"
-                          : undefined
-                      }
-                      rel={
-                        divisionDomains[division.slug.current]
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-gold-600 transition hover:text-gold-500"
-                    >
-                      View Division
-                      <span aria-hidden>→</span>
-                    </Link>
+                    {divisionDomains[division.slug.current] ? (
+                      <a
+                        href={divisionDomains[division.slug.current]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-gold-600 transition hover:text-gold-500"
+                      >
+                        Visit Site
+                        <span aria-hidden>↗</span>
+                      </a>
+                    ) : (
+                      <Link
+                        href={`/${locale}/divisions/${division.slug.current}`}
+                        className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-gold-600 transition hover:text-gold-500"
+                      >
+                        View Division
+                        <span aria-hidden>→</span>
+                      </Link>
+                    )}
                   </div>
                 </motion.div>
               );

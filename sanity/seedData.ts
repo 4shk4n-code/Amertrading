@@ -138,6 +138,13 @@ const locales = [
 ];
 
 export async function seedSampleData() {
+  if (!sanityClient) {
+    console.warn(
+      "[seedSampleData] Skipping seed operation because Sanity credentials are not configured.",
+    );
+    return;
+  }
+
   const operations = [];
 
   for (const localeEntry of locales) {

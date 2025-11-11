@@ -27,12 +27,12 @@ export function Footer({ locale }: FooterProps) {
         <ul className="flex flex-wrap items-center gap-6 text-sm uppercase tracking-[0.3em]">
           {links.map((item) => (
             <li key={item.label}>
-              <Link
+              <a
                 href={`/${locale}/${item.href}`}
                 className="transition hover:text-gold-600"
               >
                 {item.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

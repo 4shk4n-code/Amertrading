@@ -52,7 +52,7 @@ export default function AdminSignIn() {
       }
 
       if (result?.ok) {
-        router.push(result.url ?? "/admin/dashboard");
+        router.push("/admin/dashboard");
       } else {
         setIsLoading(false);
       }

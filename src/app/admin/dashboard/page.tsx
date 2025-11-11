@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { sanityClient } from "../../../../sanity/lib/sanity.client";
+import {
+  sanityClient,
+  hasSanityCredentials,
+} from "../../../../sanity/lib/sanity.client";
 import StatusCard from "@/components/admin/StatusCard";
 import { MetricChart } from "@/components/admin/MetricChart";
 import { HealthIndicator } from "@/components/admin/HealthIndicator";
@@ -16,6 +19,10 @@ export const metadata = buildMetadata({
 });
 
 async function getCounts() {
+  if (!hasSanityCredentials || !sanityClient) {
+    return Promise.resolve([0, 0, 0, 0, null] as const);
+  }
+
   return Promise.all([
     sanityClient.fetch<number>(`count(*[_type=="companyInfo"])`),
     sanityClient.fetch<number>(`count(*[_type=="division"])`),
