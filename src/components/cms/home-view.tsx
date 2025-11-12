@@ -172,30 +172,31 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         {showIntro && (
           <motion.div
             key="intro"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+            className="fixed inset-0 z-50 overflow-hidden bg-black"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="relative flex flex-col items-center gap-6 text-center">
-              <div className="overflow-hidden rounded-[36px] border border-white/10 bg-black/70 p-6 shadow-[0_30px_120px_-60px_rgba(199,138,26,0.65)] backdrop-blur-md">
-                <video
-                  ref={introVideoRef}
-                  key={introVideo}
-                  autoPlay
-                  playsInline
-                  muted
-                  onEnded={handleIntroEnd}
-                  onError={handleIntroEnd}
-                  className="h-36 w-auto max-w-[60vw] rounded-[24px] object-contain"
-                >
-                  <source src={introVideo} type="video/mp4" />
-                </video>
-              </div>
+            <div className="absolute inset-0 flex items-center justify-center bg-black">
+              <video
+                ref={introVideoRef}
+                key={introVideo}
+                autoPlay
+                playsInline
+                muted
+                onEnded={handleIntroEnd}
+                onError={handleIntroEnd}
+                className="h-full w-full object-contain"
+              >
+                <source src={introVideo} type="video/mp4" />
+              </video>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+            </div>
+            <div className="absolute inset-x-0 bottom-16 flex justify-center">
               <button
                 type="button"
                 onClick={handleIntroEnd}
-                className="rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-[0.35em] text-white/70 transition hover:border-gold-400 hover:text-gold-200"
+                className="pointer-events-auto rounded-full border border-white/30 px-6 py-2 text-xs uppercase tracking-[0.35em] text-white/75 transition hover:border-gold-400 hover:text-gold-200"
               >
                 Skip Intro
               </button>
