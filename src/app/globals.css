@@ -18,8 +18,13 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter, "Inter"), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter, "Inter"), -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   min-height: 100vh;
+  /* Ensure fonts load even if CSS variables fail on TV browsers */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {

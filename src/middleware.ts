@@ -12,7 +12,10 @@ const SUBDOMAIN_MAP: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  // Skip middleware for static assets - Next.js handles these with headers() in next.config.ts
   if (
+    pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/studio") ||
     pathname.startsWith("/admin") ||
