@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Git post-receive hook for auto-deployment
+# Place this file in: /path/to/bare-repo.git/hooks/post-receive
+# Make it executable: chmod +x hooks/post-receive
+
+# Configuration
+WORK_TREE="/var/www/amertrading-web"  # Change to your project directory
+GIT_DIR="/var/www/amertrading-web.git"  # Change to your bare repo path
+BRANCH="master"
+
+while read oldrev newrev refname; do
+    if [[ $refname = "refs/heads/$BRANCH" ]]; then
+        echo "🚀 Deploying branch $BRANCH..."
+        
+        # Checkout files to work tree
+        git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" checkout -f "$BRANCH"
+        
+        # Navigate to project directory
+        cd "$WORK_TREE" || exit 1
+        
+        # Run deployment script
+        bash deploy.sh
+        
+        echo "✅ Deployment completed!"
+    fi
+done
+
