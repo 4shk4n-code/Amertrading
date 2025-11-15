@@ -1,5 +1,7 @@
 ## AMER TRADING Holding Platform
 
+<!-- Auto-deployment test -->
+
 Cinematic, multilingual experience for AMER TRADING Holding with CMS-driven content, Sanity Studio, Prisma/PostgreSQL backend, and enterprise admin tooling.
 
 ### Tech Stack
