@@ -4,28 +4,32 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Locale } from "@/lib/i18n";
+import type { Division } from "@/lib/sanity";
 
 type NavbarProps = {
   locale: Locale;
   messages: {
     nav?: Record<string, string>;
   };
+  divisions?: Division[];
 };
 
 const navItems = [
-  { href: "", key: "home" },
-  { href: "about", key: "about" },
-  { href: "divisions", key: "divisions" },
-  { href: "news", key: "news" },
-  { href: "contact", key: "contact" },
+  { href: "", key: "home", hasDropdown: false },
+  { href: "about", key: "about", hasDropdown: false },
+  { href: "divisions", key: "divisions", hasDropdown: true },
+  { href: "news", key: "news", hasDropdown: false },
+  { href: "contact", key: "contact", hasDropdown: false },
 ];
 
-export function Navbar({ locale, messages }: NavbarProps) {
+export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     // Allow hydration to complete before rendering theme-aware controls.
@@ -50,6 +54,14 @@ export function Navbar({ locale, messages }: NavbarProps) {
     [pathname, locale],
   );
 
+  const handleMouseEnter = (key: string) => {
+    setOpenDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    setOpenDropdown(null);
+  };
+
   return (
     <header className="fixed inset-x-0 top-0 z-40 bg-white/80 backdrop-blur-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-sm text-[var(--foreground)]">
@@ -60,26 +72,63 @@ export function Navbar({ locale, messages }: NavbarProps) {
           AMER GENERAL TRADING L.L.C
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((item) => (
-            <a
-              key={item.key}
-              href={item.slug}
-              className={cn(
-                "relative font-medium uppercase tracking-[0.2em] transition-colors",
-                item.active
-                  ? "text-gold-600"
-                  : "text-[var(--foreground)]/60 hover:text-gold-500",
-              )}
-            >
-              {messages.nav?.[item.key] ?? item.key}
-              <span
-                className={cn(
-                  "absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-gold-500 transition-transform",
-                  item.active && "scale-x-100",
+          {links.map((item) => {
+            const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
+            
+            return (
+              <div
+                key={item.key}
+                className="relative"
+                onMouseEnter={() => hasDropdown && handleMouseEnter(item.key)}
+                onMouseLeave={() => hasDropdown && handleMouseLeave()}
+              >
+                <a
+                  href={item.slug}
+                  className={cn(
+                    "relative flex items-center gap-1 font-medium uppercase tracking-[0.2em] transition-colors",
+                    item.active
+                      ? "text-gold-600"
+                      : "text-[var(--foreground)]/60 hover:text-gold-500",
+                  )}
+                >
+                  {messages.nav?.[item.key] ?? item.key}
+                  {hasDropdown && (
+                    <ChevronDown className={cn(
+                      "h-4 w-4 transition-transform",
+                      openDropdown === item.key && "rotate-180"
+                    )} />
+                  )}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-gold-500 transition-transform",
+                      item.active && "scale-x-100",
+                    )}
+                  />
+                </a>
+                
+                {hasDropdown && openDropdown === item.key && (
+                  <div className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-gold-200 bg-white shadow-lg py-2">
+                    <Link
+                      href={`/${locale}/divisions`}
+                      className="block px-4 py-2 text-sm font-medium text-[var(--foreground)]/80 hover:bg-gold-50 hover:text-gold-600 transition-colors"
+                    >
+                      {messages.nav?.allDivisions ?? "All Divisions"}
+                    </Link>
+                    <div className="border-t border-gold-100 my-1" />
+                    {divisions.map((division) => (
+                      <Link
+                        key={division._id}
+                        href={`/${locale}/divisions/${division.slug.current}`}
+                        className="block px-4 py-2 text-sm text-[var(--foreground)]/70 hover:bg-gold-50 hover:text-gold-600 transition-colors"
+                      >
+                        {division.name}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              />
-            </a>
-          ))}
+              </div>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-3">
           {mounted && (

@@ -124,6 +124,26 @@ export default async function AdminDashboard() {
           Monitor CMS, SEO, and performance in one place.
         </p>
         <div className="mx-auto mt-6 h-[2px] w-24 bg-gold-gradient" />
+        <nav className="mt-8 flex justify-center gap-4">
+          <Link
+            href="/admin/divisions"
+            className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
+          >
+            Manage Divisions
+          </Link>
+          <Link
+            href="/admin/categories"
+            className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
+          >
+            Manage Categories
+          </Link>
+          <Link
+            href="/admin/content"
+            className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
+          >
+            Manage Content
+          </Link>
+        </nav>
       </header>
 
       <section className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
