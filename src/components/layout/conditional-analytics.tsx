@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Analytics } from "@vercel/analytics/react";
 import dynamic from "next/dynamic";
-
-// Dynamically import SpeedInsights to avoid SSR issues
-const SpeedInsights = dynamic(
-  () => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights),
-  { ssr: false },
-);
 
 /**
  * Conditionally loads analytics only on Vercel and modern browsers
@@ -16,11 +9,19 @@ const SpeedInsights = dynamic(
  */
 export function ConditionalAnalytics() {
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [Analytics, setAnalytics] = useState<any>(null);
+  const [SpeedInsights, setSpeedInsights] = useState<any>(null);
 
   useEffect(() => {
-    // Only load on Vercel (check for Vercel environment variable)
-    const isVercel = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL;
+    // Check if we're on Vercel (client-side check)
+    const isVercel = 
+      typeof window !== "undefined" && 
+      (window.location.hostname.includes('vercel.app') || 
+       window.location.hostname.includes('vercel.dev') ||
+       process.env.NEXT_PUBLIC_VERCEL === '1');
+
     if (!isVercel) {
+      // Not on Vercel - don't load analytics
       setShouldLoad(false);
       return;
     }
@@ -43,10 +44,21 @@ export function ConditionalAnalytics() {
       /CrKey|AFT[A-Z]|AppleTV|TV/i.test(userAgent);
 
     // Only load analytics on Vercel, modern browsers that are not TVs
-    setShouldLoad(isModernBrowser && !isTVBrowser);
+    if (isModernBrowser && !isTVBrowser) {
+      // Dynamically import only when needed
+      import("@vercel/analytics/react").then((mod) => {
+        setAnalytics(() => mod.Analytics);
+      });
+      import("@vercel/speed-insights/next").then((mod) => {
+        setSpeedInsights(() => mod.SpeedInsights);
+      });
+      setShouldLoad(true);
+    } else {
+      setShouldLoad(false);
+    }
   }, []);
 
-  if (!shouldLoad) {
+  if (!shouldLoad || !Analytics || !SpeedInsights) {
     return null;
   }
 
