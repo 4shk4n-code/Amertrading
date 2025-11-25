@@ -98,6 +98,12 @@ const fallbackDivisions: Record<string, Division[]> = {
         "Supplying OEM-grade automotive components and lubricants across the GCC and beyond.",
       slug: { current: "auto-parts" },
       locale: "en",
+      image: {
+        asset: {
+          _ref: "auto-parts",
+          url: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "division-food-en",
@@ -106,6 +112,12 @@ const fallbackDivisions: Record<string, Division[]> = {
         "Partnering with leading producers to deliver quality foods, beverages, and retail essentials.",
       slug: { current: "food-markets" },
       locale: "en",
+      image: {
+        asset: {
+          _ref: "food-markets",
+          url: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "division-clothing-en",
@@ -114,6 +126,12 @@ const fallbackDivisions: Record<string, Division[]> = {
         "Creating fashion and lifestyle brands that combine style with sustainability.",
       slug: { current: "clothing-lifestyle" },
       locale: "en",
+      image: {
+        asset: {
+          _ref: "clothing-lifestyle",
+          url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "division-it-en",
@@ -122,6 +140,12 @@ const fallbackDivisions: Record<string, Division[]> = {
         "Providing advanced computing, networking, and data-center solutions for enterprise clients.",
       slug: { current: "it-hardware" },
       locale: "en",
+      image: {
+        asset: {
+          _ref: "it-hardware",
+          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "division-markets-en",
@@ -130,6 +154,12 @@ const fallbackDivisions: Record<string, Division[]> = {
         "Expanding access to goods through integrated wholesale, retail, and marketplace platforms.",
       slug: { current: "markets-trading" },
       locale: "en",
+      image: {
+        asset: {
+          _ref: "markets-trading",
+          url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop",
+        },
+      },
     },
   ],
 };
@@ -189,6 +219,12 @@ const fallbackNews: Record<string, NewsPost[]> = {
       ],
       date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
       locale: "en",
+      image: {
+        asset: {
+          _ref: "smart-mobility",
+          url: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "news-food-partnership-en",
@@ -207,6 +243,12 @@ const fallbackNews: Record<string, NewsPost[]> = {
       ],
       date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
       locale: "en",
+      image: {
+        asset: {
+          _ref: "food-partnership",
+          url: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop",
+        },
+      },
     },
     {
       _id: "news-tech-expansion-en",
@@ -225,6 +267,12 @@ const fallbackNews: Record<string, NewsPost[]> = {
       ],
       date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(),
       locale: "en",
+      image: {
+        asset: {
+          _ref: "tech-expansion",
+          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
+        },
+      },
     },
   ],
 };

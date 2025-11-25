@@ -325,7 +325,16 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-[rgba(199,138,26,0.08)] to-[rgba(224,176,84,0.15)] py-24">
+      <section 
+        className="relative overflow-hidden bg-gradient-to-br from-white via-[rgba(199,138,26,0.08)] to-[rgba(224,176,84,0.15)] py-24"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.18),_transparent_60%)]" />
         <div className="pointer-events-none absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[rgba(224,176,84,0.25)] blur-[140px]" />
         <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 lg:flex-row">
@@ -344,7 +353,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.7 }}
-              className="font-display text-4xl leading-tight text-[var(--foreground)] md:text-5xl"
+              className="relative z-10 font-display text-4xl leading-tight text-white drop-shadow-lg md:text-5xl"
             >
               Building resilient industries with precision, partnership, and
               purpose.
@@ -354,7 +363,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-lg text-[var(--foreground)]/75"
+              className="relative z-10 rounded-2xl bg-white/95 p-6 text-lg text-[var(--foreground)]/75 shadow-lg"
             >
               We align mobility, nutrition, lifestyle, and technology ventures
               under one collaborative strategy. Our teams orchestrate supply
