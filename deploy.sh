@@ -54,6 +54,15 @@ echo -e "${YELLOW}🔨 Generating Prisma client...${NC}"
 npm run db:generate || echo -e "${YELLOW}⚠️  Prisma generate failed, continuing...${NC}"
 
 echo -e "${YELLOW}🏗️  Building Next.js application...${NC}"
+# Final check - remove admin files one more time before build
+rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
+if [ -d "src/app/admin" ] || [ -f "src/app/admin/content/page.tsx" ]; then
+    echo -e "${RED}❌ Admin files still exist! Force removing...${NC}"
+    find src/app -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
+    find src/components -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
+    find src/app/api -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
+fi
+
 # Set memory limit for build (2GB, fallback to 3GB)
 export NODE_OPTIONS="--max-old-space-size=2048"
 npm run build || {
