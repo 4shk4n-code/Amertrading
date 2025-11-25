@@ -30,7 +30,8 @@ git pull origin $BRANCH || {
     exit 1
 }
 
-echo -e "${YELLOW}🧹 Clearing build cache...${NC}"
+echo -e "${YELLOW}🧹 Removing admin files and clearing build cache...${NC}"
+rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
 rm -rf .next dist node_modules/.cache 2>/dev/null || true
 
 echo -e "${YELLOW}📥 Installing dependencies...${NC}"
