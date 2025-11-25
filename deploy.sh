@@ -30,6 +30,21 @@ git pull origin $BRANCH || {
     exit 1
 }
 
+# IMMEDIATELY after git pull - remove admin files before they cause issues
+echo -e "${YELLOW}🗑️  Removing admin files immediately after git pull...${NC}"
+chmod -R 777 src/app/admin 2>/dev/null || true
+rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
+# Specifically target the problematic file
+[ -f "src/app/admin/content/page.tsx" ] && rm -f src/app/admin/content/page.tsx || true
+[ -d "src/app/admin/content" ] && rm -rf src/app/admin/content || true
+[ -d "src/app/admin" ] && rm -rf src/app/admin || true
+# Verify deletion
+if [ -f "src/app/admin/content/page.tsx" ]; then
+    echo -e "${RED}❌ File still exists after git pull! Force deleting...${NC}"
+    find . -path "*/admin/content/page.tsx" -type f -exec rm -f {} \; 2>/dev/null || true
+    find . -path "*/admin/content" -type d -exec rm -rf {} \; 2>/dev/null || true
+fi
+
 echo -e "${YELLOW}🧹 Removing ALL admin files and clearing build cache...${NC}"
 # Aggressively remove all admin-related files and folders
 find . -type d -name "*admin*" -not -path "./node_modules/*" -not -path "./.next/*" -exec rm -rf {} + 2>/dev/null || true
