@@ -187,7 +187,43 @@ const fallbackNews: Record<string, NewsPost[]> = {
           ],
         },
       ],
-      date: new Date().toISOString(),
+      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+      locale: "en",
+    },
+    {
+      _id: "news-food-partnership-en",
+      title: "Strategic Partnership with Leading Food Producers",
+      slug: { current: "strategic-partnership-food-producers" },
+      body: [
+        {
+          _type: "block",
+          children: [
+            {
+              _type: "span",
+              text: "We've secured new partnerships with top-tier food producers to expand our distribution network across the Middle East.",
+            },
+          ],
+        },
+      ],
+      date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+      locale: "en",
+    },
+    {
+      _id: "news-tech-expansion-en",
+      title: "IT Hardware Division Reaches New Markets",
+      slug: { current: "it-hardware-new-markets" },
+      body: [
+        {
+          _type: "block",
+          children: [
+            {
+              _type: "span",
+              text: "Our IT & Hardware division has successfully expanded operations into three new regional markets, strengthening our technology portfolio.",
+            },
+          ],
+        },
+      ],
+      date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(),
       locale: "en",
     },
   ],
@@ -200,6 +236,18 @@ fallbackNews.ar = [
     title: "أمير تريدينغ تتوسع في التنقل الذكي",
     locale: "ar",
   },
+  {
+    ...fallbackNews.en[1],
+    _id: "news-food-partnership-ar",
+    title: "شراكة استراتيجية مع منتجي الأغذية الرائدين",
+    locale: "ar",
+  },
+  {
+    ...fallbackNews.en[2],
+    _id: "news-tech-expansion-ar",
+    title: "قسم تقنية المعلومات يصل إلى أسواق جديدة",
+    locale: "ar",
+  },
 ];
 
 fallbackNews.fa = [
@@ -207,6 +255,18 @@ fallbackNews.fa = [
     ...fallbackNews.en[0],
     _id: "news-smart-mobility-fa",
     title: "گسترش آمر تریدینگ به حوزه حمل‌ونقل هوشمند",
+    locale: "fa",
+  },
+  {
+    ...fallbackNews.en[1],
+    _id: "news-food-partnership-fa",
+    title: "شراکت استراتژیک با تولیدکنندگان برتر مواد غذایی",
+    locale: "fa",
+  },
+  {
+    ...fallbackNews.en[2],
+    _id: "news-tech-expansion-fa",
+    title: "بخش سخت‌افزار IT به بازارهای جدید دست یافت",
     locale: "fa",
   },
 ];
@@ -236,20 +296,30 @@ export async function getDivisions(locale: string) {
   if (!hasSanityCredentials) {
     return fallbackDivisions[locale] ?? fallbackDivisions.en;
   }
-  return sanityClient!.fetch<Division[]>(
-    groq`*[_type == "division" && locale == $locale] | order(order asc){
-      _id,
-      name,
-      description,
-      order,
-      locale,
-      slug,
-      "image": image{
-        asset->{_ref, url}
-      }
-    }`,
-    { locale: locale ?? defaultLocale },
-  );
+  try {
+    const result = await sanityClient!.fetch<Division[]>(
+      groq`*[_type == "division" && locale == $locale] | order(order asc){
+        _id,
+        name,
+        description,
+        order,
+        locale,
+        slug,
+        "image": image{
+          asset->{_ref, url}
+        }
+      }`,
+      { locale: locale ?? defaultLocale },
+    );
+    // Always return fallback if empty
+    if (!result || result.length === 0) {
+      return fallbackDivisions[locale] ?? fallbackDivisions.en;
+    }
+    return result;
+  } catch (error) {
+    // Return fallback on error
+    return fallbackDivisions[locale] ?? fallbackDivisions.en;
+  }
 }
 
 export async function getDivisionBySlug(locale: string, slug: string) {
@@ -277,20 +347,30 @@ export async function getNews(locale: string) {
   if (!hasSanityCredentials) {
     return fallbackNews[locale] ?? fallbackNews.en;
   }
-  return sanityClient!.fetch<NewsPost[]>(
-    groq`*[_type == "newsPost" && locale == $locale] | order(date desc){
-      _id,
-      title,
-      slug,
-      body,
-      date,
-      locale,
-      "image": image{
-        asset->{_ref, url}
-      }
-    }`,
-    { locale: locale ?? defaultLocale },
-  );
+  try {
+    const result = await sanityClient!.fetch<NewsPost[]>(
+      groq`*[_type == "newsPost" && locale == $locale] | order(date desc){
+        _id,
+        title,
+        slug,
+        body,
+        date,
+        locale,
+        "image": image{
+          asset->{_ref, url}
+        }
+      }`,
+      { locale: locale ?? defaultLocale },
+    );
+    // Always return fallback if empty
+    if (!result || result.length === 0) {
+      return fallbackNews[locale] ?? fallbackNews.en;
+    }
+    return result;
+  } catch (error) {
+    // Return fallback on error
+    return fallbackNews[locale] ?? fallbackNews.en;
+  }
 }
 
 export async function getNewsBySlug(locale: string, slug: string) {

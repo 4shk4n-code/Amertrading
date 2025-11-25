@@ -1,0 +1,23 @@
+{
+  "/[locale]/about/page": "app/[locale]/about/page.js",
+  "/[locale]/contact/page": "app/[locale]/contact/page.js",
+  "/[locale]/divisions/[slug]/page": "app/[locale]/divisions/[slug]/page.js",
+  "/[locale]/divisions/page": "app/[locale]/divisions/page.js",
+  "/[locale]/news/[slug]/page": "app/[locale]/news/[slug]/page.js",
+  "/[locale]/news/page": "app/[locale]/news/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/signin/page": "app/admin/signin/page.js",
+  "/api/admin/alerts/route": "app/api/admin/alerts/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/sanity/webhook/route": "app/api/sanity/webhook/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/studio/[[...index]]/page": "app/studio/[[...index]]/page.js"
+}

@@ -1,0 +1,3 @@
+{
+  "/api/sanity/webhook/route": "app/api/sanity/webhook/route.js"
+}

@@ -6,9 +6,9 @@ type FooterProps = {
 };
 
 const links = [
-  { label: "Privacy Policy", href: "privacy" },
-  { label: "Investors", href: "investors" },
-  { label: "Careers", href: "careers" },
+  { label: "About", href: "about" },
+  { label: "Divisions", href: "divisions" },
+  { label: "Contact", href: "contact" },
 ];
 
 export function Footer({ locale }: FooterProps) {

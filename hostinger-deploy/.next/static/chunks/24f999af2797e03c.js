@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,84855,o=>{o.v({nav:{home:"Home",about:"About",divisions:"Divisions",news:"News",contact:"Contact",admin:"Admin"},hero:{cta:"Explore Our Portfolio"},contact:{title:"Contact Us",submit:"Send Message"}})}]);

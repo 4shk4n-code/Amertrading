@@ -129,26 +129,16 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
     "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4";
 
   const divisionCards = useMemo(() => {
-    if (!divisions?.length) {
-      return Array.from({ length: 6 }).map((_, index) => ({
-        placeholder: true,
-        key: `placeholder-${index}`,
-      }));
-    }
-    return divisions.map((division) => ({
+    // Always show divisions (fallback data is guaranteed)
+    return (divisions || []).map((division) => ({
       ...division,
       key: division._id,
     }));
   }, [divisions]);
 
   const featuredNews = useMemo(() => {
-    if (!news?.length) {
-      return Array.from({ length: 3 }).map((_, index) => ({
-        placeholder: true,
-        key: `news-placeholder-${index}`,
-      }));
-    }
-    return news.slice(0, 3).map((item) => ({
+    // Always show news (fallback data is guaranteed)
+    return (news || []).slice(0, 3).map((item) => ({
       ...item,
       key: item._id,
     }));
@@ -471,18 +461,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-            {divisionCards.map((division, index) => {
-              if ("placeholder" in division) {
-                return (
-                  <div
-                    key={division.key}
-                    className="h-72 rounded-[32px] border border-[rgba(28,26,23,0.08)] bg-white/70 shadow-inner"
-                  >
-                    <div className="h-full w-full animate-pulse rounded-[32px] bg-gradient-to-br from-white to-[rgba(224,176,84,0.08)]" />
-                  </div>
-                );
-              }
-              return (
+            {divisionCards.map((division, index) => (
                 <motion.div
                   key={division.key}
                   initial={{ opacity: 0, y: 24 }}
@@ -536,8 +515,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                     )}
                   </div>
                 </motion.div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
@@ -623,18 +601,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             </Link>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {featuredNews.map((item, index) => {
-              if ("placeholder" in item) {
-                return (
-                  <div
-                    key={item.key}
-                    className="h-64 rounded-3xl border border-[rgba(28,26,23,0.08)] bg-white/70"
-                  >
-                    <div className="h-full w-full animate-pulse rounded-3xl bg-gradient-to-br from-white to-[rgba(224,176,84,0.1)]" />
-                  </div>
-                );
-              }
-              return (
+            {featuredNews.map((item, index) => (
                 <motion.article
                   key={item.key}
                   initial={{ opacity: 0, y: 22 }}
@@ -657,8 +624,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                     <span aria-hidden>→</span>
                   </Link>
                 </motion.article>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>

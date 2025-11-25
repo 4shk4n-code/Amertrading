@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,773032,t=>{t.v({nav:{home:"الرئيسية",about:"حول",divisions:"القطاعات",news:"الأخبار",contact:"الاتصال",admin:"الإدارة"},hero:{cta:"استكشف محفظتنا"},contact:{title:"تواصل معنا",submit:"إرسال"}})}]);
