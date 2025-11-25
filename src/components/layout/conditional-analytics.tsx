@@ -11,13 +11,20 @@ const SpeedInsights = dynamic(
 );
 
 /**
- * Conditionally loads analytics only on modern browsers
+ * Conditionally loads analytics only on Vercel and modern browsers
  * TV browsers often have issues with modern JavaScript, so we skip analytics
  */
 export function ConditionalAnalytics() {
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    // Only load on Vercel (check for Vercel environment variable)
+    const isVercel = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL;
+    if (!isVercel) {
+      setShouldLoad(false);
+      return;
+    }
+
     // Check if browser supports modern features
     const isModernBrowser =
       typeof window !== "undefined" &&
@@ -35,7 +42,7 @@ export function ConditionalAnalytics() {
       ) ||
       /CrKey|AFT[A-Z]|AppleTV|TV/i.test(userAgent);
 
-    // Only load analytics on modern browsers that are not TVs
+    // Only load analytics on Vercel, modern browsers that are not TVs
     setShouldLoad(isModernBrowser && !isTVBrowser);
   }, []);
 

@@ -486,7 +486,9 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                       src={division.image.asset.url}
                       alt={division.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="absolute inset-0 object-cover opacity-60 transition duration-700 group-hover:scale-110"
+                      unoptimized={division.image.asset.url.includes('unsplash.com')}
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-white via-[rgba(224,176,84,0.15)] to-[rgba(199,138,26,0.2)] opacity-90" />

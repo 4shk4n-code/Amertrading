@@ -55,7 +55,9 @@ export function DivisionsGrid({ locale, divisions }: DivisionsGridProps) {
                       src={division.image.asset.url}
                       alt={division.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="absolute inset-0 object-cover opacity-50 transition duration-700 group-hover:scale-110 group-hover:opacity-70"
+                      unoptimized={division.image.asset.url.includes('unsplash.com')}
                     />
                   )}
                   <div className="relative z-10">
