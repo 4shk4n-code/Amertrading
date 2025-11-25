@@ -30,9 +30,19 @@ git pull origin $BRANCH || {
     exit 1
 }
 
-echo -e "${YELLOW}🧹 Removing admin files and clearing build cache...${NC}"
+echo -e "${YELLOW}🧹 Removing ALL admin files and clearing build cache...${NC}"
+# Aggressively remove all admin-related files and folders
+find . -type d -name "*admin*" -not -path "./node_modules/*" -not -path "./.next/*" -exec rm -rf {} + 2>/dev/null || true
+find . -type f -name "*admin*" -not -path "./node_modules/*" -not -path "./.next/*" -delete 2>/dev/null || true
 rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
 rm -rf .next dist node_modules/.cache 2>/dev/null || true
+
+# Double-check admin/content is gone
+if [ -f "src/app/admin/content/page.tsx" ]; then
+    echo -e "${YELLOW}⚠️  admin/content/page.tsx still exists, force removing...${NC}"
+    rm -f src/app/admin/content/page.tsx
+    rm -rf src/app/admin/content
+fi
 
 echo -e "${YELLOW}📥 Installing dependencies...${NC}"
 npm install || {
