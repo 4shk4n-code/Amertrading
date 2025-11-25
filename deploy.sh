@@ -100,9 +100,28 @@ export NODE_OPTIONS="--max-old-space-size=2048"
 # ONE FINAL CHECK - remove admin files right before npm run build
 if [ -f "src/app/admin/content/page.tsx" ] || [ -d "src/app/admin" ]; then
     echo -e "${RED}⚠️  Admin files detected RIGHT BEFORE BUILD - emergency removal!${NC}"
-    rm -rf src/app/admin src/components/admin src/app/api/admin
-    find . -name "*admin*" -type f -not -path "./node_modules/*" -not -path "./.next/*" -delete 2>/dev/null || true
-    find . -name "*admin*" -type d -not -path "./node_modules/*" -not -path "./.next/*" -exec rm -rf {} + 2>/dev/null || true
+    # Try multiple deletion methods
+    chmod -R 777 src/app/admin 2>/dev/null || true
+    rm -f src/app/admin/content/page.tsx 2>/dev/null || true
+    rm -rf src/app/admin/content 2>/dev/null || true
+    rm -rf src/app/admin 2>/dev/null || true
+    rm -rf src/components/admin 2>/dev/null || true
+    rm -rf src/app/api/admin 2>/dev/null || true
+    # Use unlink if rm fails
+    [ -f "src/app/admin/content/page.tsx" ] && unlink src/app/admin/content/page.tsx 2>/dev/null || true
+    # Use find with -delete
+    find src/app -name "*admin*" -type f -delete 2>/dev/null || true
+    find src/app -name "*admin*" -type d -exec rm -rf {} + 2>/dev/null || true
+    # Final check - if still exists, we have a serious problem
+    if [ -f "src/app/admin/content/page.tsx" ]; then
+        echo -e "${RED}❌ CRITICAL: File cannot be deleted! Attempting to overwrite with empty file...${NC}"
+        echo "" > src/app/admin/content/page.tsx
+        rm -f src/app/admin/content/page.tsx
+        if [ -f "src/app/admin/content/page.tsx" ]; then
+            echo -e "${RED}❌ ABORTING: Cannot remove admin/content/page.tsx${NC}"
+            exit 1
+        fi
+    fi
 fi
 
 npm run build || {
