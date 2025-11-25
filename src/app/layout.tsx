@@ -4,7 +4,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
-import { ConditionalAnalytics } from "@/components/layout/conditional-analytics";
+// Only import analytics on Vercel
+const ConditionalAnalytics = 
+  process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV
+    ? require("@/components/layout/conditional-analytics").ConditionalAnalytics
+    : () => null;
 
 const inter = FontInter({
   subsets: ["latin"],
