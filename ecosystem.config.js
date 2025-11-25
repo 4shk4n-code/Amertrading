@@ -8,8 +8,8 @@ module.exports = {
   apps: [
     {
       name: "amertrading-web",
-      script: "npm",
-      args: "start",
+      script: "node",
+      args: ".next/standalone/server.js",
       cwd: "/var/www/amertrading-web", // Change to your project path
       instances: 1,
       exec_mode: "fork",

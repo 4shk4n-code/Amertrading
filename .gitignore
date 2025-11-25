@@ -20,6 +20,7 @@ hostinger-deploy/
 
 # production
 /build
+/hostinger-deploy
 
 # misc
 .DS_Store
