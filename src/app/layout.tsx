@@ -4,11 +4,13 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
-// Only import analytics on Vercel
-const ConditionalAnalytics = 
-  process.env.VERCEL || process.env.NEXT_PUBLIC_VERCEL_ENV
-    ? require("@/components/layout/conditional-analytics").ConditionalAnalytics
-    : () => null;
+import dynamic from "next/dynamic";
+
+// Only load analytics component dynamically (won't load scripts if component returns null)
+const ConditionalAnalytics = dynamic(
+  () => import("@/components/layout/conditional-analytics").then((mod) => mod.ConditionalAnalytics),
+  { ssr: false }
+);
 
 const inter = FontInter({
   subsets: ["latin"],
