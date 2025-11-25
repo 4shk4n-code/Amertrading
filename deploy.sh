@@ -113,31 +113,26 @@ echo -e "${GREEN}✅ Admin files removed - proceeding with build${NC}"
 export NODE_OPTIONS="--max-old-space-size=2048"
 
 # ONE FINAL CHECK - remove admin files right before npm run build
-if [ -f "src/app/admin/content/page.tsx" ] || [ -d "src/app/admin" ]; then
-    echo -e "${RED}⚠️  Admin files detected RIGHT BEFORE BUILD - emergency removal!${NC}"
-    # Try multiple deletion methods
+echo -e "${YELLOW}🔍 Final pre-build check for admin files...${NC}"
+if [ -f "src/app/admin/content/page.tsx" ]; then
+    echo -e "${RED}❌ CRITICAL: admin/content/page.tsx EXISTS RIGHT BEFORE BUILD!${NC}"
+    echo -e "${RED}This should not happen - aborting build to prevent TypeScript error${NC}"
+    exit 1
+fi
+
+# Double-check admin directory doesn't exist
+if [ -d "src/app/admin" ]; then
+    echo -e "${YELLOW}⚠️  Admin directory exists - removing...${NC}"
     chmod -R 777 src/app/admin 2>/dev/null || true
-    rm -f src/app/admin/content/page.tsx 2>/dev/null || true
-    rm -rf src/app/admin/content 2>/dev/null || true
     rm -rf src/app/admin 2>/dev/null || true
-    rm -rf src/components/admin 2>/dev/null || true
-    rm -rf src/app/api/admin 2>/dev/null || true
-    # Use unlink if rm fails
-    [ -f "src/app/admin/content/page.tsx" ] && unlink src/app/admin/content/page.tsx 2>/dev/null || true
-    # Use find with -delete
-    find src/app -name "*admin*" -type f -delete 2>/dev/null || true
-    find src/app -name "*admin*" -type d -exec rm -rf {} + 2>/dev/null || true
-    # Final check - if still exists, we have a serious problem
-    if [ -f "src/app/admin/content/page.tsx" ]; then
-        echo -e "${RED}❌ CRITICAL: File cannot be deleted! Attempting to overwrite with empty file...${NC}"
-        echo "" > src/app/admin/content/page.tsx
-        rm -f src/app/admin/content/page.tsx
-        if [ -f "src/app/admin/content/page.tsx" ]; then
-            echo -e "${RED}❌ ABORTING: Cannot remove admin/content/page.tsx${NC}"
-            exit 1
-        fi
+    # Verify
+    if [ -d "src/app/admin" ] || [ -f "src/app/admin/content/page.tsx" ]; then
+        echo -e "${RED}❌ Cannot remove admin directory - ABORTING${NC}"
+        exit 1
     fi
 fi
+
+echo -e "${GREEN}✅ Pre-build check passed - no admin files found${NC}"
 
 npm run build || {
     echo -e "${YELLOW}⚠️  Build with 2GB failed, trying 3GB...${NC}"
