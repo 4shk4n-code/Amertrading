@@ -54,41 +54,45 @@ echo -e "${YELLOW}🔨 Generating Prisma client...${NC}"
 npm run db:generate || echo -e "${YELLOW}⚠️  Prisma generate failed, continuing...${NC}"
 
 echo -e "${YELLOW}🏗️  Building Next.js application...${NC}"
-# CRITICAL: Remove from GIT INDEX and filesystem
-echo -e "${YELLOW}Removing admin files from git index...${NC}"
-git rm -rf --cached src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
-git rm -rf --cached src/app/admin/content 2>/dev/null || true
-
-# Remove from filesystem multiple times
-for i in 1 2 3; do
-    rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
-    find src/app -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
-    find src/components -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
-    find src/app/api -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
-    sleep 0.3
-done
-
-# Final verification - if file exists, delete it and verify again
+# CRITICAL: Remove admin files RIGHT BEFORE BUILD - git pull may have restored them
+echo -e "${YELLOW}🔍 Checking for admin files before build...${NC}"
 if [ -f "src/app/admin/content/page.tsx" ]; then
-    echo -e "${RED}❌ File still exists! Force deleting...${NC}"
+    echo -e "${RED}⚠️  Found admin/content/page.tsx - removing...${NC}"
+fi
+
+# Remove from git index (if tracked)
+git rm -rf --cached src/app/admin 2>/dev/null || true
+git rm -rf --cached src/components/admin 2>/dev/null || true
+git rm -rf --cached src/app/api/admin 2>/dev/null || true
+
+# Aggressive filesystem removal
+echo -e "${YELLOW}🗑️  Removing admin files from filesystem...${NC}"
+rm -rf src/app/admin 2>/dev/null || true
+rm -rf src/components/admin 2>/dev/null || true
+rm -rf src/app/api/admin 2>/dev/null || true
+
+# Use find to catch any stragglers
+find . -path "*/admin/content/page.tsx" -type f -delete 2>/dev/null || true
+find . -path "*/admin/content" -type d -exec rm -rf {} + 2>/dev/null || true
+find . -path "*/admin" -type d -not -path "./node_modules/*" -not -path "./.next/*" -exec rm -rf {} + 2>/dev/null || true
+
+# Final check - if file exists, we have a problem
+if [ -f "src/app/admin/content/page.tsx" ]; then
+    echo -e "${RED}❌ CRITICAL ERROR: admin/content/page.tsx STILL EXISTS!${NC}"
+    echo -e "${RED}File location:${NC}"
+    ls -la src/app/admin/content/page.tsx 2>/dev/null || true
+    echo -e "${RED}Attempting final deletion...${NC}"
     rm -f src/app/admin/content/page.tsx
     rm -rf src/app/admin/content
     rm -rf src/app/admin
-    # Verify deletion
+    # If still exists, we must exit
     if [ -f "src/app/admin/content/page.tsx" ]; then
-        echo -e "${RED}❌ CRITICAL: File cannot be deleted!${NC}"
-        ls -la src/app/admin/content/ 2>/dev/null || echo "Directory doesn't exist (good)"
-        find . -name "admin/content/page.tsx" -type f 2>/dev/null
+        echo -e "${RED}❌ CANNOT DELETE FILE - ABORTING BUILD${NC}"
         exit 1
     fi
 fi
 
-# Verify it's completely gone
-if [ ! -d "src/app/admin" ] && [ ! -f "src/app/admin/content/page.tsx" ]; then
-    echo -e "${GREEN}✅ Admin files successfully removed${NC}"
-else
-    echo -e "${YELLOW}⚠️  Warning: Some admin files may still exist${NC}"
-fi
+echo -e "${GREEN}✅ Admin files removed - proceeding with build${NC}"
 
 # Set memory limit for build (2GB, fallback to 3GB)
 export NODE_OPTIONS="--max-old-space-size=2048"
