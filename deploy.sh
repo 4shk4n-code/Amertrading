@@ -54,13 +54,27 @@ echo -e "${YELLOW}🔨 Generating Prisma client...${NC}"
 npm run db:generate || echo -e "${YELLOW}⚠️  Prisma generate failed, continuing...${NC}"
 
 echo -e "${YELLOW}🏗️  Building Next.js application...${NC}"
-# Final check - remove admin files one more time before build
-rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
-if [ -d "src/app/admin" ] || [ -f "src/app/admin/content/page.tsx" ]; then
-    echo -e "${RED}❌ Admin files still exist! Force removing...${NC}"
+# CRITICAL: Remove admin files RIGHT before build - do this multiple times
+for i in 1 2 3; do
+    rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
     find src/app -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
     find src/components -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
     find src/app/api -type d -name "*admin*" -exec rm -rf {} + 2>/dev/null || true
+    sleep 0.5
+done
+
+# Verify it's gone - if not, fail the build
+if [ -f "src/app/admin/content/page.tsx" ] || [ -d "src/app/admin/content" ]; then
+    echo -e "${RED}❌ CRITICAL: admin/content/page.tsx STILL EXISTS AFTER REMOVAL!${NC}"
+    echo -e "${RED}Force deleting with rm -f...${NC}"
+    rm -f src/app/admin/content/page.tsx 2>/dev/null || true
+    rm -rf src/app/admin/content 2>/dev/null || true
+    rm -rf src/app/admin 2>/dev/null || true
+    # One more check
+    if [ -f "src/app/admin/content/page.tsx" ]; then
+        echo -e "${RED}❌ File persists! Using find and delete...${NC}"
+        find . -name "admin/content/page.tsx" -type f -delete 2>/dev/null || true
+    fi
 fi
 
 # Set memory limit for build (2GB, fallback to 3GB)
