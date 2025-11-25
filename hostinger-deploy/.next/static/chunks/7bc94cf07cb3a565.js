@@ -1,1 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,736626,t=>{t.v({nav:{home:"خانه",about:"درباره ما",divisions:"بخش‌ها",news:"اخبار",contact:"تماس",admin:"مدیریت"},hero:{cta:"پرونده ما را ببینید"},contact:{title:"با ما در تماس باشید",submit:"ارسال پیام"}})}]);

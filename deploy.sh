@@ -25,15 +25,13 @@ cd "$PROJECT_DIR" || {
 }
 
 echo -e "${YELLOW}📦 Pulling latest changes from git...${NC}"
-git fetch origin || {
-    echo -e "${RED}❌ Git fetch failed${NC}"
+git pull origin $BRANCH || {
+    echo -e "${RED}❌ Git pull failed${NC}"
     exit 1
 }
-git reset --hard origin/$BRANCH || {
-    echo -e "${RED}❌ Git reset failed${NC}"
-    exit 1
-}
-git clean -fd
+
+echo -e "${YELLOW}🧹 Clearing build cache...${NC}"
+rm -rf .next dist node_modules/.cache 2>/dev/null || true
 
 echo -e "${YELLOW}📥 Installing dependencies...${NC}"
 npm install || {

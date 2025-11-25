@@ -1,9 +1,10 @@
 name: Deploy to VPS
 
 on:
-  push:
-    branches:
-      - master  # Change to 'main' if that's your default branch
+  # DISABLED: Auto-deploy on push (uncomment to re-enable)
+  # push:
+  #   branches:
+  #     - master  # Change to 'main' if that's your default branch
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 jobs:
