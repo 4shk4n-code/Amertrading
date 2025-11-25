@@ -66,7 +66,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
     <header className="fixed inset-x-0 top-0 z-40 bg-white/80 backdrop-blur-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-sm text-[var(--foreground)]">
         <Link
-          href={`/${locale}`}
+          href={`/${locale}` as any}
           className="font-display text-lg tracking-[0.25em] text-gold-700"
         >
           AMER GENERAL TRADING L.L.C
@@ -109,7 +109,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 {hasDropdown && openDropdown === item.key && (
                   <div className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-gold-200 bg-white shadow-lg py-2">
                     <Link
-                      href={`/${locale}/divisions`}
+                      href={`/${locale}/divisions` as any}
                       className="block px-4 py-2 text-sm font-medium text-[var(--foreground)]/80 hover:bg-gold-50 hover:text-gold-600 transition-colors"
                     >
                       {messages.nav?.allDivisions ?? "All Divisions"}
@@ -118,7 +118,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                     {divisions.map((division) => (
                       <Link
                         key={division._id}
-                        href={`/${locale}/divisions/${division.slug.current}`}
+                        href={`/${locale}/divisions/${division.slug.current}` as any}
                         className="block px-4 py-2 text-sm text-[var(--foreground)]/70 hover:bg-gold-50 hover:text-gold-600 transition-colors"
                       >
                         {division.name}

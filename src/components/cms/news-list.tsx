@@ -61,7 +61,7 @@ export function NewsList({ locale, posts }: NewsListProps) {
                       {portableTextToPlainText(post.body).slice(0, 160)}…
                     </p>
                     <Link
-                      href={`/${locale}/news/${post.slug.current}`}
+                      href={`/${locale}/news/${post.slug.current}` as any}
                       className="mt-auto inline-flex items-center gap-2 pt-4 text-xs uppercase tracking-[0.3em] text-gold-600 hover:text-gold-500"
                     >
                       Read Article →

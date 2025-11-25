@@ -11,7 +11,8 @@ export const metadata = buildMetadata({
 export default async function CategoriesAdminPage() {
   const session = await getAuthSession();
   if (!session) {
-    redirect("/admin/signin");
+    redirect("/admin/signin" as any);
+
   }
 
   return (
@@ -26,13 +27,14 @@ export default async function CategoriesAdminPage() {
           </div>
           <div className="flex gap-4">
             <Link
-              href="/admin/dashboard"
+              href={"/admin/dashboard" as any}
+
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Dashboard
             </Link>
             <Link
-              href="/studio"
+              href={"/studio" as any}
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Open CMS
@@ -44,7 +46,7 @@ export default async function CategoriesAdminPage() {
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-white">Categories</h2>
             <Link
-              href="/studio"
+              href={"/studio" as any}
               className="rounded-lg bg-gold-500 px-4 py-2 text-sm font-medium text-black transition hover:bg-gold-400"
             >
               + Add Category Schema
@@ -59,7 +61,7 @@ export default async function CategoriesAdminPage() {
               To add categories, go to Sanity Studio and create a new schema for categories.
             </p>
             <Link
-              href="/studio"
+              href={"/studio" as any}
               className="inline-block rounded-lg bg-gold-500 px-6 py-3 text-sm font-medium text-black transition hover:bg-gold-400"
             >
               Open Sanity Studio →

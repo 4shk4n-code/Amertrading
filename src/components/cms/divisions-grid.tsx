@@ -82,7 +82,7 @@ export function DivisionsGrid({ locale, divisions }: DivisionsGridProps) {
                       </a>
                     ) : (
                       <Link
-                        href={`/${locale}/divisions/${division.slug?.current ?? ""}`}
+                        href={`/${locale}/divisions/${division.slug?.current ?? ""}` as any}
                         className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-gold-600 hover:text-gold-500"
                       >
                         View Division <span aria-hidden>→</span>

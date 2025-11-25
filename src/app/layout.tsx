@@ -4,7 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
-import { ConditionalAnalytics } from "@/components/layout/conditional-analytics";
+import ConditionalAnalyticsWrapper from "@/components/layout/conditional-analytics-wrapper";
+
 
 const inter = FontInter({
   subsets: ["latin"],
@@ -36,7 +37,8 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
-          <ConditionalAnalytics />
+          <ConditionalAnalyticsWrapper />
+
         </ThemeProvider>
       </body>
     </html>
