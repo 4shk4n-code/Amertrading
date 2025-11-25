@@ -4,13 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
-import dynamic from "next/dynamic";
-
-// Only load analytics component dynamically (won't load scripts if component returns null)
-const ConditionalAnalytics = dynamic(
-  () => import("@/components/layout/conditional-analytics").then((mod) => mod.ConditionalAnalytics),
-  { ssr: false }
-);
+import { ConditionalAnalytics } from "@/components/layout/conditional-analytics";
 
 const inter = FontInter({
   subsets: ["latin"],
