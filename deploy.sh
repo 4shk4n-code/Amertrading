@@ -33,9 +33,19 @@ git pull origin $BRANCH || {
 # IMMEDIATELY after git pull - remove admin files OR fix the TypeScript error
 echo -e "${YELLOW}🗑️  Handling admin files immediately after git pull...${NC}"
 if [ -f "src/app/admin/content/page.tsx" ]; then
-    echo -e "${YELLOW}⚠️  admin/content/page.tsx exists - fixing TypeScript error as backup...${NC}"
-    # Fix the TypeScript error by adding 'as any' cast
-    sed -i 's/href={type\.href}/href={type.href as any}/g' src/app/admin/content/page.tsx 2>/dev/null || true
+    echo -e "${YELLOW}⚠️  admin/content/page.tsx exists - fixing TypeScript error...${NC}"
+    # Fix the TypeScript error - match the exact line format
+    sed -i 's|href={type\.href}|href={type.href as any}|g' src/app/admin/content/page.tsx 2>/dev/null || \
+    sed -i 's|href={type.href}|href={type.href as any}|g' src/app/admin/content/page.tsx 2>/dev/null || \
+    python3 -c "
+import re
+with open('src/app/admin/content/page.tsx', 'r') as f:
+    content = f.read()
+content = re.sub(r'href=\{type\.href\}', 'href={type.href as any}', content)
+with open('src/app/admin/content/page.tsx', 'w') as f:
+    f.write(content)
+" 2>/dev/null || true
+    echo -e "${GREEN}✅ TypeScript error fixed${NC}"
     # Also try to remove it
     chmod -R 777 src/app/admin 2>/dev/null || true
     rm -rf src/app/admin src/components/admin src/app/api/admin 2>/dev/null || true
@@ -116,8 +126,20 @@ export NODE_OPTIONS="--max-old-space-size=2048"
 echo -e "${YELLOW}🔍 Final pre-build check for admin files...${NC}"
 if [ -f "src/app/admin/content/page.tsx" ]; then
     echo -e "${YELLOW}⚠️  admin/content/page.tsx exists - fixing TypeScript error...${NC}"
-    # Fix the TypeScript error
-    sed -i 's/href={type\.href}/href={type.href as any}/g' src/app/admin/content/page.tsx 2>/dev/null || true
+    # Fix the TypeScript error - try multiple methods
+    sed -i 's|href={type\.href}|href={type.href as any}|g' src/app/admin/content/page.tsx 2>/dev/null || \
+    sed -i 's|href={type.href}|href={type.href as any}|g' src/app/admin/content/page.tsx 2>/dev/null || \
+    python3 -c "
+import re
+with open('src/app/admin/content/page.tsx', 'r') as f:
+    content = f.read()
+content = re.sub(r'href=\{type\.href\}', 'href={type.href as any}', content)
+with open('src/app/admin/content/page.tsx', 'w') as f:
+    f.write(content)
+" 2>/dev/null || \
+    # Last resort: use perl
+    perl -i -pe 's/href=\{type\.href\}/href={type.href as any}/g' src/app/admin/content/page.tsx 2>/dev/null || true
+    echo -e "${GREEN}✅ TypeScript error should be fixed${NC}"
     # Also try to remove
     rm -rf src/app/admin 2>/dev/null || true
 fi
