@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 
 /**
  * Conditionally loads analytics only on Vercel and modern browsers
- * TV browsers often have issues with modern JavaScript, so we skip analytics
+ * Completely disabled on non-Vercel deployments to prevent 404 errors
  */
 export function ConditionalAnalytics() {
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -17,12 +16,10 @@ export function ConditionalAnalytics() {
     const isVercel = 
       typeof window !== "undefined" && 
       (window.location.hostname.includes('vercel.app') || 
-       window.location.hostname.includes('vercel.dev') ||
-       process.env.NEXT_PUBLIC_VERCEL === '1');
+       window.location.hostname.includes('vercel.dev'));
 
     if (!isVercel) {
-      // Not on Vercel - don't load analytics
-      setShouldLoad(false);
+      // Not on Vercel - completely skip loading analytics
       return;
     }
 
@@ -45,16 +42,18 @@ export function ConditionalAnalytics() {
 
     // Only load analytics on Vercel, modern browsers that are not TVs
     if (isModernBrowser && !isTVBrowser) {
-      // Dynamically import only when needed
-      import("@vercel/analytics/react").then((mod) => {
-        setAnalytics(() => mod.Analytics);
+      // Dynamically import only when needed (lazy loading)
+      Promise.all([
+        import("@vercel/analytics/react"),
+        import("@vercel/speed-insights/next")
+      ]).then(([analyticsMod, speedMod]) => {
+        setAnalytics(() => analyticsMod.Analytics);
+        setSpeedInsights(() => speedMod.SpeedInsights);
+        setShouldLoad(true);
+      }).catch(() => {
+        // Silently fail if imports fail
+        setShouldLoad(false);
       });
-      import("@vercel/speed-insights/next").then((mod) => {
-        setSpeedInsights(() => mod.SpeedInsights);
-      });
-      setShouldLoad(true);
-    } else {
-      setShouldLoad(false);
     }
   }, []);
 
