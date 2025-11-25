@@ -96,6 +96,15 @@ echo -e "${GREEN}✅ Admin files removed - proceeding with build${NC}"
 
 # Set memory limit for build (2GB, fallback to 3GB)
 export NODE_OPTIONS="--max-old-space-size=2048"
+
+# ONE FINAL CHECK - remove admin files right before npm run build
+if [ -f "src/app/admin/content/page.tsx" ] || [ -d "src/app/admin" ]; then
+    echo -e "${RED}⚠️  Admin files detected RIGHT BEFORE BUILD - emergency removal!${NC}"
+    rm -rf src/app/admin src/components/admin src/app/api/admin
+    find . -name "*admin*" -type f -not -path "./node_modules/*" -not -path "./.next/*" -delete 2>/dev/null || true
+    find . -name "*admin*" -type d -not -path "./node_modules/*" -not -path "./.next/*" -exec rm -rf {} + 2>/dev/null || true
+fi
+
 npm run build || {
     echo -e "${YELLOW}⚠️  Build with 2GB failed, trying 3GB...${NC}"
     export NODE_OPTIONS="--max-old-space-size=3072"
