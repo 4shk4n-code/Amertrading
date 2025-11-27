@@ -30,7 +30,7 @@ export default function SignInPage() {
         setError("Invalid username or password");
         setLoading(false);
       } else if (result?.ok) {
-        router.push(callbackUrl);
+        router.push(callbackUrl as any);
         router.refresh();
       }
     } catch (err) {
