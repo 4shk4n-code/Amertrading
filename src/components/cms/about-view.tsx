@@ -42,7 +42,7 @@ export function AboutView({ title, content, timeline = [] }: AboutViewProps) {
       </section>
 
       {timeline.length > 0 && (
-        <section className="border-t border-[rgba(28,26,23,0.1)] bg-white/90 py-20">
+        <section className="border-t border-[var(--card-border)] bg-[var(--card-bg)]/90 dark:bg-[var(--card-bg)]/80 py-20">
           <div className="mx-auto max-w-6xl px-6">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ export function AboutView({ title, content, timeline = [] }: AboutViewProps) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.6 }}
-                  className="rounded-2xl border border-[rgba(28,26,23,0.12)] bg-white p-6 shadow-[0_30px_90px_-60px_rgba(28,26,23,0.35)]"
+                  className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_30px_90px_-60px_rgba(28,26,23,0.35)] dark:shadow-[0_30px_90px_-60px_rgba(0,0,0,0.6)]"
                 >
                   <p className="text-sm uppercase tracking-[0.4em] text-gold-500">
                     {item.year}

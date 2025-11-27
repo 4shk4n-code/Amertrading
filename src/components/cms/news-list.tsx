@@ -38,7 +38,7 @@ export function NewsList({ locale, posts }: NewsListProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="flex flex-col gap-6 rounded-3xl border border-[rgba(28,26,23,0.12)] bg-white p-6 shadow-[0_35px_90px_-60px_rgba(28,26,23,0.35)] md:flex-row"
+                  className="flex flex-col gap-6 rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_35px_90px_-60px_rgba(28,26,23,0.35)] dark:shadow-[0_35px_90px_-60px_rgba(0,0,0,0.6)] md:flex-row"
                 >
                   {post.image?.asset?.url && (
                     <div className="relative h-48 w-full overflow-hidden rounded-2xl md:w-72">

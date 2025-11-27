@@ -13,7 +13,7 @@ const links = [
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="border-t border-[rgba(28,26,23,0.1)] bg-white/85">
+    <footer className="border-t border-[var(--card-border)] bg-[var(--card-bg)]/85 dark:bg-[var(--card-bg)]/90">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-12 text-[var(--foreground)]/70 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="font-display text-2xl text-gold-700">
