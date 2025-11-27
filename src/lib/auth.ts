@@ -9,7 +9,12 @@ const allowedEmails = process.env.ADMIN_ALLOWED_EMAILS
   : [];
 
 export const authOptions = {
-  adapter: PrismaAdapter(prisma),
+  // Use adapter for Google OAuth (requires database)
+  // For credentials, we'll use JWT sessions (no database needed)
+  adapter: process.env.DATABASE_URL ? PrismaAdapter(prisma) : undefined,
+  session: {
+    strategy: "jwt" as const,
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -66,10 +71,21 @@ export const authOptions = {
       }
       return false;
     },
-    async session({ session, user }: any) {
+    async jwt({ token, user }: any) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role ?? "admin";
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    async session({ session, token }: any) {
       if (session.user) {
-        session.user.id = user.id;
-        session.user.role = user.role ?? "admin";
+        session.user.id = token.id;
+        session.user.role = token.role ?? "admin";
+        session.user.email = token.email;
+        session.user.name = token.name;
       }
       return session;
     },
