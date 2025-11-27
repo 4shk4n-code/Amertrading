@@ -214,14 +214,14 @@ export function ContactView({ locale, company }: ContactViewProps) {
           >
             <div className="h-[500px] w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.198509794893!2d55.2708!3d25.2048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69a8b8b8b8b9%3A0x8b8b8b8b8b8b8b8b!2sDubai%20International%20Financial%20Centre%2C%20Gate%20Building%2C%20Dubai%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.198509794893!2d55.3708!3d25.3048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5b8b8b8b8b9%3A0x8b8b8b8b8b8b8b8b!2sIndustrial%20Area%206%2C%20Sharjah%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="AMER GENERAL TRADING L.L.C Location - Dubai International Financial Centre"
+                title="AMER GENERAL TRADING L.L.C Location - Industrial Area 6, Sharjah, UAE"
                 className="w-full h-full"
               />
             </div>
