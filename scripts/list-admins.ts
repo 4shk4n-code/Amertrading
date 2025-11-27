@@ -17,9 +17,6 @@ async function listAdmins() {
           },
         },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
     });
 
     if (users.length === 0) {
@@ -37,7 +34,6 @@ async function listAdmins() {
       console.log(`   Name: ${user.name || "N/A"}`);
       console.log(`   Email: ${user.email || "N/A"}`);
       console.log(`   Role: ${user.role || "admin"}`);
-      console.log(`   Created: ${user.createdAt || "N/A"}`);
       
       if (user.accounts.length > 0) {
         console.log(`   Login Methods:`);
