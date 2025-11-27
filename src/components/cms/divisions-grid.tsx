@@ -11,7 +11,7 @@ const divisionDomains: Record<string, string> = {
   "auto-parts": "https://auto.amertrading.ae",
   "clothing-lifestyle": "https://style.amertrading.ae",
   "it-hardware": "https://tech.amertrading.ae",
-  "markets-trading": "https://markets.amertrading.ae",
+  "markets-trading": "https://food.amertrading.ae",
 };
 
 type DivisionsGridProps = {
@@ -44,7 +44,7 @@ export function DivisionsGrid({ locale, divisions }: DivisionsGridProps) {
             ? divisions.map((division, index) => (
                 <motion.div
                   key={division._id}
-                  className="group relative overflow-hidden rounded-3xl border border-[rgba(28,26,23,0.12)] bg-white p-6 shadow-[0_40px_100px_-70px_rgba(28,26,23,0.35)] transition"
+                  className="group relative overflow-hidden rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_40px_100px_-70px_rgba(28,26,23,0.35)] dark:shadow-[0_40px_100px_-70px_rgba(0,0,0,0.5)] transition"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}

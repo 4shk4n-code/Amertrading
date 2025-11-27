@@ -96,7 +96,7 @@ const divisionDomains: Record<string, string> = {
   "auto-parts": "https://auto.amertrading.ae",
   "clothing-lifestyle": "https://style.amertrading.ae",
   "it-hardware": "https://tech.amertrading.ae",
-  "markets-trading": "https://markets.amertrading.ae",
+  "markets-trading": "https://food.amertrading.ae",
 };
 
 export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
@@ -271,12 +271,12 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3 rounded-3xl border border-[rgba(28,26,23,0.12)] bg-white/70 p-6 shadow-[0_25px_60px_-30px_rgba(28,26,23,0.4)] backdrop-blur-lg md:mt-0 md:self-end"
+            className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3 rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-6 shadow-[0_25px_60px_-30px_rgba(28,26,23,0.4)] dark:shadow-[0_25px_60px_-30px_rgba(0,0,0,0.6)] backdrop-blur-lg md:mt-0 md:self-end"
           >
             {partnerSignals.map((signal) => (
               <div
                 key={signal.detail}
-                className="rounded-2xl border border-[rgba(28,26,23,0.08)] bg-white px-4 py-5 text-sm text-[var(--foreground)] shadow-[0_18px_45px_-24px_rgba(28,26,23,0.35)]"
+                className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] px-4 py-5 text-sm text-[var(--foreground)] shadow-[0_18px_45px_-24px_rgba(28,26,23,0.35)] dark:shadow-[0_18px_45px_-24px_rgba(0,0,0,0.5)]"
               >
                 <span className="block text-xs uppercase tracking-[0.4em] text-gold-700">
                   {signal.tag}
@@ -300,7 +300,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         </motion.div>
       </section>
 
-      <section className="relative border-y border-[rgba(28,26,23,0.08)] bg-white/70 py-16">
+      <section className="relative border-y border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 py-16">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 md:grid-cols-4">
           {highlightedMetrics.map((metric) => (
             <motion.div
@@ -309,7 +309,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6 }}
-              className="rounded-3xl border border-[rgba(28,26,23,0.08)] bg-white p-6 shadow-[0_30px_60px_-38px_rgba(28,26,23,0.35)]"
+              className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_30px_60px_-38px_rgba(28,26,23,0.35)] dark:shadow-[0_30px_60px_-38px_rgba(0,0,0,0.5)]"
             >
               <span className="text-xs uppercase tracking-[0.45em] text-[var(--foreground)]/60">
                 {metric.label}
@@ -380,7 +380,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               {innovationPillars.map((pillar) => (
                 <div
                   key={pillar.title}
-                  className="rounded-3xl border border-[rgba(28,26,23,0.08)] bg-white/90 p-6 shadow-[0_18px_60px_-42px_rgba(28,26,23,0.32)]"
+                  className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)]/90 dark:bg-[var(--hover-bg)] p-6 shadow-[0_18px_60px_-42px_rgba(28,26,23,0.32)] dark:shadow-[0_18px_60px_-42px_rgba(0,0,0,0.5)]"
                 >
                   <h3 className="font-display text-xl uppercase tracking-[0.3em] text-gold-600">
                     {pillar.title}
@@ -400,7 +400,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             className="relative flex-1"
           >
             <div className="absolute inset-0 -translate-y-8 rounded-[40px] border border-[rgba(28,26,23,0.08)] bg-gradient-to-br from-white via-white/60 to-transparent blur-3xl" />
-            <div className="relative overflow-hidden rounded-[40px] border border-[rgba(28,26,23,0.12)] bg-white/90 p-8 backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-[40px] border border-[var(--card-border)] bg-[var(--card-bg)]/90 dark:bg-[var(--card-bg)] p-8 backdrop-blur-xl">
               <div className="flex flex-col gap-10">
                 {journeyMilestones.map((milestone, index) => (
                   <div key={milestone.year} className="relative pl-8">
@@ -435,7 +435,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-24">
+      <section className="relative overflow-hidden bg-[var(--card-bg)]/50 dark:bg-[var(--card-bg)]/60 py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.12),_transparent_65%)]" />
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col gap-6 pb-12 md:flex-row md:items-end md:justify-between">
@@ -478,7 +478,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   whileHover={{ y: -6 }}
-                  className="group relative overflow-hidden rounded-[32px] border border-[rgba(28,26,23,0.08)] bg-white p-6 shadow-[0_55px_150px_-85px_rgba(28,26,23,0.35)] transition-transform duration-500"
+                  className="group relative overflow-hidden rounded-[32px] border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_55px_150px_-85px_rgba(28,26,23,0.35)] dark:shadow-[0_55px_150px_-85px_rgba(0,0,0,0.6)] transition-transform duration-500"
                 >
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white/95 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   {division.image?.asset?.url ? (
@@ -565,7 +565,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6 }}
-                className="rounded-3xl border border-[rgba(28,26,23,0.08)] bg-white p-6 text-[var(--foreground)] backdrop-blur-lg shadow-[0_18px_45px_-28px_rgba(28,26,23,0.35)]"
+                className="rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 text-[var(--foreground)] backdrop-blur-lg shadow-[0_18px_45px_-28px_rgba(28,26,23,0.35)] dark:shadow-[0_18px_45px_-28px_rgba(0,0,0,0.5)]"
               >
                 <span className="text-xs uppercase tracking-[0.4em] text-gold-600">
                   {signal.tag}
@@ -579,7 +579,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-24">
+      <section className="relative overflow-hidden bg-[var(--card-bg)]/50 dark:bg-[var(--card-bg)]/60 py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.12),_transparent_65%)]" />
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col gap-6 pb-10 md:flex-row md:items-center md:justify-between">
@@ -619,7 +619,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.65, delay: index * 0.08 }}
-                  className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-[rgba(28,26,23,0.08)] bg-white p-6 shadow-[0_40px_120px_-75px_rgba(28,26,23,0.35)]"
+                  className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] p-6 shadow-[0_40px_120px_-75px_rgba(28,26,23,0.35)] dark:shadow-[0_40px_120px_-75px_rgba(0,0,0,0.6)]"
                 >
                   <span className="text-xs uppercase tracking-[0.35em] text-[var(--foreground)]/55">
                     {formatNewsDate(item.date)}
