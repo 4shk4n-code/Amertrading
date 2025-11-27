@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:sanity": "tsx scripts/seed.ts",
+    "list:admins": "tsx scripts/list-admins.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio"
