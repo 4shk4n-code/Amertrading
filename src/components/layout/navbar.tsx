@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Locale } from "@/lib/i18n";
 import type { Division } from "@/lib/sanity";
+import { useCart } from "@/contexts/cart-context";
 
 type NavbarProps = {
   locale: Locale;
@@ -21,6 +22,7 @@ const navItems = [
   { href: "", key: "home", hasDropdown: false },
   { href: "about", key: "about", hasDropdown: false },
   { href: "divisions", key: "divisions", hasDropdown: true },
+  { href: "products", key: "products", hasDropdown: false },
   { href: "news", key: "news", hasDropdown: false },
   { href: "contact", key: "contact", hasDropdown: false },
 ];
@@ -30,6 +32,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { itemCount } = useCart();
 
   useEffect(() => {
     // Allow hydration to complete before rendering theme-aware controls.
@@ -160,6 +163,18 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           })}
         </nav>
         <div className="flex items-center gap-3">
+          <Link
+            href={`/${locale}/cart` as any}
+            className="relative rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart className="h-5 w-5" />
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent)] text-xs font-bold text-white">
+                {itemCount > 9 ? "9+" : itemCount}
+              </span>
+            )}
+          </Link>
           {mounted && (
             <button
               type="button"

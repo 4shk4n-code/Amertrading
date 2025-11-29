@@ -72,3 +72,52 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String?
+  nameFa      String?
+  description String   @db.Text
+  descriptionAr String? @db.Text
+  descriptionFa String? @db.Text
+  price       Float
+  compareAtPrice Float?
+  sku         String?  @unique
+  stock       Int      @default(0)
+  category    String?
+  images      String[] // Array of image URLs
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id          String   @id @default(cuid())
+  orderNumber String   @unique
+  customerName String
+  customerEmail String
+  customerPhone String
+  customerAddress String? @db.Text
+  total       Float
+  status      String   @default("pending") // pending, confirmed, shipped, delivered, cancelled
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+

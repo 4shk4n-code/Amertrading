@@ -21,6 +21,15 @@ export function buildMetadata(options: MetadataOptions = {}): Metadata {
   return {
     title,
     description,
+    icons: {
+      icon: [
+        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+      ],
+      apple: [
+        { url: "/icon.svg", type: "image/svg+xml" },
+      ],
+    },
     openGraph: {
       ...defaultSEO.openGraph,
       locale,

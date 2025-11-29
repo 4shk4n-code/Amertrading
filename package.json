@@ -9,6 +9,7 @@
     "lint": "eslint",
     "seed:sanity": "tsx scripts/seed.ts",
     "list:admins": "tsx scripts/list-admins.ts",
+    "test:firebase": "tsx scripts/test-firebase.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio"
@@ -24,6 +25,9 @@
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
     "framer-motion": "^12.23.24",
     "groq": "^4.14.2",
     "gsap": "^3.13.0",

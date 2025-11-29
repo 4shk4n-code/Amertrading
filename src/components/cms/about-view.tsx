@@ -34,7 +34,7 @@ export function AboutView({ title, content, timeline = [] }: AboutViewProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="space-y-6 text-[var(--foreground)]/70"
+            className="space-y-6 text-[var(--foreground)]/90"
           >
             <RichText value={content} />
           </motion.div>

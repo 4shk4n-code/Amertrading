@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
 import ConditionalAnalyticsWrapper from "@/components/layout/conditional-analytics-wrapper";
+import { CartProvider } from "@/contexts/cart-context";
 
 
 const inter = FontInter({
@@ -36,9 +37,10 @@ export default function RootLayout({
         }}
       >
         <ThemeProvider>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
-          <ConditionalAnalyticsWrapper />
-
+          <CartProvider>
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+            <ConditionalAnalyticsWrapper />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

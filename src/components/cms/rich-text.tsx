@@ -11,12 +11,12 @@ const components: PortableTextComponents = {
       </h2>
     ),
     normal: ({ children }) => (
-      <p className="text-base leading-relaxed text-white/70">{children}</p>
+      <p className="text-base leading-relaxed text-[var(--foreground)]/90">{children}</p>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-inside list-disc space-y-2 text-white/70">
+      <ul className="list-inside list-disc space-y-2 text-[var(--foreground)]/90">
         {children}
       </ul>
     ),

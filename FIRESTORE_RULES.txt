@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Products - public can read active products, admins can write
+    match /products/{productId} {
+      // Anyone can read active products
+      allow read: if resource.data.active == true;
+      // Only authenticated admins can write (create/update/delete)
+      // Note: Admin authentication is handled by NextAuth in your Next.js app
+      // The API routes check for admin session before allowing writes
+      allow write: if false; // Disabled - all writes go through Next.js API with admin auth
+    }
+    
+    // Orders - anyone can create, only admins can read/update
+    match /orders/{orderId} {
+      // Anyone can create orders (for checkout)
+      allow create: if true;
+      // Only admins can read/update/delete (handled by Next.js API)
+      allow read, update, delete: if false; // Disabled - all admin ops go through Next.js API
+    }
+  }
+}
+
