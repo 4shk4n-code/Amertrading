@@ -1,6 +1,6 @@
 import { db } from "./firebase";
 import type { Product } from "./firebase";
-import { Timestamp } from "firebase-admin/firestore";
+import { Timestamp, Query, CollectionReference } from "firebase-admin/firestore";
 
 // Helper to convert Firestore timestamp to Date
 const convertTimestamp = (timestamp: any): Date => {
@@ -23,7 +23,7 @@ export async function getProducts(filters?: {
   featured?: boolean;
 }): Promise<Product[]> {
   try {
-    let query = db.collection("products");
+    let query: Query | CollectionReference = db.collection("products");
 
     if (filters?.active !== undefined) {
       query = query.where("active", "==", filters.active);
