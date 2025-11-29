@@ -49,7 +49,7 @@ export default async function ProductsPage({
                   key={product.id}
                   className="group rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] overflow-hidden shadow-lg transition hover:shadow-xl"
                 >
-                  <Link href={`/${params.locale}/products/${product.id}` as any}>
+                  <Link href={`/${locale}/products/${product.id}` as any}>
                     <div className="relative h-64 w-full overflow-hidden">
                       {product.images && product.images.length > 0 ? (
                         <Image
@@ -72,7 +72,7 @@ export default async function ProductsPage({
                     </div>
                   </Link>
                   <div className="p-6">
-                    <Link href={`/${params.locale}/products/${product.id}` as any}>
+                    <Link href={`/${locale}/products/${product.id}` as any}>
                       <h3 className="mb-2 text-lg font-semibold line-clamp-2 group-hover:text-[var(--accent)] transition">
                         {product.name}
                       </h3>
