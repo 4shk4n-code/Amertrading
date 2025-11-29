@@ -5,10 +5,11 @@ import { getProductById, updateProduct, deleteProduct } from "@/lib/firebase-pro
 // GET - Get a single product
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const product = await getProductById(params.id);
+    const { id } = await params;
+    const product = await getProductById(id);
 
     if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
@@ -27,7 +28,7 @@ export async function GET(
 // PUT - Update a product
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getAuthSession();
@@ -35,6 +36,7 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
     const body = await request.json();
     const {
       name,
@@ -53,7 +55,7 @@ export async function PUT(
       active,
     } = body;
 
-    await updateProduct(params.id, {
+    await updateProduct(id, {
       name,
       nameAr,
       nameFa,
@@ -70,7 +72,7 @@ export async function PUT(
       active,
     });
 
-    const updatedProduct = await getProductById(params.id);
+    const updatedProduct = await getProductById(id);
     return NextResponse.json(updatedProduct);
   } catch (error: any) {
     console.error("Error updating product:", error);
@@ -84,7 +86,7 @@ export async function PUT(
 // DELETE - Delete a product
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getAuthSession();
@@ -92,7 +94,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await deleteProduct(params.id);
+    const { id } = await params;
+    await deleteProduct(id);
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

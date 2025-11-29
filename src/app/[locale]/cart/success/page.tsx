@@ -1,10 +1,12 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import Link from "next/link";
 import { Suspense } from "react";
 
-function SuccessContent({ locale }: { locale: string }) {
+function SuccessContent() {
+  const params = useParams();
+  const locale = params.locale as string;
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("order");
 
@@ -44,7 +46,7 @@ function SuccessContent({ locale }: { locale: string }) {
   );
 }
 
-export default function CartSuccessPage({ params }: { params: { locale: string } }) {
+export default function CartSuccessPage() {
   return (
     <Suspense fallback={
       <div className="bg-[var(--background)] text-[var(--foreground)]">
@@ -55,7 +57,7 @@ export default function CartSuccessPage({ params }: { params: { locale: string }
         </section>
       </div>
     }>
-      <SuccessContent locale={params.locale} />
+      <SuccessContent />
     </Suspense>
   );
 }

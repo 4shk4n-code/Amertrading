@@ -4,9 +4,11 @@ import { useCart } from "@/contexts/cart-context";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
-export default function CartPage({ params }: { params: { locale: string } }) {
+export default function CartPage() {
+  const params = useParams();
+  const locale = params.locale as string;
   const { items, updateQuantity, removeItem, total, clearCart } = useCart();
   const router = useRouter();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -44,7 +46,7 @@ export default function CartPage({ params }: { params: { locale: string } }) {
 
       const order = await response.json();
       clearCart();
-      router.push(`/${params.locale}/cart/success?order=${order.orderNumber}` as any);
+      router.push(`/${locale}/cart/success?order=${order.orderNumber}` as any);
     } catch (error: any) {
       alert(error.message || "Failed to place order");
       setCheckoutLoading(false);
@@ -63,7 +65,7 @@ export default function CartPage({ params }: { params: { locale: string } }) {
               Your cart is empty
             </p>
             <Link
-              href={`/${params.locale}/products` as any}
+              href={`/${locale}/products` as any}
               className="inline-block rounded-lg bg-[var(--accent)] px-6 py-3 font-medium text-white transition hover:opacity-90"
             >
               Continue Shopping

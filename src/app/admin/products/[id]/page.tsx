@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
+export default function EditProductPage() {
+  const params = useParams();
+  const id = params.id as string;
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -29,7 +31,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await fetch(`/api/admin/products/${params.id}`);
+        const response = await fetch(`/api/admin/products/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -57,7 +59,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
       }
     }
     fetchProduct();
-  }, [params.id]);
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +72,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
         .map((url) => url.trim())
         .filter((url) => url.length > 0);
 
-      const response = await fetch(`/api/admin/products/${params.id}`, {
+      const response = await fetch(`/api/admin/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -100,7 +102,7 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     if (!confirm("Are you sure you want to delete this product?")) return;
 
     try {
-      const response = await fetch(`/api/admin/products/${params.id}`, {
+      const response = await fetch(`/api/admin/products/${id}`, {
         method: "DELETE",
       });
 

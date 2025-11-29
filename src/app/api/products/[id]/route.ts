@@ -4,10 +4,11 @@ import { getProductById } from "@/lib/firebase-products";
 // GET - Get a single product (public)
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const product = await getProductById(params.id);
+    const { id } = await params;
+    const product = await getProductById(id);
 
     if (!product || !product.active) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });

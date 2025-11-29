@@ -7,9 +7,10 @@ import { AddToCartButton } from "@/components/products/add-to-cart-button";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string; locale: string };
+  params: Promise<{ id: string; locale: string }>;
 }) {
-  const product = await getProductById(params.id);
+  const { id } = await params;
+  const product = await getProductById(id);
 
   if (!product || !product.active) {
     return buildMetadata({ title: "Product Not Found" });
@@ -33,9 +34,10 @@ async function fetchProduct(id: string) {
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { id: string; locale: string };
+  params: Promise<{ id: string; locale: string }>;
 }) {
-  const product = await fetchProduct(params.id);
+  const { id } = await params;
+  const product = await fetchProduct(id);
 
   if (!product || !product.active) {
     notFound();
