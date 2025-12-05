@@ -2,10 +2,9 @@ import { getProducts } from "@/lib/firebase-products";
 import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
-import { AddToCartButton } from "@/components/products/add-to-cart-button";
 
 export const metadata = buildMetadata({
-  title: "Products | AMER GENERAL TRADING L.L.C",
+  title: "Buy From Us | AMER GENERAL TRADING L.L.C",
   description: "Browse our product catalog",
 });
 
@@ -32,7 +31,7 @@ export default async function ProductsPage({
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle,_rgba(199,138,26,0.2),_transparent_65%)]" />
         <div className="mx-auto max-w-7xl px-6">
           <h1 className="mb-4 font-display text-4xl uppercase tracking-[0.4em] text-gold-600">
-            Products
+            Buy From Us
           </h1>
           <p className="mb-12 text-[var(--foreground)]/70">
             Browse our complete product catalog
@@ -101,7 +100,6 @@ export default async function ProductsPage({
                         )}
                       </span>
                     </div>
-                    <AddToCartButton product={product} className="mt-4 w-full" />
                   </div>
                 </div>
               ))}

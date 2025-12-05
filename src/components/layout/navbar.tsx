@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronDown, ShoppingCart } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Locale } from "@/lib/i18n";
 import type { Division } from "@/lib/sanity";
-import { useCart } from "@/contexts/cart-context";
 
 type NavbarProps = {
   locale: Locale;
@@ -21,8 +21,10 @@ type NavbarProps = {
 const navItems = [
   { href: "", key: "home", hasDropdown: false },
   { href: "about", key: "about", hasDropdown: false },
+  { href: "services", key: "services", hasDropdown: false },
   { href: "divisions", key: "divisions", hasDropdown: true },
-  { href: "products", key: "products", hasDropdown: false },
+  { href: "products", key: "buy from us", hasDropdown: false },
+  { href: "industries", key: "industries", hasDropdown: false },
   { href: "news", key: "news", hasDropdown: false },
   { href: "contact", key: "contact", hasDropdown: false },
 ];
@@ -32,7 +34,6 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const { itemCount } = useCart();
 
   useEffect(() => {
     // Allow hydration to complete before rendering theme-aware controls.
@@ -66,15 +67,34 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)]">
+    <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-sm text-[var(--foreground)]">
         <Link
           href={`/${locale}` as any}
-          className="font-display text-lg tracking-[0.25em] text-gold-700"
+          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0"
         >
-          AMER GENERAL TRADING L.L.C
+          <div className="relative bg-transparent">
+            <Image
+              src="/images/amerlogo.png"
+              alt="AMER GENERAL TRADING L.L.C"
+              width={120}
+              height={40}
+              className="h-10 w-auto object-contain bg-transparent"
+              priority
+              style={{ 
+                border: 'none !important', 
+                outline: 'none !important',
+                backgroundColor: 'transparent !important',
+                background: 'transparent !important',
+                boxShadow: 'none !important'
+              }}
+            />
+          </div>
+          <span className="font-display text-lg tracking-[0.25em] text-gold-700 hidden sm:inline">
+            AMER GENERAL TRADING L.L.C
+          </span>
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-4 lg:gap-6 md:flex flex-1 justify-center max-w-2xl mx-auto">
           {links.map((item) => {
             const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
             
@@ -162,24 +182,12 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
             );
           })}
         </nav>
-        <div className="flex items-center gap-3">
-          <Link
-            href={`/${locale}/cart` as any}
-            className="relative rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
-            aria-label="Shopping cart"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent)] text-xs font-bold text-white">
-                {itemCount > 9 ? "9+" : itemCount}
-              </span>
-            )}
-          </Link>
+        <div className="flex items-center gap-3 flex-shrink-0">
           {mounted && (
             <button
               type="button"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105"
+              className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               {theme === "dark" ? "Light" : "Dark"}

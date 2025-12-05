@@ -23,11 +23,15 @@ export function buildMetadata(options: MetadataOptions = {}): Metadata {
     description,
     icons: {
       icon: [
-        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/icon.png", type: "image/png", sizes: "32x32" },
+        { url: "/icon.png", type: "image/png", sizes: "16x16" },
         { url: "/favicon.ico", sizes: "any" },
       ],
       apple: [
-        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/icon.png", type: "image/png", sizes: "180x180" },
+      ],
+      shortcut: [
+        { url: "/icon.png", type: "image/png" },
       ],
     },
     openGraph: {

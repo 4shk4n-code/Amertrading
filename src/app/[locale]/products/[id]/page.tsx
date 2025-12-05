@@ -2,7 +2,6 @@ import { getProductById } from "@/lib/firebase-products";
 import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { AddToCartButton } from "@/components/products/add-to-cart-button";
 
 export async function generateMetadata({
   params,
@@ -142,8 +141,6 @@ export default async function ProductDetailPage({
                   </span>
                 </div>
               )}
-
-              <AddToCartButton product={product} className="w-full py-4 text-lg" />
             </div>
           </div>
         </div>

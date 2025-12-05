@@ -12,7 +12,9 @@
     "test:firebase": "tsx scripts/test-firebase.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "deploy": "powershell -ExecutionPolicy Bypass -File ./auto-deploy.ps1",
+    "push": "powershell -ExecutionPolicy Bypass -File ./commit-and-push.ps1"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",

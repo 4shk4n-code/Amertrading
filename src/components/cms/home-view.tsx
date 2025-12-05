@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CompanyInfo, Division, NewsPost } from "@/lib/sanity";
 import { Locale } from "@/lib/i18n";
+import { BannerCarousel } from "@/components/layout/banner-carousel";
 
 type HomeViewProps = {
   locale: Locale;
@@ -195,47 +196,114 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         )}
       </AnimatePresence>
 
-      <section className="relative min-h-[92vh] overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/60 to-black/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(246,214,130,0.18),_transparent_55%)] mix-blend-screen opacity-90" />
+      <section 
+        className="relative min-h-[92vh] overflow-hidden"
+        style={{
+          backgroundImage: "url('/images/amerback.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Enhanced gradient overlays to ensure text visibility with new background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0.4),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(0,0,0,0.3),_transparent_50%,_rgba(0,0,0,0.6))]" />
+        
+        {/* Gallery of hpage images - Prominently displayed in hero section */}
+        <div className="absolute inset-0 pointer-events-none z-10">
+          {/* Gallery positioned on the right side, visible but not blocking text */}
+          <div className="absolute right-0 top-0 bottom-0 w-[45%] md:w-[40%] lg:w-[35%] flex items-center justify-center p-2 md:p-4 overflow-hidden">
+            <div className="grid grid-cols-2 gap-1 md:gap-2 w-full h-full max-w-full max-h-full">
+              {/* Top Left */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                whileHover={{ scale: 1.1, zIndex: 20 }}
+                className="relative aspect-square overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+              >
+                <Image
+                  src="/images/hpage1.jpg"
+                  alt="Gallery 1"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
+              
+              {/* Top Right */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                whileHover={{ scale: 1.1, zIndex: 20 }}
+                className="relative aspect-square overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+              >
+                <Image
+                  src="/images/hpage2.jpg"
+                  alt="Gallery 2"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
+              
+              {/* Bottom Left */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                whileHover={{ scale: 1.1, zIndex: 20 }}
+                className="relative aspect-square overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+              >
+                <Image
+                  src="/images/hpage3.jpg"
+                  alt="Gallery 3"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
+              
+              {/* Bottom Right */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                whileHover={{ scale: 1.1, zIndex: 20 }}
+                className="relative aspect-square overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+              >
+                <Image
+                  src="/images/hpage4.jpg"
+                  alt="Gallery 4"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
+            </div>
+          </div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.5 }}
-          className="pointer-events-none absolute inset-x-0 top-10 z-20 mx-auto h-12 max-w-5xl rounded-full border border-[rgba(28,26,23,0.12)] bg-white/60 backdrop-blur-md"
+          className="pointer-events-none absolute inset-x-0 top-10 z-20 mx-auto h-12 max-w-5xl rounded-full border border-[rgba(255,255,255,0.2)] bg-white/40 backdrop-blur-xl shadow-2xl"
         />
-        <div className="relative z-20 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pb-28 pt-28 text-left md:flex-row md:items-center md:space-x-14">
-          {company?.logo?.asset?.url && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-8 w-full max-w-xs md:mb-0 md:max-w-sm"
-            >
-              <Image
-                src={company.logo.asset.url}
-                alt={company.name}
-                width={240}
-                height={80}
-                className="h-16 w-auto object-contain drop-shadow-[0_12px_35px_rgba(17,17,17,0.4)]"
-                priority
-              />
-            </motion.div>
-          )}
+        <div className="relative z-40 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pb-28 pt-28 text-left md:flex-row md:items-center md:space-x-14">
+          <div className="flex flex-col relative z-50">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1 }}
-            className="font-display text-4xl leading-tight tracking-[0.15em] text-gold-600 drop-shadow-[0_30px_80px_rgba(245,215,169,0.45)] sm:text-5xl md:text-left md:text-6xl"
+            className="font-display text-4xl leading-tight tracking-[0.15em] text-white sm:text-5xl md:text-left md:text-6xl lg:text-7xl"
+            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.8)' }}
           >
             {company?.name ?? "AMER GENERAL TRADING L.L.C"}
           </motion.h1>
@@ -243,7 +311,8 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--foreground)]/80 md:text-xl"
+            className="mt-6 max-w-2xl text-lg leading-relaxed text-white md:text-xl"
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 1px 6px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8)' }}
           >
             {company?.mission ?? "Empowering growth across global industries."}
           </motion.p>
@@ -255,49 +324,220 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
           >
             <Link
               href={`/${locale}/divisions` as any}
-              className="rounded-full bg-gold-gradient px-8 py-3 text-sm uppercase tracking-[0.35em] text-white shadow-[0_35px_70px_-25px_rgba(246,214,130,0.6)] transition-transform duration-300 hover:scale-[1.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              className="rounded-full bg-gradient-to-r from-gold-600 to-gold-500 px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white shadow-[0_8px_32px_rgba(199,138,26,0.5)] transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(199,138,26,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Discover Divisions
             </Link>
             <Link
               href={`/${locale}/contact` as any}
-              className="rounded-full border border-[rgba(28,26,23,0.15)] px-8 py-3 text-sm uppercase tracking-[0.35em] text-[var(--foreground)] transition duration-300 hover:border-gold-400 hover:text-gold-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              className="rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-md px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-[1.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Partner With Us
             </Link>
-            <div className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-[rgba(28,26,23,0.25)] to-transparent sm:block" />
+            <div className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-white/30 to-transparent sm:block" />
           </motion.div>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3 rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-6 shadow-[0_25px_60px_-30px_rgba(28,26,23,0.4)] dark:shadow-[0_25px_60px_-30px_rgba(0,0,0,0.6)] backdrop-blur-lg md:mt-0 md:self-end"
+            className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3 rounded-3xl border-2 border-white/20 bg-white/10 backdrop-blur-xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] md:mt-0 md:self-end"
           >
             {partnerSignals.map((signal) => (
               <div
                 key={signal.detail}
-                className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--hover-bg)] px-4 py-5 text-sm text-[var(--foreground)] shadow-[0_18px_45px_-24px_rgba(28,26,23,0.35)] dark:shadow-[0_18px_45px_-24px_rgba(0,0,0,0.5)]"
+                className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-5 text-sm text-white shadow-lg"
               >
-                <span className="block text-xs uppercase tracking-[0.4em] text-gold-700">
+                <span className="block text-xs uppercase tracking-[0.4em] text-gold-300 font-semibold">
                   {signal.tag}
                 </span>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--foreground)]">
+                <p className="mt-2 text-sm leading-relaxed text-white/90">
                   {signal.detail}
                 </p>
               </div>
             ))}
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-          className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-xs uppercase tracking-[0.4em] text-white/80 sm:flex"
-          aria-hidden
-        >
-          <span className="text-white/70">Scroll</span>
-          <span className="block h-14 w-px bg-gradient-to-b from-white via-white/40 to-transparent" />
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-xs uppercase tracking-[0.4em] text-white/90 sm:flex z-30"
+            aria-hidden
+          >
+            <span className="text-white/90 drop-shadow-lg">Scroll</span>
+            <motion.span 
+              className="block h-14 w-px bg-gradient-to-b from-white via-white/60 to-transparent"
+              animate={{ 
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+      </section>
+
+      {/* Prominent Gallery Section - Eye-catching for the boss! */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-black via-[rgba(15,15,15,0.98)] to-black py-24 md:py-32">
+        {/* Animated background effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(199,138,26,0.15),_transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(246,214,130,0.1),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(199,138,26,0.1),_transparent_50%)]" />
+        
+        <div className="mx-auto max-w-7xl px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl uppercase tracking-[0.15em] text-white mb-6 drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
+              What We Do
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              Multi-industry excellence across automotive, food, IT, fashion, and global commerce
+            </p>
+          </motion.div>
+
+          {/* Main Dynamic Gallery Grid - Large and Prominent */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-12">
+            {[
+              { src: "/images/hpage.jpg", delay: 0.1, rotation: -3 },
+              { src: "/images/hpage1.jpg", delay: 0.2, rotation: 2 },
+              { src: "/images/hpage2.jpg", delay: 0.3, rotation: -2 },
+              { src: "/images/hpage3.jpg", delay: 0.4, rotation: 3 },
+              { src: "/images/hpage4.jpg", delay: 0.5, rotation: -1 },
+            ].map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.7, rotate: image.rotation * 2, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: image.rotation, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: image.delay,
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 12
+                }}
+                whileHover={{ 
+                  scale: 1.15, 
+                  rotate: 0,
+                  zIndex: 20,
+                  y: -10
+                }}
+                className="relative group cursor-pointer"
+              >
+                <div className="relative aspect-square overflow-hidden rounded-3xl border-4 border-white/30 shadow-[0_25px_80px_rgba(0,0,0,0.8)] backdrop-blur-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Image
+                    src={image.src}
+                    alt={`Gallery image ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-125"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 border-4 border-gold-500/0 group-hover:border-gold-500/80 transition-all duration-500 rounded-3xl z-20" />
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                </div>
+                {/* Enhanced glow effect on hover */}
+                <motion.div 
+                  className="absolute inset-0 rounded-3xl bg-gold-500/0 group-hover:bg-gold-500/30 blur-2xl -z-10"
+                  animate={{
+                    opacity: [0, 0.3, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Floating particles effect */}
+                <div className="absolute -inset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[
+                    { left: "10%", top: "20%" },
+                    { left: "80%", top: "15%" },
+                    { left: "45%", top: "30%" },
+                    { left: "20%", top: "70%" },
+                    { left: "75%", top: "65%" },
+                    { left: "50%", top: "85%" },
+                  ].map((pos, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-gold-400 rounded-full"
+                      style={{
+                        left: pos.left,
+                        top: pos.top,
+                      }}
+                      animate={{
+                        y: [0, -20, 0],
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional showcase row - Rotating carousel effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="relative"
+          >
+            <div className="flex gap-6 md:gap-8 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {[
+                { src: "/images/hpage.jpg", delay: 0.7 },
+                { src: "/images/hpage1.jpg", delay: 0.8 },
+                { src: "/images/hpage2.jpg", delay: 0.9 },
+                { src: "/images/hpage3.jpg", delay: 1.0 },
+                { src: "/images/hpage4.jpg", delay: 1.1 },
+                { src: "/images/hpage.jpg", delay: 1.2 },
+                { src: "/images/hpage1.jpg", delay: 1.3 },
+              ].map((image, index) => (
+                <motion.div
+                  key={`carousel-${index}`}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: image.delay
+                  }}
+                  whileHover={{ scale: 1.08, y: -8 }}
+                  className="relative group cursor-pointer flex-shrink-0 w-[280px] md:w-[350px] snap-center"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-4 border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.7)]">
+                    <Image
+                      src={image.src}
+                      alt={`Showcase image ${index + 1}`}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-125"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 border-4 border-gold-500/0 group-hover:border-gold-500/60 transition-all duration-500 rounded-2xl" />
+                  </div>
+                  <div className="absolute -inset-2 rounded-2xl bg-gold-500/0 group-hover:bg-gold-500/20 blur-xl -z-10 transition-all duration-500" />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       <section className="relative border-y border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 py-16">
@@ -694,6 +934,9 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
           </motion.div>
         </div>
       </section>
+
+      {/* Banner Carousel */}
+      <BannerCarousel />
     </div>
   );
 }

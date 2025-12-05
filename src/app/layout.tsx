@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
 import ConditionalAnalyticsWrapper from "@/components/layout/conditional-analytics-wrapper";
-import { CartProvider } from "@/contexts/cart-context";
 
 
 const inter = FontInter({
@@ -35,12 +34,10 @@ export default function RootLayout({
           fontFamily:
             "var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
         }}
-      >
+        >
         <ThemeProvider>
-          <CartProvider>
-            <SmoothScrollProvider>{children}</SmoothScrollProvider>
-            <ConditionalAnalyticsWrapper />
-          </CartProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <ConditionalAnalyticsWrapper />
         </ThemeProvider>
       </body>
     </html>
