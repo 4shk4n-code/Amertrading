@@ -211,17 +211,17 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           })}
         </nav>
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          <div className="hidden sm:block" suppressHydrationWarning>
-            {mounted && (
-              <button
-                type="button"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
-                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-              >
-                {theme === "dark" ? "Light" : "Dark"}
-              </button>
-            )}
+          <div className="hidden sm:block">
+            <button
+              type="button"
+              onClick={() => mounted && setTheme(theme === "dark" ? "light" : "dark")}
+              disabled={!mounted}
+              className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} mode` : "Loading theme"}
+              suppressHydrationWarning
+            >
+              {mounted ? (theme === "dark" ? "Light" : "Dark") : "Light"}
+            </button>
           </div>
           {/* Mobile menu button */}
           <button
@@ -359,20 +359,22 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               );
             })}
             {/* Theme toggle in mobile menu */}
-            <div className="pt-4 mt-4 border-t border-[var(--card-border)]" suppressHydrationWarning>
-              {mounted && (
-                <button
-                  type="button"
-                  onClick={() => {
+            <div className="pt-4 mt-4 border-t border-[var(--card-border)]">
+              <button
+                type="button"
+                onClick={() => {
+                  if (mounted) {
                     setTheme(theme === "dark" ? "light" : "dark");
                     setMobileMenuOpen(false);
-                  }}
-                  className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2.5 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20"
-                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-                >
-                  {theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                </button>
-              )}
+                  }
+                }}
+                disabled={!mounted}
+                className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2.5 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} mode` : "Loading theme"}
+                suppressHydrationWarning
+              >
+                {mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : "Switch to Light Mode"}
+              </button>
             </div>
           </nav>
         </div>
