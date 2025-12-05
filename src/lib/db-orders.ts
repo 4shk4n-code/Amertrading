@@ -1,5 +1,22 @@
 import { prisma } from "./prisma";
-import type { Order, OrderItem } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+
+// Define types based on Prisma schema
+type Order = Prisma.OrderGetPayload<{
+  include: {
+    items: {
+      include: {
+        product: true;
+      };
+    };
+  };
+}>;
+
+type OrderItem = Prisma.OrderItemGetPayload<{
+  include: {
+    product: true;
+  };
+}>;
 
 // Create a new order
 export async function createOrder(orderData: {
