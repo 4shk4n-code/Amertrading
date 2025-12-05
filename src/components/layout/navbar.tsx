@@ -42,6 +42,18 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
     setMounted(true);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const links = useMemo(
     () =>
       navItems.map((item) => {
@@ -72,7 +84,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       {/* Backdrop overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[45] md:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[45] md:hidden"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         />
@@ -218,7 +230,42 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-x-0 top-0 z-[50] md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] backdrop-blur-xl max-h-screen overflow-y-auto pt-16">
+        <div className="fixed inset-0 z-[50] md:hidden bg-[var(--card-bg)] dark:bg-[var(--card-bg)] overflow-y-auto">
+          <div className="pt-16 border-b border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)]">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="relative bg-transparent">
+                  <Image
+                    src="/images/amerlogo.png"
+                    alt="AMER GENERAL TRADING L.L.C"
+                    width={120}
+                    height={40}
+                    className="h-8 sm:h-10 w-auto object-contain bg-transparent"
+                    priority
+                    style={{ 
+                      border: 'none !important', 
+                      outline: 'none !important',
+                      backgroundColor: 'transparent !important',
+                      background: 'transparent !important',
+                      boxShadow: 'none !important'
+                    }}
+                  />
+                </div>
+                <span className="font-display text-sm sm:text-lg tracking-[0.25em] text-gold-700 hidden xs:inline">
+                  AMER GENERAL TRADING L.L.C
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+          <div className="px-4 sm:px-6 py-6">
           <nav className="px-4 sm:px-6 py-6 space-y-3">
             {links.map((item) => {
               const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
