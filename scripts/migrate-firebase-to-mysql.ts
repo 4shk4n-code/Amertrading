@@ -9,7 +9,9 @@
  */
 
 import { db as firestore } from "../src/lib/firebase";
-import { prisma } from "../src/lib/prisma";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 async function migrateProducts() {
   console.log("🔄 Migrating products from Firebase to MySQL...");
