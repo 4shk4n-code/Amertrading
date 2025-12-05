@@ -1,18 +1,17 @@
 import { prisma } from "./prisma";
 
 // Type assertion for Prisma client (works even if client not generated)
-type PrismaClientWithProduct = typeof prisma & {
+// Using 'any' to bypass TypeScript errors when Prisma client isn't generated
+const prismaWithProduct = prisma as unknown as {
   product: {
-    findMany: (args?: unknown) => Promise<Array<{ images: unknown; [key: string]: unknown }>>;
-    findUnique: (args: { where: { id: string } }) => Promise<{ images: unknown; [key: string]: unknown } | null>;
-    findFirst: (args: { where: { sku?: string; active?: boolean } }) => Promise<{ images: unknown; [key: string]: unknown } | null>;
-    create: (args: { data: Record<string, unknown> }) => Promise<{ images: unknown; [key: string]: unknown }>;
-    update: (args: { where: { id: string }; data: Record<string, unknown> }) => Promise<{ images: unknown; [key: string]: unknown }>;
+    findMany: (args?: { where?: Record<string, unknown>; orderBy?: Record<string, string> }) => Promise<Array<Record<string, unknown>>>;
+    findUnique: (args: { where: { id: string } }) => Promise<Record<string, unknown> | null>;
+    findFirst: (args: { where: Record<string, unknown> }) => Promise<Record<string, unknown> | null>;
+    create: (args: { data: Record<string, unknown> }) => Promise<Record<string, unknown>>;
+    update: (args: { where: { id: string }; data: Record<string, unknown> }) => Promise<Record<string, unknown>>;
     delete: (args: { where: { id: string } }) => Promise<void>;
   };
 };
-
-const prismaWithProduct = prisma as unknown as PrismaClientWithProduct;
 
 // Product type with images as string array (not Json)
 // Defined manually since Prisma client may not be generated yet
