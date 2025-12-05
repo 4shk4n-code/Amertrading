@@ -75,7 +75,7 @@ export default async function AdminDashboard() {
             return (
               <Link
                 key={link.href}
-                href={link.href as any}
+                href={link.href}
                 className="group rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 transition hover:border-[var(--accent)] hover:bg-[var(--hover-bg)]"
               >
                 <div className="mb-4 flex items-center gap-4">

@@ -46,9 +46,10 @@ export default function CartPage() {
 
       const order = await response.json();
       clearCart();
-      router.push(`/${locale}/cart/success?order=${order.orderNumber}` as any);
-    } catch (error: any) {
-      alert(error.message || "Failed to place order");
+      router.push(`/${locale}/cart/success?order=${order.orderNumber}`);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to place order";
+      alert(message);
       setCheckoutLoading(false);
     }
   };
@@ -65,7 +66,7 @@ export default function CartPage() {
               Your cart is empty
             </p>
             <Link
-              href={`/${locale}/products` as any}
+              href={`/${locale}/products`}
               className="inline-block rounded-lg bg-[var(--accent)] px-6 py-3 font-medium text-white transition hover:opacity-90"
             >
               Continue Shopping

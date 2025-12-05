@@ -9,11 +9,9 @@ import {
   Globe, 
   Package, 
   Shield, 
-  TrendingUp,
   MapPin,
   Clock,
-  BarChart3,
-  FileText
+  BarChart3
 } from "lucide-react";
 
 const services = [
@@ -180,13 +178,13 @@ export default function ServicesPage({
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
-                href={`/${locale}/contact` as any}
+                href={`/${locale}/contact`}
                 className="rounded-full bg-gold-gradient px-10 py-3 text-sm uppercase tracking-[0.35em] text-white shadow-[0_25px_60px_-25px_rgba(199,138,26,0.6)] transition-transform duration-300 hover:scale-105"
               >
                 Request a Quote
               </Link>
               <Link
-                href={`/${locale}/about` as any}
+                href={`/${locale}/about`}
                 className="rounded-full border border-[rgba(28,26,23,0.15)] px-10 py-3 text-sm uppercase tracking-[0.35em] text-[var(--foreground)] transition hover:border-gold-400 hover:text-gold-600"
               >
                 Learn More

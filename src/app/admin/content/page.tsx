@@ -35,7 +35,7 @@ async function getContentCounts() {
 export default async function ContentAdminPage() {
   const session = await getAuthSession();
   if (!session) {
-    redirect("/admin/signin" as any);
+    redirect("/admin/signin");
 
   }
 
@@ -84,14 +84,14 @@ export default async function ContentAdminPage() {
           </div>
           <div className="flex gap-4">
             <Link
-              href={"/admin/dashboard" as any}
+              href="/admin/dashboard"
 
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Dashboard
             </Link>
             <Link
-              href={"/studio" as any}
+              href="/studio"
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Open CMS
@@ -103,7 +103,7 @@ export default async function ContentAdminPage() {
           {contentTypes.map((type) => (
             <Link
               key={type.name}
-              href={type.href as any}
+              href={type.href}
 
               className="group rounded-2xl border border-zinc-700 bg-zinc-900/70 p-6 transition hover:border-gold-500/50 hover:bg-zinc-900"
             >

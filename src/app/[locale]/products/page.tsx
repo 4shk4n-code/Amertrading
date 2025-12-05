@@ -71,7 +71,7 @@ export default async function ProductsPage({
                     </div>
                   </Link>
                   <div className="p-6">
-                    <Link href={`/${locale}/products/${product.id}` as any}>
+                    <Link href={`/${locale}/products/${product.id}`}>
                       <h3 className="mb-2 text-lg font-semibold line-clamp-2 group-hover:text-[var(--accent)] transition">
                         {product.name}
                       </h3>

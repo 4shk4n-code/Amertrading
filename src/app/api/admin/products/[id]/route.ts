@@ -74,7 +74,7 @@ export async function PUT(
 
     const updatedProduct = await getProductById(id);
     return NextResponse.json(updatedProduct);
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error updating product:", error);
     return NextResponse.json(
       { error: "Failed to update product" },
@@ -98,7 +98,7 @@ export async function DELETE(
     await deleteProduct(id);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error deleting product:", error);
     return NextResponse.json(
       { error: "Failed to delete product" },

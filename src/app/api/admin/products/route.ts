@@ -14,7 +14,10 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const active = searchParams.get("active");
 
-    const filters: any = {};
+    const filters: {
+      category?: string;
+      active?: boolean;
+    } = {};
     if (category) filters.category = category;
     if (active !== null) filters.active = active === "true";
 
@@ -81,7 +84,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(product, { status: 201 });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error creating product:", error);
     return NextResponse.json(
       { error: "Failed to create product" },

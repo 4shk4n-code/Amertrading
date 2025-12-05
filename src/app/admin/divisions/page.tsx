@@ -16,7 +16,15 @@ async function getDivisions() {
   if (!hasSanityCredentials || !sanityClient) {
     return [];
   }
-  return sanityClient.fetch<any[]>(
+  return sanityClient.fetch<Array<{
+    _id: string;
+    name: string;
+    slug: { current: string };
+    description?: string;
+    order?: number;
+    locale?: string;
+    image?: { asset?: { _ref: string; url: string } };
+  }>>(
     `*[_type == "division"] | order(order asc){
       _id,
       name,
@@ -34,7 +42,7 @@ async function getDivisions() {
 export default async function DivisionsAdminPage() {
   const session = await getAuthSession();
   if (!session) {
-    redirect("/admin/signin" as any);
+    redirect("/admin/signin");
   }
 
   const divisions = await getDivisions();

@@ -197,17 +197,17 @@ export default function IndustriesPage({
               Not Seeing Your Industry?
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--foreground)]/70">
-              We adapt our solutions to meet the unique needs of any industry. Let's discuss your specific requirements.
+              We adapt our solutions to meet the unique needs of any industry. Let&apos;s discuss your specific requirements.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
-                href={`/${locale}/contact` as any}
+                href={`/${locale}/contact`}
                 className="rounded-full bg-gold-gradient px-10 py-3 text-sm uppercase tracking-[0.35em] text-white shadow-[0_25px_60px_-25px_rgba(199,138,26,0.6)] transition-transform duration-300 hover:scale-105"
               >
                 Contact Us
               </Link>
               <Link
-                href={`/${locale}/services` as any}
+                href={`/${locale}/services`}
                 className="rounded-full border border-[rgba(28,26,23,0.15)] px-10 py-3 text-sm uppercase tracking-[0.35em] text-[var(--foreground)] transition hover:border-gold-400 hover:text-gold-600"
               >
                 View Services

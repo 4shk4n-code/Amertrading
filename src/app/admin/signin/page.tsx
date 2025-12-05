@@ -30,10 +30,10 @@ function SignInForm() {
         setError("Invalid username or password");
         setLoading(false);
       } else if (result?.ok) {
-        router.push(callbackUrl as any);
+        router.push(callbackUrl);
         router.refresh();
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred. Please try again.");
       setLoading(false);
     }

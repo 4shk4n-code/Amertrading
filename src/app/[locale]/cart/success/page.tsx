@@ -28,13 +28,13 @@ function SuccessContent() {
           </p>
           <div className="flex gap-4 justify-center">
             <Link
-              href={`/${locale}/products` as any}
+              href={`/${locale}/products`}
               className="rounded-lg bg-[var(--accent)] px-6 py-3 font-medium text-white transition hover:opacity-90"
             >
               Continue Shopping
             </Link>
             <Link
-              href={`/${locale}` as any}
+              href={`/${locale}`}
               className="rounded-lg border border-[var(--card-border)] px-6 py-3 font-medium transition hover:bg-[var(--hover-bg)]"
             >
               Go Home
