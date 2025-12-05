@@ -368,10 +368,11 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 </button>
               </div>
             )}
-          </nav>
+          </div>
         </div>
       )}
     </header>
+    </>
   );
 }
 
