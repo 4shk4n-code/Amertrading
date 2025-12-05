@@ -3,7 +3,7 @@ import type { Product } from "./firebase";
 import { Timestamp, Query, CollectionReference } from "firebase-admin/firestore";
 
 // Helper to convert Firestore timestamp to Date
-const convertTimestamp = (timestamp: any): Date => {
+const convertTimestamp = (timestamp: unknown): Date => {
   if (timestamp?.toDate) {
     return timestamp.toDate();
   }

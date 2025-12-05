@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getProductById } from "@/lib/firebase-products";
+import { getProductById } from "@/lib/db-products";
 
 // GET - Get a single product (public)
 export async function GET(

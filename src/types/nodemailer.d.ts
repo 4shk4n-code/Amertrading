@@ -1,6 +1,20 @@
 declare module "nodemailer" {
+  export interface MailOptions {
+    from?: string;
+    to: string | string[];
+    subject?: string;
+    text?: string;
+    html?: string;
+  }
+
+  export interface SendMailResult {
+    messageId: string;
+    accepted: string[];
+    rejected: string[];
+  }
+
   export interface Transporter {
-    sendMail: (...args: any[]) => Promise<any>;
+    sendMail: (options: MailOptions) => Promise<SendMailResult>;
   }
 
   export interface CreateTransportOptions {

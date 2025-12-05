@@ -2,7 +2,7 @@ import { db } from "./firebase";
 import type { Order, OrderItem } from "./firebase";
 import { Timestamp } from "firebase-admin/firestore";
 
-const convertTimestamp = (timestamp: any): Date => {
+const convertTimestamp = (timestamp: unknown): Date => {
   if (timestamp?.toDate) {
     return timestamp.toDate();
   }

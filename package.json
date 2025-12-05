@@ -11,6 +11,7 @@
     "seed:sanity": "tsx scripts/seed.ts",
     "list:admins": "tsx scripts/list-admins.ts",
     "test:firebase": "tsx scripts/test-firebase.ts",
+    "migrate:firebase": "tsx scripts/migrate-firebase-to-mysql.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:studio": "prisma studio",

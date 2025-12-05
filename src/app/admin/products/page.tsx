@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getProducts } from "@/lib/firebase-products";
+import { getProducts } from "@/lib/db-products";
 import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 

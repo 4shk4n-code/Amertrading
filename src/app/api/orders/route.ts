@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createOrder } from "@/lib/firebase-orders";
-import { getProductById } from "@/lib/firebase-products";
+import { createOrder } from "@/lib/db-orders";
+import { getProductById } from "@/lib/db-products";
 
 // POST - Create a new order
 export async function POST(request: NextRequest) {

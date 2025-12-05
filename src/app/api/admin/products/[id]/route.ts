@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
-import { getProductById, updateProduct, deleteProduct } from "@/lib/firebase-products";
+import { getProductById, updateProduct, deleteProduct } from "@/lib/db-products";
 
 // GET - Get a single product
 export async function GET(

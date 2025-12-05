@@ -1,4 +1,4 @@
-import { getProductById } from "@/lib/firebase-products";
+import { getProductById } from "@/lib/db-products";
 import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";

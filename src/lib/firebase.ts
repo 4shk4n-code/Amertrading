@@ -26,9 +26,10 @@ function initializeFirebase() {
       if (!serviceAccount.project_id || !serviceAccount.private_key || !serviceAccount.client_email) {
         throw new Error("Service account key missing required fields");
       }
-    } catch (error: any) {
+    } catch (error) {
       if (process.env.NODE_ENV !== "production") {
-        console.error("❌ Failed to parse FIREBASE_SERVICE_ACCOUNT_KEY:", error.message);
+        const message = error instanceof Error ? error.message : String(error);
+        console.error("❌ Failed to parse FIREBASE_SERVICE_ACCOUNT_KEY:", message);
       }
       serviceAccount = null;
     }
@@ -43,9 +44,10 @@ function initializeFirebase() {
       if (process.env.NODE_ENV !== "production") {
         console.log(`✓ Firebase initialized with service account for project: ${serviceAccount.project_id}`);
       }
-    } catch (error: any) {
+    } catch (error) {
       if (process.env.NODE_ENV !== "production") {
-        console.warn("Failed to initialize Firebase with service account:", error.message);
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn("Failed to initialize Firebase with service account:", message);
       }
       adminApp = null;
     }
@@ -73,7 +75,7 @@ export const db = new Proxy({} as ReturnType<typeof getFirestore>, {
     if (!_db) {
       _db = initializeFirebase();
     }
-    return (_db as any)[prop];
+    return (_db as Record<string, unknown>)[prop as string];
   }
 }) as ReturnType<typeof getFirestore>;
 

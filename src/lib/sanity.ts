@@ -364,7 +364,7 @@ export async function getDivisions(locale: string) {
       return fallbackDivisions[locale] ?? fallbackDivisions.en;
     }
     return result;
-  } catch (error) {
+  } catch {
     // Return fallback on error
     return fallbackDivisions[locale] ?? fallbackDivisions.en;
   }
@@ -415,7 +415,7 @@ export async function getNews(locale: string) {
       return fallbackNews[locale] ?? fallbackNews.en;
     }
     return result;
-  } catch (error) {
+  } catch {
     // Return fallback on error
     return fallbackNews[locale] ?? fallbackNews.en;
   }
