@@ -125,8 +125,8 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
       ? company.introVideoURL
       : "/intro-logo.mp4";
 
-  const heroVideo =
-    company?.heroVideoURL ??
+  // const heroVideo =
+  //   company?.heroVideoURL ??
     "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4";
 
   const divisionCards = useMemo(() => {
@@ -152,7 +152,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         day: "numeric",
         year: "numeric",
       }).format(new Date(value));
-    } catch (error) {
+    } catch {
       return value;
     }
   };
@@ -323,13 +323,13 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             className="mt-12 flex flex-wrap items-center gap-5"
           >
             <Link
-              href={`/${locale}/divisions` as any}
+              href={`/${locale}/divisions`}
               className="rounded-full bg-gradient-to-r from-gold-600 to-gold-500 px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white shadow-[0_8px_32px_rgba(199,138,26,0.5)] transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(199,138,26,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Discover Divisions
             </Link>
             <Link
-              href={`/${locale}/contact` as any}
+              href={`/${locale}/contact`}
               className="rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-md px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-[1.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Partner With Us
@@ -701,7 +701,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               </motion.p>
             </div>
             <Link
-              href={`/${locale}/divisions` as any}
+              href={`/${locale}/divisions`}
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(28,26,23,0.12)] px-5 py-2 text-xs uppercase tracking-[0.35em] text-[var(--foreground)] transition hover:border-gold-400 hover:text-gold-600"
             >
               Explore All
@@ -757,7 +757,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                       </a>
                     ) : (
                       <Link
-                        href={`/${locale}/divisions/${division.slug.current}` as any}
+                        href={`/${locale}/divisions/${division.slug.current}`}
                         className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-gold-600 transition hover:text-gold-500"
                       >
                         View Division
@@ -844,7 +844,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               </motion.p>
             </div>
             <Link
-              href={`/${locale}/news` as any}
+              href={`/${locale}/news`}
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(28,26,23,0.12)] px-5 py-2 text-xs uppercase tracking-[0.35em] text-[var(--foreground)] transition hover:border-gold-400 hover:text-gold-600"
             >
               View newsroom
@@ -868,7 +868,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
                     {item.title}
                   </h3>
                   <Link
-                    href={`/${locale}/news/${item.slug.current}` as any}
+                    href={`/${locale}/news/${item.slug.current}`}
                     className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-gold-600 transition group-hover:text-gold-500"
                   >
                     Read insight
@@ -920,13 +920,13 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             className="flex flex-wrap items-center justify-center gap-4"
           >
             <Link
-              href={`/${locale}/contact` as any}
+              href={`/${locale}/contact`}
               className="rounded-full bg-gold-gradient px-10 py-3 text-sm uppercase tracking-[0.35em] text-white shadow-[0_25px_60px_-25px_rgba(199,138,26,0.6)] transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Schedule A Briefing
             </Link>
             <Link
-              href={`/${locale}/about` as any}
+              href={`/${locale}/about`}
               className="rounded-full border border-[rgba(28,26,23,0.15)] px-10 py-3 text-sm uppercase tracking-[0.35em] text-[var(--foreground)] transition hover:border-gold-400 hover:text-gold-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Learn Our Story

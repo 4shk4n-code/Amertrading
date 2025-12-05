@@ -70,7 +70,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
     <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-sm text-[var(--foreground)]">
         <Link
-          href={`/${locale}` as any}
+          href={`/${locale}`}
           className="flex items-center gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0"
         >
           <div className="relative bg-transparent">
@@ -106,7 +106,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 onMouseLeave={() => hasDropdown && handleMouseLeave()}
               >
                 <Link
-                  href={item.slug as any}
+                  href={item.slug}
                   className={cn(
                     "relative flex items-center gap-1 font-medium uppercase tracking-[0.2em] transition-colors",
                     item.active
@@ -136,7 +136,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                     onMouseLeave={() => handleMouseLeave()}
                   >
                     <Link
-                      href={`/${locale}/divisions` as any}
+                      href={`/${locale}/divisions`}
                       className="block px-4 py-2 text-sm font-medium text-[var(--foreground)]/80 hover:bg-gold-50 hover:text-gold-600 transition-colors"
                       onClick={() => setOpenDropdown(null)}
                     >
@@ -168,7 +168,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                       return (
                         <Link
                           key={division._id}
-                          href={`/${locale}/divisions/${division.slug.current}` as any}
+                          href={`/${locale}/divisions/${division.slug.current}`}
                           className="block px-4 py-2 text-sm text-[var(--foreground)]/70 hover:bg-gold-50 hover:text-gold-600 transition-colors"
                           onClick={() => setOpenDropdown(null)}
                         >

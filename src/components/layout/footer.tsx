@@ -142,7 +142,7 @@ export function Footer({ locale }: FooterProps) {
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={`/${locale}/${link.href}` as any}
+                    href={`/${locale}/${link.href}`}
                     className="text-sm text-[var(--foreground)]/70 transition-colors hover:text-gold-600"
                   >
                     {link.label}
@@ -167,7 +167,7 @@ export function Footer({ locale }: FooterProps) {
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={`/${locale}/${link.href}` as any}
+                    href={`/${locale}/${link.href}`}
                     className="text-sm text-[var(--foreground)]/70 transition-colors hover:text-gold-600"
                   >
                     {link.label}
@@ -192,7 +192,7 @@ export function Footer({ locale }: FooterProps) {
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
                   <Link
-                    href={`/${locale}/${link.href}` as any}
+                    href={`/${locale}/${link.href}`}
                     className="text-sm text-[var(--foreground)]/70 transition-colors hover:text-gold-600"
                   >
                     {link.label}
