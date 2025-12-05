@@ -22,7 +22,7 @@ async function getAllProducts() {
 export default async function ProductsAdminPage() {
   const session = await getAuthSession();
   if (!session) {
-    redirect("/admin/signin" as any);
+    redirect("/admin/signin");
   }
 
   const products = await getAllProducts();
@@ -39,7 +39,7 @@ export default async function ProductsAdminPage() {
           </div>
           <div className="flex gap-4">
             <Link
-              href={"/admin/products/new" as any}
+              href="/admin/products/new"
               className="rounded-lg bg-[var(--accent)] px-5 py-2 text-sm font-medium text-white transition hover:opacity-90"
             >
               + Add New Product
@@ -58,7 +58,7 @@ export default async function ProductsAdminPage() {
             <div className="py-12 text-center text-[var(--text-muted)]">
               <p className="mb-4">No products found.</p>
               <Link
-                href={"/admin/products/new" as any}
+                href="/admin/products/new"
                 className="text-[var(--accent)] hover:opacity-80"
               >
                 Create your first product →

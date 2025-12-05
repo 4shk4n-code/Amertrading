@@ -92,7 +92,7 @@ export default function EditProductPage() {
         throw new Error(data.error || "Failed to update product");
       }
 
-      router.push("/admin/products" as any);
+      router.push("/admin/products");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Failed to update product";
       setError(message);
@@ -112,7 +112,7 @@ export default function EditProductPage() {
         throw new Error("Failed to delete product");
       }
 
-      router.push("/admin/products" as any);
+      router.push("/admin/products");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Failed to delete product";
       setError(message);
@@ -140,7 +140,7 @@ export default function EditProductPage() {
             </p>
           </div>
           <Link
-            href={"/admin/products" as any}
+            href="/admin/products"
             className="rounded-lg border border-[var(--card-border)] px-5 py-2 text-sm font-medium transition hover:bg-[var(--hover-bg)]"
           >
             ← Back to Products
@@ -347,7 +347,7 @@ export default function EditProductPage() {
                 Delete Product
               </button>
               <Link
-                href={"/admin/products" as any}
+                href="/admin/products"
                 className="rounded-lg border border-[var(--card-border)] px-6 py-2 font-medium transition hover:bg-[var(--hover-bg)]"
               >
                 Cancel

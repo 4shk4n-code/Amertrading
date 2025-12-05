@@ -55,7 +55,7 @@ export default function NewProductPage() {
         throw new Error(data.error || "Failed to create product");
       }
 
-      router.push("/admin/products" as any);
+      router.push("/admin/products");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Failed to create product";
       setError(message);
@@ -74,7 +74,7 @@ export default function NewProductPage() {
             </p>
           </div>
           <Link
-            href={"/admin/products" as any}
+            href="/admin/products"
             className="rounded-lg border border-[var(--card-border)] px-5 py-2 text-sm font-medium transition hover:bg-[var(--hover-bg)]"
           >
             ← Back to Products
@@ -274,7 +274,7 @@ export default function NewProductPage() {
                 {loading ? "Creating..." : "Create Product"}
               </button>
               <Link
-                href={"/admin/products" as any}
+                href="/admin/products"
                 className="rounded-lg border border-[var(--card-border)] px-6 py-2 font-medium transition hover:bg-[var(--hover-bg)]"
               >
                 Cancel
