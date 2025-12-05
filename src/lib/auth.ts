@@ -1,5 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth, { getServerSession } from "next-auth/next";
+import NextAuth, { getServerSession, type Session } from "next-auth/next";
+import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
@@ -8,7 +9,7 @@ const allowedEmails = process.env.ADMIN_ALLOWED_EMAILS
   ? process.env.ADMIN_ALLOWED_EMAILS.split(",").map((email) => email.trim())
   : [];
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   // Use adapter for Google OAuth (requires database)
   // For credentials, we'll use JWT sessions (no database needed)
   adapter: process.env.DATABASE_URL ? PrismaAdapter(prisma) : undefined,
@@ -80,12 +81,12 @@ export const authOptions = {
       }
       return token;
     },
-    async session({ session, token }: { session: { user?: { id?: string; role?: string; email?: string | null; name?: string | null } }; token: Record<string, unknown> }) {
+    async session({ session, token }: { session: Session; token: Record<string, unknown> }): Promise<Session> {
       if (session.user) {
-        session.user.id = token.id;
-        session.user.role = token.role ?? "admin";
-        session.user.email = token.email;
-        session.user.name = token.name;
+        session.user.id = token.id as string;
+        session.user.role = (token.role as string) ?? "admin";
+        session.user.email = token.email as string | null;
+        session.user.name = token.name as string | null;
       }
       return session;
     },
