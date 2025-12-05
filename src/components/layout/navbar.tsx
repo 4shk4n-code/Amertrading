@@ -91,9 +91,10 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           className="fixed inset-0 bg-black/60 backdrop-blur-md z-[45] md:hidden"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
+          suppressHydrationWarning
         />
       )}
-      <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
+      <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300" suppressHydrationWarning>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 text-sm text-[var(--foreground)]">
         <Link
           href={`/${locale}`}
@@ -210,16 +211,18 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           })}
         </nav>
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-          {mounted && (
-            <button
-              type="button"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hidden sm:flex rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            >
-              {theme === "dark" ? "Light" : "Dark"}
-            </button>
-          )}
+          <div className="hidden sm:block" suppressHydrationWarning>
+            {mounted && (
+              <button
+                type="button"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+              >
+                {theme === "dark" ? "Light" : "Dark"}
+              </button>
+            )}
+          </div>
           {/* Mobile menu button */}
           <button
             type="button"
@@ -234,7 +237,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[50] md:hidden bg-[var(--card-bg)] dark:bg-[var(--card-bg)] overflow-y-auto">
+        <div className="fixed inset-0 z-[50] md:hidden bg-[var(--card-bg)] dark:bg-[var(--card-bg)] overflow-y-auto" suppressHydrationWarning>
           <div className="pt-16 border-b border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)]">
             <div className="flex items-center justify-between px-4 sm:px-6 py-4">
               <div className="flex items-center gap-2 sm:gap-3">
@@ -356,8 +359,8 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               );
             })}
             {/* Theme toggle in mobile menu */}
-            {mounted && (
-              <div className="pt-4 mt-4 border-t border-[var(--card-border)]">
+            <div className="pt-4 mt-4 border-t border-[var(--card-border)]" suppressHydrationWarning>
+              {mounted && (
                 <button
                   type="button"
                   onClick={() => {
@@ -369,8 +372,8 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 >
                   {theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </nav>
         </div>
       )}
