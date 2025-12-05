@@ -193,7 +193,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
       </AnimatePresence>
 
       <section 
-        className="relative min-h-[92vh] overflow-hidden"
+        className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] overflow-hidden"
         style={{
           backgroundImage: "url('/images/amerback.jpg')",
           backgroundSize: "cover",
