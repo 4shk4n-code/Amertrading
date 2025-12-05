@@ -44,13 +44,17 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = '';
+      if (typeof window !== 'undefined') {
+        document.body.style.overflow = '';
+      }
     };
   }, [mobileMenuOpen]);
 
@@ -80,7 +84,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   };
 
   return (
-    <div>
+    <>
       {/* Backdrop overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
@@ -371,7 +375,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
         </div>
       )}
     </header>
-    </div>
+    </>
   );
 }
 
