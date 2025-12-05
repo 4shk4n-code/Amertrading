@@ -143,11 +143,12 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
 
   const formatNewsDate = (value: string) => {
     try {
-      return new Intl.DateTimeFormat("en", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }).format(new Date(value));
+      // Use UTC to ensure consistent formatting between server and client
+      const date = new Date(value);
+      const year = date.getUTCFullYear();
+      const month = date.toLocaleString("en", { month: "short", timeZone: "UTC" });
+      const day = date.getUTCDate();
+      return `${month} ${day}, ${year}`;
     } catch {
       return value;
     }

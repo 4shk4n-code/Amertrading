@@ -53,7 +53,8 @@ const socialLinks = [
 ];
 
 export function Footer({ locale }: FooterProps) {
-  const currentYear = new Date().getFullYear();
+  // Use static year to avoid hydration mismatch
+  const currentYear = 2025;
 
   return (
     <footer className="relative border-t border-[var(--card-border)] bg-[var(--card-bg)]/80 backdrop-blur-lg">
