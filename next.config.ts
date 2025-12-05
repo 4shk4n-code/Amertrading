@@ -25,9 +25,6 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_SUPPORTED_LOCALES: "en,ar,fa",
   },
-  turbopack: {
-    root: __dirname,
-  },
   async headers() {
     return [
       {
