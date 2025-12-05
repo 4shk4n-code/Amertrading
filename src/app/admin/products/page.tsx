@@ -45,7 +45,7 @@ export default async function ProductsAdminPage() {
               + Add New Product
             </Link>
             <Link
-              href={"/admin/dashboard" as any}
+              href="/admin/dashboard"
               className="rounded-lg border border-[var(--card-border)] px-5 py-2 text-sm font-medium transition hover:bg-[var(--hover-bg)]"
             >
               Dashboard
@@ -151,7 +151,7 @@ export default async function ProductsAdminPage() {
                       <td className="px-4 py-3">
                         <div className="flex gap-2">
                           <Link
-                            href={`/admin/products/${product.id}` as any}
+                            href={`/admin/products/${product.id}`}
                             className="rounded-lg border border-[var(--card-border)] px-3 py-1 text-xs transition hover:bg-[var(--hover-bg)]"
                           >
                             Edit
