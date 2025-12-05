@@ -3,7 +3,7 @@ import type { Order, OrderItem } from "./firebase";
 import { Timestamp } from "firebase-admin/firestore";
 
 const convertTimestamp = (timestamp: unknown): Date => {
-  if (timestamp?.toDate) {
+  if (timestamp && typeof timestamp === "object" && "toDate" in timestamp && typeof timestamp.toDate === "function") {
     return timestamp.toDate();
   }
   if (timestamp instanceof Timestamp) {
@@ -12,7 +12,7 @@ const convertTimestamp = (timestamp: unknown): Date => {
   if (timestamp instanceof Date) {
     return timestamp;
   }
-  return new Date(timestamp);
+  return new Date();
 };
 
 // Create a new order
