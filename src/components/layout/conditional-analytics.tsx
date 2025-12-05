@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
  */
 export function ConditionalAnalytics() {
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [Analytics, setAnalytics] = useState<React.ComponentType | null>(null);
-  const [SpeedInsights, setSpeedInsights] = useState<React.ComponentType | null>(null);
+  const [Analytics, setAnalytics] = useState<React.ComponentType<Record<string, never>> | null>(null);
+  const [SpeedInsights, setSpeedInsights] = useState<React.ComponentType<Record<string, never>> | null>(null);
 
   useEffect(() => {
     // Check if we're on Vercel (client-side check)
