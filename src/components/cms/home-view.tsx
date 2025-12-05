@@ -125,8 +125,6 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
       ? company.introVideoURL
       : "/intro-logo.mp4";
 
-    "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4";
-
   const divisionCards = useMemo(() => {
     // Always show divisions (fallback data is guaranteed)
     return (divisions || []).map((division) => ({
