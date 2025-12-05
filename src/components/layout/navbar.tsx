@@ -80,7 +80,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   };
 
   return (
-    <>
+    <div>
       {/* Backdrop overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
@@ -372,7 +372,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
         </div>
       )}
     </header>
-    </>
+    </div>
   );
 }
 
