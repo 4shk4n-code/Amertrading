@@ -68,10 +68,10 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-sm text-[var(--foreground)]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 text-sm text-[var(--foreground)]">
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0"
+          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0 min-w-0"
         >
           <div className="relative bg-transparent">
             <Image
@@ -94,7 +94,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
             AMER GENERAL TRADING L.L.C
           </span>
         </Link>
-        <nav className="hidden items-center gap-4 lg:gap-6 md:flex flex-1 justify-center max-w-2xl mx-auto">
+        <nav className="hidden items-center gap-2 lg:gap-4 md:flex flex-1 justify-center min-w-0 mx-4">
           {links.map((item) => {
             const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
             
@@ -182,7 +182,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
             );
           })}
         </nav>
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-3 flex-shrink-0 ml-4">
           {mounted && (
             <button
               type="button"
