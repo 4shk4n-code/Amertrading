@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
@@ -80,7 +80,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   };
 
   return (
-    <>
+    <Fragment>
       {/* Backdrop overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
@@ -372,7 +372,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
         </div>
       )}
     </header>
-    </>
+    </Fragment>
   );
 }
 
