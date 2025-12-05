@@ -1,5 +1,19 @@
 import { prisma } from "./prisma";
 
+// Type assertion for Prisma client (works even if client not generated)
+type PrismaClientWithProduct = typeof prisma & {
+  product: {
+    findMany: (args?: unknown) => Promise<Array<{ images: unknown; [key: string]: unknown }>>;
+    findUnique: (args: { where: { id: string } }) => Promise<{ images: unknown; [key: string]: unknown } | null>;
+    findFirst: (args: { where: { sku?: string; active?: boolean } }) => Promise<{ images: unknown; [key: string]: unknown } | null>;
+    create: (args: { data: Record<string, unknown> }) => Promise<{ images: unknown; [key: string]: unknown }>;
+    update: (args: { where: { id: string }; data: Record<string, unknown> }) => Promise<{ images: unknown; [key: string]: unknown }>;
+    delete: (args: { where: { id: string } }) => Promise<void>;
+  };
+};
+
+const prismaWithProduct = prisma as unknown as PrismaClientWithProduct;
+
 // Product type with images as string array (not Json)
 // Defined manually since Prisma client may not be generated yet
 export type Product = {
@@ -66,7 +80,7 @@ export async function getProducts(filters?: {
       where.featured = true;
     }
 
-    const products = await prisma.product.findMany({
+    const products = await prismaWithProduct.product.findMany({
       where,
       orderBy: {
         createdAt: "desc",
@@ -93,7 +107,7 @@ export async function getProductById(id: string): Promise<Product | null> {
     }
 
     // Try by ID first
-    const product = await prisma.product.findUnique({
+    const product = await prismaWithProduct.product.findUnique({
       where: { id },
     });
     
@@ -105,7 +119,7 @@ export async function getProductById(id: string): Promise<Product | null> {
     }
 
     // Try by SKU
-    const productBySku = await prisma.product.findFirst({
+    const productBySku = await prismaWithProduct.product.findFirst({
       where: {
         sku: id,
         active: true,
@@ -135,7 +149,7 @@ export async function createProduct(
       throw new Error("DATABASE_URL not set");
     }
 
-    const product = await prisma.product.create({
+    const product = await prismaWithProduct.product.create({
       data: {
         ...productData,
         images: Array.isArray(productData.images) ? productData.images : [],
@@ -166,7 +180,7 @@ export async function updateProduct(
       updateData.images = Array.isArray(productData.images) ? productData.images : [];
     }
 
-    const product = await prisma.product.update({
+    const product = await prismaWithProduct.product.update({
       where: { id },
       data: updateData,
     });
@@ -183,7 +197,7 @@ export async function updateProduct(
 // Delete a product
 export async function deleteProduct(id: string): Promise<void> {
   try {
-    await prisma.product.delete({
+    await prismaWithProduct.product.delete({
       where: { id },
     });
   } catch (error) {
