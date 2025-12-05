@@ -2,7 +2,7 @@ import { prisma } from "./prisma";
 import type { Prisma } from "@prisma/client";
 
 // Define types based on Prisma schema
-type Order = Prisma.OrderGetPayload<{
+type OrderWithItems = Prisma.OrderGetPayload<{
   include: {
     items: {
       include: {
@@ -12,11 +12,7 @@ type Order = Prisma.OrderGetPayload<{
   };
 }>;
 
-type OrderItem = Prisma.OrderItemGetPayload<{
-  include: {
-    product: true;
-  };
-}>;
+type Order = Prisma.OrderGetPayload<Record<string, never>>;
 
 // Create a new order
 export async function createOrder(orderData: {
@@ -30,7 +26,7 @@ export async function createOrder(orderData: {
     price: number;
   }>;
   notes?: string;
-}): Promise<Order & { items: OrderItem[] }> {
+}): Promise<OrderWithItems> {
   try {
     if (!process.env.DATABASE_URL) {
       throw new Error("DATABASE_URL not set");
@@ -80,7 +76,7 @@ export async function createOrder(orderData: {
 }
 
 // Get all orders (admin only)
-export async function getOrders(): Promise<(Order & { items: OrderItem[] })[]> {
+export async function getOrders(): Promise<OrderWithItems[]> {
   try {
     if (!process.env.DATABASE_URL) {
       console.warn("DATABASE_URL not set, returning empty orders array");
@@ -110,7 +106,7 @@ export async function getOrders(): Promise<(Order & { items: OrderItem[] })[]> {
 // Get order by ID
 export async function getOrderById(
   id: string
-): Promise<(Order & { items: OrderItem[] }) | null> {
+): Promise<OrderWithItems | null> {
   try {
     if (!process.env.DATABASE_URL) {
       console.warn("DATABASE_URL not set, returning null");
