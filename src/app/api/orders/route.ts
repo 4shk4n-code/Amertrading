@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       customerEmail,
       customerPhone,
       customerAddress,
-      items: items.map((item: any) => ({
+      items: items.map((item: { productId: string; quantity: number; price: number }) => ({
         productId: item.productId,
         quantity: item.quantity,
         price: item.price,

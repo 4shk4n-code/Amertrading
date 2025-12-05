@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const featured = searchParams.get("featured");
 
-    const filters: any = { active: true };
+    const filters: { active: boolean; category?: string; featured?: boolean } = { active: true };
     if (category) filters.category = category;
     if (featured === "true") filters.featured = true;
 

@@ -56,8 +56,9 @@ export default function NewProductPage() {
       }
 
       router.push("/admin/products" as any);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to create product";
+      setError(message);
       setLoading(false);
     }
   };

@@ -52,8 +52,9 @@ export default function EditProductPage() {
           featured: product.featured || false,
           active: product.active !== false,
         });
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Failed to load product";
+        setError(message);
       } finally {
         setLoading(false);
       }
@@ -92,8 +93,9 @@ export default function EditProductPage() {
       }
 
       router.push("/admin/products" as any);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to update product";
+      setError(message);
       setSaving(false);
     }
   };
@@ -111,8 +113,9 @@ export default function EditProductPage() {
       }
 
       router.push("/admin/products" as any);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to delete product";
+      setError(message);
     }
   };
 
