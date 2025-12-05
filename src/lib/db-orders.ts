@@ -1,18 +1,50 @@
 import { prisma } from "./prisma";
-import type { Prisma } from "@prisma/client";
 
-// Define types based on Prisma schema
-type OrderWithItems = Prisma.OrderGetPayload<{
-  include: {
-    items: {
-      include: {
-        product: true;
-      };
-    };
+// Define types manually based on Prisma schema (since client may not be generated yet)
+type Order = {
+  id: string;
+  orderNumber: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  customerAddress: string | null;
+  total: number;
+  status: string;
+  notes: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type OrderItem = {
+  id: string;
+  orderId: string;
+  productId: string;
+  quantity: number;
+  price: number;
+  product?: {
+    id: string;
+    name: string;
+    nameAr: string | null;
+    nameFa: string | null;
+    description: string;
+    descriptionAr: string | null;
+    descriptionFa: string | null;
+    price: number;
+    compareAtPrice: number | null;
+    sku: string | null;
+    stock: number;
+    category: string | null;
+    images: unknown;
+    featured: boolean;
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
   };
-}>;
+};
 
-type Order = Prisma.OrderGetPayload<Record<string, never>>;
+type OrderWithItems = Order & {
+  items: OrderItem[];
+};
 
 // Create a new order
 export async function createOrder(orderData: {
