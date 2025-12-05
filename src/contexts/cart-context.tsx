@@ -26,18 +26,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [mounted, setMounted] = useState(false);
 
+  // Initialize from localStorage on mount
   useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("cart");
-    if (saved) {
-      try {
-        setItems(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to load cart from localStorage", e);
+    const initializeCart = () => {
+      const saved = localStorage.getItem("cart");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved) as CartItem[];
+          setItems(parsed);
+        } catch (e) {
+          console.error("Failed to load cart from localStorage", e);
+        }
       }
-    }
+      setMounted(true);
+    };
+    
+    // Use setTimeout to defer setState call
+    const timeoutId = setTimeout(initializeCart, 0);
+    return () => clearTimeout(timeoutId);
   }, []);
 
+  // Save to localStorage when items change (only after mount)
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("cart", JSON.stringify(items));
