@@ -94,7 +94,7 @@ export const authOptions = {
     signIn: "/",
     error: "/",
   },
-} as const;
+};
 
 export const getAuthSession = () =>
   getServerSession(authOptions as unknown as Parameters<typeof NextAuth>[2]);
