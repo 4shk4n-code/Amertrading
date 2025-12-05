@@ -1,5 +1,26 @@
 import { prisma } from "./prisma";
-import type { Product } from "@prisma/client";
+import type { Product as PrismaProduct } from "@prisma/client";
+
+// Product type with images as string array (not Json)
+export type Product = Omit<PrismaProduct, "images"> & {
+  images: string[];
+};
+
+// Helper to convert JSON images to string array
+function parseImages(images: unknown): string[] {
+  if (Array.isArray(images)) {
+    return images.filter((img): img is string => typeof img === "string");
+  }
+  if (typeof images === "string") {
+    try {
+      const parsed = JSON.parse(images);
+      return Array.isArray(parsed) ? parsed.filter((img): img is string => typeof img === "string") : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
 
 // Get all products
 export async function getProducts(filters?: {
@@ -8,6 +29,11 @@ export async function getProducts(filters?: {
   featured?: boolean;
 }): Promise<Product[]> {
   try {
+    if (!process.env.DATABASE_URL) {
+      console.warn("DATABASE_URL not set, returning empty products array");
+      return [];
+    }
+
     const where: {
       active?: boolean;
       category?: string;
@@ -31,7 +57,11 @@ export async function getProducts(filters?: {
       },
     });
 
-    return products;
+    // Convert JSON images to string arrays
+    return products.map((product) => ({
+      ...product,
+      images: parseImages(product.images),
+    })) as Product[];
   } catch (error) {
     console.error("Error fetching products:", error);
     return [];
@@ -41,13 +71,21 @@ export async function getProducts(filters?: {
 // Get a single product by ID or SKU
 export async function getProductById(id: string): Promise<Product | null> {
   try {
+    if (!process.env.DATABASE_URL) {
+      console.warn("DATABASE_URL not set, returning null");
+      return null;
+    }
+
     // Try by ID first
     const product = await prisma.product.findUnique({
       where: { id },
     });
     
     if (product) {
-      return product;
+      return {
+        ...product,
+        images: parseImages(product.images),
+      } as Product;
     }
 
     // Try by SKU
@@ -58,7 +96,14 @@ export async function getProductById(id: string): Promise<Product | null> {
       },
     });
 
-    return productBySku;
+    if (productBySku) {
+      return {
+        ...productBySku,
+        images: parseImages(productBySku.images),
+      } as Product;
+    }
+
+    return null;
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;
@@ -70,10 +115,20 @@ export async function createProduct(
   productData: Omit<Product, "id" | "createdAt" | "updatedAt">
 ): Promise<Product> {
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL not set");
+    }
+
     const product = await prisma.product.create({
-      data: productData,
+      data: {
+        ...productData,
+        images: Array.isArray(productData.images) ? productData.images : [],
+      },
     });
-    return product;
+    return {
+      ...product,
+      images: parseImages(product.images),
+    } as Product;
   } catch (error) {
     console.error("Error creating product:", error);
     throw error;
@@ -86,11 +141,23 @@ export async function updateProduct(
   productData: Partial<Omit<Product, "id" | "createdAt" | "updatedAt">>
 ): Promise<Product> {
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL not set");
+    }
+
+    const updateData: Record<string, unknown> = { ...productData };
+    if (productData.images !== undefined) {
+      updateData.images = Array.isArray(productData.images) ? productData.images : [];
+    }
+
     const product = await prisma.product.update({
       where: { id },
-      data: productData,
+      data: updateData,
     });
-    return product;
+    return {
+      ...product,
+      images: parseImages(product.images),
+    } as Product;
   } catch (error) {
     console.error("Error updating product:", error);
     throw error;

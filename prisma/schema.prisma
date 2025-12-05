@@ -85,7 +85,7 @@ model Product {
   sku         String?  @unique
   stock       Int      @default(0)
   category    String?
-  images      String[] // Array of image URLs
+  images      Json    @default("[]") // Array of image URLs stored as JSON
   featured    Boolean  @default(false)
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())

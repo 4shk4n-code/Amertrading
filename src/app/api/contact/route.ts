@@ -25,14 +25,21 @@ export async function POST(request: NextRequest) {
     <p>${message}</p>
   `;
 
-  await prisma.contactMessage.create({
-    data: {
-      name,
-      email,
-      message,
-      locale: locale ?? "en",
-    },
-  });
+  try {
+    if (process.env.DATABASE_URL) {
+      await prisma.contactMessage.create({
+        data: {
+          name,
+          email,
+          message,
+          locale: locale ?? "en",
+        },
+      });
+    }
+  } catch (error) {
+    console.error("Error saving contact message to database:", error);
+    // Continue even if database save fails
+  }
 
   await sendEmail(`Contact Form: ${name}`, html);
 

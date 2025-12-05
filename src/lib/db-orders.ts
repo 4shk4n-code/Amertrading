@@ -15,6 +15,9 @@ export async function createOrder(orderData: {
   notes?: string;
 }): Promise<Order & { items: OrderItem[] }> {
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL not set");
+    }
     // Calculate total
     let total = 0;
     for (const item of orderData.items) {
@@ -62,6 +65,11 @@ export async function createOrder(orderData: {
 // Get all orders (admin only)
 export async function getOrders(): Promise<(Order & { items: OrderItem[] })[]> {
   try {
+    if (!process.env.DATABASE_URL) {
+      console.warn("DATABASE_URL not set, returning empty orders array");
+      return [];
+    }
+
     const orders = await prisma.order.findMany({
       include: {
         items: {
@@ -87,6 +95,10 @@ export async function getOrderById(
   id: string
 ): Promise<(Order & { items: OrderItem[] }) | null> {
   try {
+    if (!process.env.DATABASE_URL) {
+      console.warn("DATABASE_URL not set, returning null");
+      return null;
+    }
     const order = await prisma.order.findUnique({
       where: { id },
       include: {
@@ -111,6 +123,9 @@ export async function updateOrderStatus(
   status: "pending" | "confirmed" | "shipped" | "delivered" | "cancelled"
 ): Promise<Order> {
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL not set");
+    }
     const order = await prisma.order.update({
       where: { id },
       data: { status },

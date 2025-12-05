@@ -106,26 +106,33 @@ export async function POST(request: NextRequest) {
     url: documentUrl,
   });
 
-  await prisma.adminAlert.upsert({
-    where: { id: eventKey },
-    update: {
-      title,
-      type: body._type,
-      event,
-      locale,
-      channels: channels.join(","),
-      url: documentUrl,
-    },
-    create: {
-      id: eventKey,
-      title,
-      type: body._type,
-      event,
-      locale,
-      channels: channels.join(","),
-      url: documentUrl,
-    },
-  });
+  try {
+    if (process.env.DATABASE_URL) {
+      await prisma.adminAlert.upsert({
+        where: { id: eventKey },
+        update: {
+          title,
+          type: body._type,
+          event,
+          locale,
+          channels: channels.join(","),
+          url: documentUrl,
+        },
+        create: {
+          id: eventKey,
+          title,
+          type: body._type,
+          event,
+          locale,
+          channels: channels.join(","),
+          url: documentUrl,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("Error saving admin alert to database:", error);
+    // Continue even if database save fails
+  }
 
   return NextResponse.json({ success: true, channels });
 }
