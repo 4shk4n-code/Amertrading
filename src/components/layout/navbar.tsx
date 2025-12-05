@@ -68,7 +68,16 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
+    <>
+      {/* Backdrop overlay when mobile menu is open */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[45] md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+      <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 text-sm text-[var(--foreground)]">
         <Link
           href={`/${locale}`}
@@ -209,7 +218,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] backdrop-blur-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="fixed inset-x-0 top-0 z-[50] md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] backdrop-blur-xl max-h-screen overflow-y-auto pt-16">
           <nav className="px-4 sm:px-6 py-6 space-y-3">
             {links.map((item) => {
               const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
