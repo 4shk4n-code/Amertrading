@@ -194,14 +194,19 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
 
       <section 
         className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] overflow-hidden"
-        style={{
-          backgroundImage: "url('/images/amerback.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-        }}
       >
+        {/* Optimized hero background image */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/amerback.jpg"
+            alt="AMER General Trading"
+            fill
+            priority
+            quality={85}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* Enhanced gradient overlays to ensure text visibility with new background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/80" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0.4),_transparent_70%)]" />
