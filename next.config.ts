@@ -6,10 +6,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },
-  // Disable Turbopack for builds to avoid dependency tracking errors
-  webpack: (config, { isServer }) => {
-    return config;
-  },
   images: {
     remotePatterns: [
       {
