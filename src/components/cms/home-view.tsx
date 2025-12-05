@@ -286,12 +286,6 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             </div>
           </div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.5 }}
-          className="pointer-events-none absolute inset-x-0 top-10 z-20 mx-auto h-12 max-w-5xl rounded-full border border-[rgba(255,255,255,0.2)] bg-white/40 backdrop-blur-xl shadow-2xl"
-        />
         <div className="relative z-40 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pb-28 pt-28 text-left md:flex-row md:items-center md:space-x-14">
           <div className="flex flex-col relative z-50">
           <motion.h1
