@@ -59,13 +59,13 @@ export default async function DivisionsAdminPage() {
           </div>
           <div className="flex gap-4">
             <Link
-              href={"/admin/dashboard" as any}
+              href="/admin/dashboard"
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Dashboard
             </Link>
             <Link
-              href={"/studio" as any}
+              href="/studio"
               className="rounded-full border border-gold-500 px-5 py-2 text-xs uppercase tracking-[0.3em] text-gold-300 transition hover:bg-gold-500/10"
             >
               Open CMS

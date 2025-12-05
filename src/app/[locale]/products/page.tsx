@@ -48,7 +48,7 @@ export default async function ProductsPage({
                   key={product.id}
                   className="group rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] overflow-hidden shadow-lg transition hover:shadow-xl"
                 >
-                  <Link href={`/${locale}/products/${product.id}` as any}>
+                  <Link href={`/${locale}/products/${product.id}`}>
                     <div className="relative h-64 w-full overflow-hidden">
                       {product.images && product.images.length > 0 ? (
                         <Image
