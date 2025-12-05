@@ -57,7 +57,7 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="relative border-t border-[var(--card-border)] bg-[var(--card-bg)]/80 backdrop-blur-lg">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-6 mb-12">
           {/* Company Info */}

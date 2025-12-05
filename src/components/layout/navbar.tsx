@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Locale } from "@/lib/i18n";
@@ -34,6 +34,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Allow hydration to complete before rendering theme-aware controls.
@@ -68,10 +69,11 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 bg-[var(--card-bg)]/80 dark:bg-[var(--card-bg)]/90 backdrop-blur-lg border-b border-[var(--card-border)] transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 text-sm text-[var(--foreground)]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 text-sm text-[var(--foreground)]">
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0 min-w-0"
+          className="flex items-center gap-2 sm:gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0 min-w-0"
+          onClick={() => setMobileMenuOpen(false)}
         >
           <div className="relative bg-transparent">
             <Image
@@ -79,7 +81,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               alt="AMER GENERAL TRADING L.L.C"
               width={120}
               height={40}
-              className="h-10 w-auto object-contain bg-transparent"
+              className="h-8 sm:h-10 w-auto object-contain bg-transparent"
               priority
               style={{ 
                 border: 'none !important', 
@@ -90,7 +92,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               }}
             />
           </div>
-          <span className="font-display text-lg tracking-[0.25em] text-gold-700 hidden sm:inline">
+          <span className="font-display text-sm sm:text-lg tracking-[0.25em] text-gold-700 hidden xs:inline">
             AMER GENERAL TRADING L.L.C
           </span>
         </Link>
@@ -182,19 +184,137 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
             );
           })}
         </nav>
-        <div className="flex items-center gap-3 flex-shrink-0 ml-4">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           {mounted && (
             <button
               type="button"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
+              className="hidden sm:flex rounded-full border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-3 py-1.5 md:px-4 md:py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:scale-105 whitespace-nowrap"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               {theme === "dark" ? "Light" : "Dark"}
             </button>
           )}
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)]/95 dark:bg-[var(--card-bg)]/95 backdrop-blur-lg">
+          <nav className="px-4 py-4 space-y-2">
+            {links.map((item) => {
+              const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
+              const isDropdownOpen = openDropdown === item.key;
+              
+              return (
+                <div key={item.key} className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={item.slug}
+                      onClick={() => {
+                        if (!hasDropdown) {
+                          setMobileMenuOpen(false);
+                        }
+                      }}
+                      className={cn(
+                        "flex-1 block py-2 px-3 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                        item.active
+                          ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20"
+                          : "text-[var(--foreground)]/70 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                      )}
+                    >
+                      {messages.nav?.[item.key] ?? item.key}
+                    </Link>
+                    {hasDropdown && (
+                      <button
+                        type="button"
+                        onClick={() => setOpenDropdown(isDropdownOpen ? null : item.key)}
+                        className="p-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors"
+                        aria-label="Toggle divisions menu"
+                      >
+                        <ChevronDown className={cn(
+                          "h-4 w-4 transition-transform",
+                          isDropdownOpen && "rotate-180"
+                        )} />
+                      </button>
+                    )}
+                  </div>
+                  
+                  {hasDropdown && isDropdownOpen && (
+                    <div className="ml-4 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4">
+                      <Link
+                        href={`/${locale}/divisions`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
+                      >
+                        {messages.nav?.allDivisions ?? "All Divisions"}
+                      </Link>
+                      {divisions.map((division) => {
+                        const divisionDomains: Record<string, string> = {
+                          "food-markets": "https://food.amertrading.ae",
+                          "markets-trading": "https://food.amertrading.ae",
+                        };
+                        const subdomainUrl = division.slug?.current && divisionDomains[division.slug.current];
+                        
+                        if (subdomainUrl) {
+                          return (
+                            <a
+                              key={division._id}
+                              href={subdomainUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
+                            >
+                              {division.name}
+                            </a>
+                          );
+                        }
+                        
+                        return (
+                          <Link
+                            key={division._id}
+                            href={`/${locale}/divisions/${division.slug.current}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
+                          >
+                            {division.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            {/* Theme toggle in mobile menu */}
+            {mounted && (
+              <div className="pt-4 border-t border-[var(--card-border)]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTheme(theme === "dark" ? "light" : "dark");
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                >
+                  {theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                </button>
+              </div>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

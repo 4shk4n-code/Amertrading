@@ -35,7 +35,7 @@ export default async function LocaleLayout({
           </div>
         }
       >
-        <div className="pt-24">{children}</div>
+        <div className="pt-16 sm:pt-20 md:pt-24">{children}</div>
       </Suspense>
       <Footer locale={locale} />
     </div>

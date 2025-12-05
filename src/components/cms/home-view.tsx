@@ -210,7 +210,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         {/* Gallery of hpage images - Prominently displayed in hero section */}
         <div className="absolute inset-0 pointer-events-none z-10">
           {/* Gallery positioned on the right side, visible but not blocking text */}
-          <div className="absolute right-0 top-0 bottom-0 w-[45%] md:w-[40%] lg:w-[35%] flex items-center justify-center p-2 md:p-4 overflow-hidden">
+          <div className="absolute right-0 top-0 bottom-0 w-[50%] sm:w-[45%] md:w-[40%] lg:w-[35%] flex items-center justify-center p-1 sm:p-2 md:p-4 overflow-hidden">
             <div className="grid grid-cols-2 gap-1 md:gap-2 w-full h-full max-w-full max-h-full">
               {/* Top Left */}
               <motion.div
@@ -286,13 +286,13 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             </div>
           </div>
         </div>
-        <div className="relative z-40 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pb-28 pt-28 text-left md:flex-row md:items-center md:space-x-14">
-          <div className="flex flex-col relative z-50">
+        <div className="relative z-40 mx-auto flex h-full max-w-6xl flex-col justify-center px-4 sm:px-6 pb-20 sm:pb-28 pt-20 sm:pt-28 text-left md:flex-row md:items-center md:space-x-14">
+          <div className="flex flex-col relative z-50 w-full md:w-auto">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1 }}
-            className="font-display text-4xl leading-tight tracking-[0.15em] text-white sm:text-5xl md:text-left md:text-6xl lg:text-7xl"
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight tracking-[0.1em] sm:tracking-[0.15em] text-white"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.8)' }}
           >
             {company?.name ?? "AMER GENERAL TRADING L.L.C"}
@@ -301,7 +301,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-white md:text-xl"
+            className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed text-white"
             style={{ textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 1px 6px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8)' }}
           >
             {company?.mission ?? "Empowering growth across global industries."}
@@ -310,17 +310,17 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-12 flex flex-wrap items-center gap-5"
+            className="mt-8 sm:mt-12 flex flex-wrap items-center gap-3 sm:gap-5"
           >
             <Link
               href={`/${locale}/divisions`}
-              className="rounded-full bg-gradient-to-r from-gold-600 to-gold-500 px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white shadow-[0_8px_32px_rgba(199,138,26,0.5)] transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(199,138,26,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="rounded-full bg-gradient-to-r from-gold-600 to-gold-500 px-6 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm font-medium uppercase tracking-[0.25em] sm:tracking-[0.35em] text-white shadow-[0_8px_32px_rgba(199,138,26,0.5)] transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(199,138,26,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Discover Divisions
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-md px-8 py-3.5 text-sm font-medium uppercase tracking-[0.35em] text-white transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-[1.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-md px-6 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm font-medium uppercase tracking-[0.25em] sm:tracking-[0.35em] text-white transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:scale-[1.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Partner With Us
             </Link>
@@ -331,7 +331,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3 rounded-3xl border-2 border-white/20 bg-white/10 backdrop-blur-xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] md:mt-0 md:self-end"
+            className="mt-8 sm:mt-12 grid w-full max-w-xl grid-cols-2 gap-2 sm:gap-3 rounded-2xl sm:rounded-3xl border-2 border-white/20 bg-white/10 backdrop-blur-xl p-4 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.5)] md:mt-0 md:self-end"
           >
             {partnerSignals.map((signal) => (
               <div
@@ -377,7 +377,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(246,214,130,0.1),_transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(199,138,26,0.1),_transparent_50%)]" />
         
-        <div className="mx-auto max-w-7xl px-6 relative z-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -385,16 +385,16 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl uppercase tracking-[0.15em] text-white mb-6 drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.1em] sm:tracking-[0.15em] text-white mb-4 sm:mb-6 drop-shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
               What We Do
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
               Multi-industry excellence across automotive, food, IT, fashion, and global commerce
             </p>
           </motion.div>
 
           {/* Main Dynamic Gallery Grid - Large and Prominent */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mb-8 sm:mb-12">
             {[
               { src: "/images/hpage.jpg", delay: 0.1, rotation: -3 },
               { src: "/images/hpage1.jpg", delay: 0.2, rotation: 2 },
@@ -531,7 +531,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
       </section>
 
       <section className="relative border-y border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 py-16">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-6 md:grid-cols-4">
           {highlightedMetrics.map((metric) => (
             <motion.div
               key={metric.label}
@@ -567,7 +567,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         <div className="absolute inset-0 bg-black/40" />
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.18),_transparent_60%)]" />
         <div className="pointer-events-none absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[rgba(224,176,84,0.25)] blur-[140px]" />
-        <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 lg:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 sm:gap-16 px-4 sm:px-6 lg:flex-row">
           <div className="max-w-3xl space-y-6">
             <motion.span
               initial={{ opacity: 0, y: 16 }}
@@ -667,7 +667,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
 
       <section className="relative overflow-hidden bg-[var(--card-bg)]/50 dark:bg-[var(--card-bg)]/60 py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.12),_transparent_65%)]" />
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col gap-6 pb-12 md:flex-row md:items-end md:justify-between">
             <div>
               <motion.h2
@@ -763,7 +763,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
 
       <section className="relative overflow-hidden border-t border-[rgba(28,26,23,0.08)] bg-gradient-to-b from-white via-[rgba(224,176,84,0.08)] to-[rgba(199,138,26,0.12)] py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(224,176,84,0.18),_transparent_75%)]" />
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col gap-6 pb-12 md:flex-row md:items-end md:justify-between">
             <div>
               <motion.h2
@@ -811,7 +811,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
 
       <section className="relative overflow-hidden bg-[var(--card-bg)]/50 dark:bg-[var(--card-bg)]/60 py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.12),_transparent_65%)]" />
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col gap-6 pb-10 md:flex-row md:items-center md:justify-between">
             <div>
               <motion.h2
