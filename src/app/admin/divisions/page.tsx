@@ -77,7 +77,7 @@ export default async function DivisionsAdminPage() {
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-white">All Divisions</h2>
             <Link
-              href={"/studio/desk/division;division" as any}
+              href="/studio/desk/division;division"
               className="rounded-lg bg-gold-500 px-4 py-2 text-sm font-medium text-black transition hover:bg-gold-400"
             >
               + Add New Division
@@ -88,7 +88,7 @@ export default async function DivisionsAdminPage() {
             <div className="py-12 text-center text-white/60">
               <p className="mb-4">No divisions found.</p>
               <Link
-                href={"/studio/desk/division;division" as any}
+                href="/studio/desk/division;division"
                 className="text-gold-400 hover:text-gold-300"
               >
                 Create your first division →
@@ -99,7 +99,7 @@ export default async function DivisionsAdminPage() {
               {divisions.map((division) => (
                 <Link
                   key={division._id}
-                  href={`/studio/desk/division;${division._id}` as any}
+                  href={`/studio/desk/division;${division._id}`}
                   className="group rounded-xl border border-zinc-700 bg-zinc-800/50 p-6 transition hover:border-gold-500/50 hover:bg-zinc-800"
                 >
                   <div className="mb-3 flex items-start justify-between">
