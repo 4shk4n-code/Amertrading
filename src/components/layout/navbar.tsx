@@ -209,8 +209,8 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)]/95 dark:bg-[var(--card-bg)]/95 backdrop-blur-lg">
-          <nav className="px-4 py-4 space-y-2">
+        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)]/98 dark:bg-[var(--card-bg)]/98 backdrop-blur-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <nav className="px-4 sm:px-6 py-6 space-y-3">
             {links.map((item) => {
               const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
               const isDropdownOpen = openDropdown === item.key;
@@ -226,10 +226,10 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                         }
                       }}
                       className={cn(
-                        "flex-1 block py-2 px-3 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                        "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
                         item.active
-                          ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20"
-                          : "text-[var(--foreground)]/70 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                          ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20 font-semibold"
+                          : "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
                       )}
                     >
                       {messages.nav?.[item.key] ?? item.key}
@@ -250,11 +250,11 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                   </div>
                   
                   {hasDropdown && isDropdownOpen && (
-                    <div className="ml-4 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4">
+                    <div className="ml-4 mt-2 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4">
                       <Link
                         href={`/${locale}/divisions`}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
+                        className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/80 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors font-medium"
                       >
                         {messages.nav?.allDivisions ?? "All Divisions"}
                       </Link>
@@ -298,14 +298,14 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
             })}
             {/* Theme toggle in mobile menu */}
             {mounted && (
-              <div className="pt-4 border-t border-[var(--card-border)]">
+              <div className="pt-4 mt-4 border-t border-[var(--card-border)]">
                 <button
                   type="button"
                   onClick={() => {
                     setTheme(theme === "dark" ? "light" : "dark");
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+                  className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2.5 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20"
                   aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
                 >
                   {theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
