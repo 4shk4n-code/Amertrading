@@ -209,7 +209,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)]/98 dark:bg-[var(--card-bg)]/98 backdrop-blur-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="md:hidden border-t border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] backdrop-blur-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
           <nav className="px-4 sm:px-6 py-6 space-y-3">
             {links.map((item) => {
               const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
