@@ -265,7 +265,6 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               </button>
             </div>
           </div>
-          <div className="px-4 sm:px-6 py-6">
           <nav className="px-4 sm:px-6 py-6 space-y-3">
             {links.map((item) => {
               const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
