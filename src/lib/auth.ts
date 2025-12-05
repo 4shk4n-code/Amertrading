@@ -91,8 +91,8 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/admin/signin",
-    error: "/admin/signin",
+    signIn: "/",
+    error: "/",
   },
 } as const;
 
