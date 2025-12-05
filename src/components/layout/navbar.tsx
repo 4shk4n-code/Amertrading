@@ -23,7 +23,7 @@ const navItems = [
   { href: "about", key: "about", hasDropdown: false },
   { href: "services", key: "services", hasDropdown: false },
   { href: "divisions", key: "divisions", hasDropdown: true },
-  { href: "products", key: "buy from us", hasDropdown: false },
+  { href: "https://amertrading.shop", key: "buy from us", hasDropdown: false, external: true },
   { href: "industries", key: "industries", hasDropdown: false },
   { href: "news", key: "news", hasDropdown: false },
   { href: "contact", key: "contact", hasDropdown: false },
@@ -133,29 +133,43 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 onMouseEnter={() => hasDropdown && handleMouseEnter(item.key)}
                 onMouseLeave={() => hasDropdown && handleMouseLeave()}
               >
-                <Link
-                  href={item.slug}
-                  className={cn(
-                    "relative flex items-center gap-1 font-medium uppercase tracking-[0.2em] transition-colors",
-                    item.active
-                      ? "text-gold-600"
-                      : "text-[var(--foreground)]/60 hover:text-gold-500",
-                  )}
-                >
-                  {messages.nav?.[item.key] ?? item.key}
-                  {hasDropdown && (
-                    <ChevronDown className={cn(
-                      "h-4 w-4 transition-transform",
-                      openDropdown === item.key && "rotate-180"
-                    )} />
-                  )}
-                  <span
+                {item.external ? (
+                  <a
+                    href={item.slug}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={cn(
-                      "absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-gold-500 transition-transform",
-                      item.active && "scale-x-100",
+                      "relative flex items-center gap-1 font-medium uppercase tracking-[0.2em] transition-colors",
+                      "text-[var(--foreground)]/60 hover:text-gold-500",
                     )}
-                  />
-                </Link>
+                  >
+                    {messages.nav?.[item.key] ?? item.key}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.slug}
+                    className={cn(
+                      "relative flex items-center gap-1 font-medium uppercase tracking-[0.2em] transition-colors",
+                      item.active
+                        ? "text-gold-600"
+                        : "text-[var(--foreground)]/60 hover:text-gold-500",
+                    )}
+                  >
+                    {messages.nav?.[item.key] ?? item.key}
+                    {hasDropdown && (
+                      <ChevronDown className={cn(
+                        "h-4 w-4 transition-transform",
+                        openDropdown === item.key && "rotate-180"
+                      )} />
+                    )}
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-gold-500 transition-transform",
+                        item.active && "scale-x-100",
+                      )}
+                    />
+                  </Link>
+                )}
                 
                 {hasDropdown && openDropdown === item.key && (
                   <div 
