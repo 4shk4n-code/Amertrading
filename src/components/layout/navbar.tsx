@@ -294,22 +294,39 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               return (
                 <div key={item.key} className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={item.slug}
-                      onClick={() => {
-                        if (!hasDropdown) {
+                    {item.external ? (
+                      <a
+                        href={item.slug}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => {
                           setMobileMenuOpen(false);
-                        }
-                      }}
-                      className={cn(
-                        "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
-                        item.active
-                          ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20 font-semibold"
-                          : "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
-                      )}
-                    >
-                      {messages.nav?.[item.key] ?? item.key}
-                    </Link>
+                        }}
+                        className={cn(
+                          "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                          "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                        )}
+                      >
+                        {messages.nav?.[item.key] ?? item.key}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.slug}
+                        onClick={() => {
+                          if (!hasDropdown) {
+                            setMobileMenuOpen(false);
+                          }
+                        }}
+                        className={cn(
+                          "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                          item.active
+                            ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20 font-semibold"
+                            : "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                        )}
+                      >
+                        {messages.nav?.[item.key] ?? item.key}
+                      </Link>
+                    )}
                     {hasDropdown && (
                       <button
                         type="button"
