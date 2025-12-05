@@ -5,6 +5,10 @@
       "source": "/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
     }
-  ]
+  ],
+  "buildCommand": "npm run build",
+  "env": {
+    "NEXT_PRIVATE_SKIP_TURBO": "1"
+  }
 }
 
