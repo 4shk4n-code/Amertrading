@@ -64,7 +64,7 @@ export default async function ProductDetailPage({
                   </div>
                   {product.images.length > 1 && (
                     <div className="grid grid-cols-4 gap-4">
-                      {product.images.slice(1, 5).map((image, idx) => (
+                      {product.images.slice(1, 5).map((image: string, idx: number) => (
                         <div
                           key={idx}
                           className="relative aspect-square overflow-hidden rounded-lg border border-[var(--card-border)]"
