@@ -1,9 +1,25 @@
 import { prisma } from "./prisma";
-import type { Product as PrismaProduct } from "@prisma/client";
 
 // Product type with images as string array (not Json)
-export type Product = Omit<PrismaProduct, "images"> & {
+// Defined manually since Prisma client may not be generated yet
+export type Product = {
+  id: string;
+  name: string;
+  nameAr: string | null;
+  nameFa: string | null;
+  description: string;
+  descriptionAr: string | null;
+  descriptionFa: string | null;
+  price: number;
+  compareAtPrice: number | null;
+  sku: string | null;
+  stock: number;
+  category: string | null;
   images: string[];
+  featured: boolean;
+  active: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 // Helper to convert JSON images to string array
