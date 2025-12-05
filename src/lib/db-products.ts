@@ -8,7 +8,11 @@ export async function getProducts(filters?: {
   featured?: boolean;
 }): Promise<Product[]> {
   try {
-    const where: any = {};
+    const where: {
+      active?: boolean;
+      category?: string;
+      featured?: boolean;
+    } = {};
     
     if (filters?.active !== undefined) {
       where.active = filters.active;

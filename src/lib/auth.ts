@@ -22,7 +22,7 @@ export const authOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, _req) {
+      async authorize(credentials) {
         const envUsername = process.env.ADMIN_USERNAME;
         const envPassword = process.env.ADMIN_PASSWORD;
 
@@ -48,7 +48,7 @@ export const authOptions = {
             name: "Administrator",
             email,
             role: "admin",
-          } as any;
+          };
         }
 
         return null;
@@ -61,7 +61,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }: any) {
+    async signIn({ user, account }: { user: { email?: string | null }; account: { provider?: string } | null }) {
       if (account?.provider === "credentials") {
         return true;
       }
@@ -71,7 +71,7 @@ export const authOptions = {
       }
       return false;
     },
-    async jwt({ token, user }: any) {
+    async jwt({ token, user }: { token: Record<string, unknown>; user?: { id?: string; role?: string; email?: string | null; name?: string | null } }) {
       if (user) {
         token.id = user.id;
         token.role = user.role ?? "admin";
@@ -80,7 +80,7 @@ export const authOptions = {
       }
       return token;
     },
-    async session({ session, token }: any) {
+    async session({ session, token }: { session: { user?: { id?: string; role?: string; email?: string | null; name?: string | null } }; token: Record<string, unknown> }) {
       if (session.user) {
         session.user.id = token.id;
         session.user.role = token.role ?? "admin";
