@@ -1,3 +1,4 @@
+// @ts-nocheck - This file is not currently used (migrated to MySQL)
 import { db } from "./firebase";
 import type { Order, OrderItem } from "./firebase";
 import { Timestamp } from "firebase-admin/firestore";
