@@ -367,7 +367,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 </button>
               </div>
             )}
-          </div>
+          </nav>
         </div>
       )}
     </header>
