@@ -197,7 +197,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[92vh] overflow-hidden"
       >
         {/* Optimized hero background image */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/images/amerback.jpg"
             alt="AMER General Trading"
@@ -206,12 +206,13 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             quality={85}
             className="object-cover"
             sizes="100vw"
+            style={{ zIndex: 0 }}
           />
         </div>
         {/* Enhanced gradient overlays to ensure text visibility with new background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0.4),_transparent_70%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(0,0,0,0.3),_transparent_50%,_rgba(0,0,0,0.6))]" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+        <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0.3),_transparent_70%)]" />
+        <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,_rgba(0,0,0,0.2),_transparent_50%,_rgba(0,0,0,0.5))]" />
         
         {/* Gallery of hpage images - Prominently displayed in hero section */}
         <div className="absolute inset-0 pointer-events-none z-10">
