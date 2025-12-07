@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
@@ -35,11 +35,21 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const [mounted, setMounted] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // Allow hydration to complete before rendering theme-aware controls.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
   }, []);
 
   // Prevent body scroll when mobile menu is open
@@ -81,11 +91,20 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   );
 
   const handleMouseEnter = (key: string) => {
+    // Clear any pending timeout
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
     setOpenDropdown(key);
   };
 
   const handleMouseLeave = () => {
-    setOpenDropdown(null);
+    // Add a delay before closing to allow mouse movement into dropdown
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+      dropdownTimeoutRef.current = null;
+    }, 200); // 200ms delay
   };
 
   return (
@@ -183,7 +202,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 {hasDropdown && openDropdown === item.key && (
                   <div 
                     role="menu"
-                    className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] shadow-lg py-2"
+                    className="absolute left-0 top-full mt-1 w-64 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] shadow-lg py-2 z-50"
                     onMouseEnter={() => handleMouseEnter(item.key)}
                     onMouseLeave={() => handleMouseLeave()}
                   >
