@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { HomeView } from "@/components/cms/home-view";
-import { getCompanyInfo, getDivisions, getNews } from "@/lib/sanity";
+import { getCompanyInfo, getDivisions, getNews, type Division, type NewsPost, type CompanyInfo } from "@/lib/sanity";
 import { Locale, locales } from "@/lib/i18n";
 import { buildMetadata } from "@/lib/seo";
 
@@ -49,20 +49,20 @@ export default async function HomePage({
   const locale = (resolvedParams?.locale ?? "en") as Locale;
   
   // Fetch data with error handling - use fallbacks if any request fails
-  let company = null;
-  let divisions: any[] = [];
-  let news: any[] = [];
+  let company: CompanyInfo | null = null;
+  let divisions: Division[] = [];
+  let news: NewsPost[] = [];
 
   try {
-    [company, divisions, news] = await Promise.allSettled([
+    const results = await Promise.allSettled([
       getCompanyInfo(locale),
       getDivisions(locale),
       getNews(locale),
-    ]).then((results) => [
-      results[0].status === "fulfilled" ? results[0].value : null,
-      results[1].status === "fulfilled" ? results[1].value : [],
-      results[2].status === "fulfilled" ? results[2].value : [],
     ]);
+    
+    company = results[0].status === "fulfilled" ? results[0].value : null;
+    divisions = results[1].status === "fulfilled" ? results[1].value : [];
+    news = results[2].status === "fulfilled" ? results[2].value : [];
   } catch (error) {
     // Silently handle errors - components will use fallback data
     if (process.env.NODE_ENV === "development") {
