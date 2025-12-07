@@ -253,179 +253,179 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           </button>
         </div>
       </div>
-      
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[50] md:hidden bg-[var(--card-bg)] dark:bg-[var(--card-bg)] overflow-y-auto" suppressHydrationWarning>
-          <div className="pt-16 border-b border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)]">
-            <div className="flex items-center justify-between px-4 sm:px-6 py-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="relative bg-transparent border-0 outline-none">
-                  <Image
-                    src="/images/amerlogo.png"
-                    alt="AMER GENERAL TRADING L.L.C"
-                    width={120}
-                    height={40}
-                    className="h-8 sm:h-10 w-auto object-contain"
-                    priority
-                    unoptimized
-                    style={{ 
-                      border: 'none', 
-                      outline: 'none',
-                      backgroundColor: 'transparent',
-                      background: 'transparent',
-                      boxShadow: 'none',
-                      borderWidth: 0,
-                      borderStyle: 'none',
-                      borderColor: 'transparent'
-                    }}
-                  />
-                </div>
-                <span className="font-display text-xs sm:text-sm tracking-[0.15em] text-gold-700 font-semibold">
-                  AMER GENERAL TRADING
-                </span>
+    </header>
+    
+    {/* Mobile menu - moved outside header to fix z-index stacking context */}
+    {mobileMenuOpen && (
+      <div className="fixed inset-0 z-[50] md:hidden bg-[var(--card-bg)] dark:bg-[var(--card-bg)] overflow-y-auto" suppressHydrationWarning>
+        <div className="pt-16 border-b border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)]">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="relative bg-transparent border-0 outline-none">
+                <Image
+                  src="/images/amerlogo.png"
+                  alt="AMER GENERAL TRADING L.L.C"
+                  width={120}
+                  height={40}
+                  className="h-8 sm:h-10 w-auto object-contain"
+                  priority
+                  unoptimized
+                  style={{ 
+                    border: 'none', 
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                    background: 'transparent',
+                    boxShadow: 'none',
+                    borderWidth: 0,
+                    borderStyle: 'none',
+                    borderColor: 'transparent'
+                  }}
+                />
               </div>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <span className="font-display text-xs sm:text-sm tracking-[0.15em] text-gold-700 font-semibold">
+                AMER GENERAL TRADING
+              </span>
             </div>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 p-2 text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </div>
-          <nav className="px-4 sm:px-6 py-6 space-y-3">
-            {links.map((item) => {
-              const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
-              const isDropdownOpen = openDropdown === item.key;
-              
-              return (
-                <div key={item.key} className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    {item.external ? (
-                      <a
-                        href={item.slug}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                        }}
-                        className={cn(
-                          "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
-                          "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
-                        )}
-                      >
-                        {messages.nav?.[item.key] ?? item.key}
-                      </a>
-                    ) : (
-                      <Link
-                        href={item.slug}
-                        onClick={() => {
-                          if (!hasDropdown) {
-                            setMobileMenuOpen(false);
-                          }
-                        }}
-                        className={cn(
-                          "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
-                          item.active
-                            ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20 font-semibold"
-                            : "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
-                        )}
-                      >
-                        {messages.nav?.[item.key] ?? item.key}
-                      </Link>
-                    )}
-                    {hasDropdown && (
-                      <button
-                        type="button"
-                        onClick={() => setOpenDropdown(isDropdownOpen ? null : item.key)}
-                        className="p-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors"
-                        aria-label="Toggle divisions menu"
-                        aria-expanded={isDropdownOpen}
-                        aria-controls={`divisions-dropdown-${item.key}`}
-                      >
-                        <ChevronDown className={cn(
-                          "h-4 w-4 transition-transform",
-                          isDropdownOpen && "rotate-180"
-                        )} />
-                      </button>
-                    )}
-                  </div>
-                  
-                  {hasDropdown && isDropdownOpen && (
-                    <div 
-                      id={`divisions-dropdown-${item.key}`}
-                      role="menu"
-                      className="ml-4 mt-2 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4"
+        </div>
+        <nav className="px-4 sm:px-6 py-6 space-y-3">
+          {links.map((item) => {
+            const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
+            const isDropdownOpen = openDropdown === item.key;
+            
+            return (
+              <div key={item.key} className="space-y-1">
+                <div className="flex items-center justify-between">
+                  {item.external ? (
+                    <a
+                      href={item.slug}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                      }}
+                      className={cn(
+                        "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                        "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                      )}
                     >
-                      <Link
-                        href={`/${locale}/divisions`}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/80 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors font-medium"
-                      >
-                        {messages.nav?.allDivisions ?? "All Divisions"}
-                      </Link>
-                      {divisions.map((division) => {
-                        const divisionDomains: Record<string, string> = {
-                          "food-markets": "https://food.amertrading.ae",
-                          "markets-trading": "https://food.amertrading.ae",
-                        };
-                        const subdomainUrl = division.slug?.current && divisionDomains[division.slug.current];
-                        
-                        if (subdomainUrl) {
-                          return (
-                            <a
-                              key={division._id}
-                              href={subdomainUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
-                            >
-                              {division.name}
-                            </a>
-                          );
+                      {messages.nav?.[item.key] ?? item.key}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.slug}
+                      onClick={() => {
+                        if (!hasDropdown) {
+                          setMobileMenuOpen(false);
                         }
-                        
+                      }}
+                      className={cn(
+                        "flex-1 block py-2.5 px-4 rounded-lg font-medium uppercase tracking-[0.15em] transition-colors text-sm",
+                        item.active
+                          ? "text-gold-600 bg-gold-50 dark:bg-gold-900/20 font-semibold"
+                          : "text-[var(--foreground)]/80 hover:text-gold-500 hover:bg-[var(--hover-bg)]"
+                      )}
+                    >
+                      {messages.nav?.[item.key] ?? item.key}
+                    </Link>
+                  )}
+                  {hasDropdown && (
+                    <button
+                      type="button"
+                      onClick={() => setOpenDropdown(isDropdownOpen ? null : item.key)}
+                      className="p-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors"
+                      aria-label="Toggle divisions menu"
+                      aria-expanded={isDropdownOpen}
+                      aria-controls={`divisions-dropdown-${item.key}`}
+                    >
+                      <ChevronDown className={cn(
+                        "h-4 w-4 transition-transform",
+                        isDropdownOpen && "rotate-180"
+                      )} />
+                    </button>
+                  )}
+                </div>
+                
+                {hasDropdown && isDropdownOpen && (
+                  <div 
+                    id={`divisions-dropdown-${item.key}`}
+                    role="menu"
+                    className="ml-4 mt-2 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4"
+                  >
+                    <Link
+                      href={`/${locale}/divisions`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/80 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors font-medium"
+                    >
+                      {messages.nav?.allDivisions ?? "All Divisions"}
+                    </Link>
+                    {divisions.map((division) => {
+                      const divisionDomains: Record<string, string> = {
+                        "food-markets": "https://food.amertrading.ae",
+                        "markets-trading": "https://food.amertrading.ae",
+                      };
+                      const subdomainUrl = division.slug?.current && divisionDomains[division.slug.current];
+                      
+                      if (subdomainUrl) {
                         return (
-                          <Link
+                          <a
                             key={division._id}
-                            href={`/${locale}/divisions/${division.slug.current}`}
+                            href={subdomainUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onClick={() => setMobileMenuOpen(false)}
                             className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
                           >
                             {division.name}
-                          </Link>
+                          </a>
                         );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            {/* Theme toggle in mobile menu */}
-            <div className="pt-4 mt-4 border-t border-[var(--card-border)]">
-              <button
-                type="button"
-                onClick={() => {
-                  if (mounted) {
-                    setTheme(theme === "dark" ? "light" : "dark");
-                    setMobileMenuOpen(false);
-                  }
-                }}
-                disabled={!mounted}
-                className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2.5 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} mode` : "Loading theme"}
-                suppressHydrationWarning
-              >
-                {mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : "Switch to Light Mode"}
-              </button>
-            </div>
-          </nav>
-        </div>
-      )}
-    </header>
+                      }
+                      
+                      return (
+                        <Link
+                          key={division._id}
+                          href={`/${locale}/divisions/${division.slug.current}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-2 px-3 rounded-lg text-sm text-[var(--foreground)]/70 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors"
+                        >
+                          {division.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          {/* Theme toggle in mobile menu */}
+          <div className="pt-4 mt-4 border-t border-[var(--card-border)]">
+            <button
+              type="button"
+              onClick={() => {
+                if (mounted) {
+                  setTheme(theme === "dark" ? "light" : "dark");
+                  setMobileMenuOpen(false);
+                }
+              }}
+              disabled={!mounted}
+              className="w-full rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)]/70 dark:bg-[var(--card-bg)]/80 px-4 py-2.5 text-xs uppercase tracking-[0.3em] text-[var(--foreground)]/70 transition-all hover:border-gold-500/60 hover:text-gold-600 hover:bg-gold-50 dark:hover:bg-gold-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} mode` : "Loading theme"}
+              suppressHydrationWarning
+            >
+              {mounted ? (theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode") : "Switch to Light Mode"}
+            </button>
+          </div>
+        </nav>
+      </div>
+    )}
     </>
   );
 }
