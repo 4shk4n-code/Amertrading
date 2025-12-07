@@ -88,7 +88,7 @@ export function ContactView({ locale, company }: ContactViewProps) {
             className="text-center text-[var(--foreground)]/70 max-w-2xl mx-auto"
           >
             {company?.mission ??
-              "Reach out to AMER DUBAI TRADING L.L.C for partnerships, opportunities, and media relations."}
+              "Join forces with a global leader. Whether you're seeking strategic partnerships, exploring business opportunities, or connecting with our media relations team, we're here to turn your vision into reality. Your success is our mission."}
           </motion.p>
         </div>
       </section>

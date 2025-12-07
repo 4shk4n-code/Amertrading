@@ -42,38 +42,38 @@ const innovationPillars = [
   {
     title: "Mobility & Energy",
     description:
-      "From advanced auto components to EV infrastructure, we enable next-generation transport.",
+      "We're not just distributing automotive parts—we're powering the future of transportation. From cutting-edge EV infrastructure to precision-engineered components, we enable the next generation of mobility solutions that connect people, businesses, and communities across continents.",
   },
   {
     title: "Food & Lifestyle",
     description:
-      "Delivering resilient supply chains and immersive retail experiences that delight global consumers.",
+      "Our food security initiatives and lifestyle brands don't just feed markets—they nourish communities. With resilient supply chains that weather any storm and retail experiences that inspire, we've become the trusted partner that millions rely on for quality, innovation, and excellence.",
   },
   {
     title: "Technology & Data",
     description:
-      "Scaling hardware, cloud, and analytics platforms that empower enterprises to operate smarter.",
+      "In an age where data is the new currency, we're the architects of digital transformation. Our hardware solutions, cloud platforms, and analytics capabilities don't just support businesses—they revolutionize them, empowering enterprises to operate with unprecedented intelligence and efficiency.",
   },
 ];
 
 const journeyMilestones = [
   {
     year: "1994",
-    title: "First Automotive Imports",
+    title: "The Vision Begins",
     description:
-      "AMER DUBAI TRADING L.L.C launches as a specialist distributor, forging ties with leading OEM brands.",
+      "AMER DUBAI TRADING L.L.C was founded with a bold vision: to become the bridge between world-class manufacturers and the rapidly growing Middle Eastern markets. Our first automotive partnerships with leading global OEMs established our reputation for excellence, reliability, and unwavering commitment to quality—values that remain at our core today.",
   },
   {
     year: "2008",
-    title: "Diversification Wave",
+    title: "Becoming a Regional Powerhouse",
     description:
-      "Expansion into food logistics, lifestyle retail, and complex hardware to meet regional demand.",
+      "Our strategic diversification transformed us into a multi-sector leader. We revolutionized food distribution networks, created immersive retail experiences, and became the trusted partner for complex hardware solutions across the GCC. This expansion wasn't just growth—it was a statement of our ambition to excel in everything we touch.",
   },
   {
     year: "2020",
-    title: "Digital Acceleration",
+    title: "Leading the Digital Revolution",
     description:
-      "Established innovation labs and data partnerships to connect physical networks with digital scale.",
+      "Recognizing that the future belongs to the digitally empowered, we launched innovation labs and forged strategic data partnerships. We didn't just adapt to the digital age—we became architects of it, connecting physical networks with digital intelligence to create unprecedented value for our partners and customers.",
   },
 ];
 

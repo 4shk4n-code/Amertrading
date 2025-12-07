@@ -19,44 +19,44 @@ const services = [
   {
     icon: Truck,
     title: "Global Freight & Shipping",
-    description: "End-to-end freight forwarding services across air, sea, and land. We manage complex logistics networks to ensure timely delivery worldwide.",
+    description: "Our world-class freight forwarding network spans every continent, connecting your business to markets you've never reached before. With strategic partnerships across air, sea, and land corridors, we guarantee your cargo arrives on time, every time—no matter how complex the journey.",
     features: ["Air Freight", "Sea Freight", "Road Transport", "Express Delivery", "Custom Clearance"],
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop&q=80",
+    image: "/images/hpage1.jpg",
   },
   {
     icon: Warehouse,
     title: "Warehousing & Distribution",
-    description: "State-of-the-art storage facilities with advanced inventory management systems. Strategically located hubs for efficient distribution.",
+    description: "Our strategically positioned warehousing network spans 14 distribution hubs across the Middle East, Asia, and beyond. With over 500,000 square feet of state-of-the-art storage facilities equipped with cutting-edge inventory management systems, we ensure your products are always where they need to be, when they need to be there.",
     features: ["Storage Solutions", "Inventory Management", "Cross-Docking", "Pick & Pack", "Distribution Networks"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=80",
+    image: "/images/hpage2.jpg",
   },
   {
     icon: Globe,
     title: "International Trade",
-    description: "Comprehensive international trading services connecting markets across GCC, Levant, Eurasia, and beyond.",
+    description: "Unlock new markets with our comprehensive international trading expertise. We've facilitated billions in cross-border commerce, connecting businesses across GCC, Levant, Eurasia, and beyond. Our deep understanding of local regulations, customs procedures, and market dynamics ensures your international expansion is seamless and profitable.",
     features: ["Import/Export", "Trade Finance", "Documentation", "Compliance", "Market Access"],
-    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=600&fit=crop&q=80",
+    image: "/images/hpage3.jpg",
   },
   {
     icon: Package,
     title: "Supply Chain Management",
-    description: "Integrated supply chain solutions from sourcing to delivery. We optimize every link in your supply chain for maximum efficiency.",
+    description: "Transform your supply chain from a cost center into a competitive advantage. Our integrated solutions optimize every link—from strategic sourcing to final delivery—reducing costs by up to 30% while improving speed and reliability. We don't just manage your supply chain; we revolutionize it.",
     features: ["Procurement", "Vendor Management", "Quality Control", "Order Fulfillment", "Returns Management"],
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop&q=80",
+    image: "/images/hpage4.jpg",
   },
   {
     icon: Shield,
     title: "Compliance & Certification",
-    description: "Full compliance management ensuring all shipments meet international standards and regulatory requirements.",
+    description: "Navigate complex regulatory landscapes with confidence. Our ISO-certified operations and compliance experts ensure every shipment meets the highest international standards. With a 100% compliance record across 28 markets, we eliminate regulatory risks so you can focus on growing your business.",
     features: ["ISO Certification", "Customs Compliance", "Documentation", "Audits", "Regulatory Support"],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&q=80",
+    image: "/images/amerback.jpg",
   },
   {
     icon: BarChart3,
     title: "Logistics Consulting",
-    description: "Strategic logistics consulting to optimize your operations, reduce costs, and improve supply chain performance.",
+    description: "Leverage three decades of logistics expertise to transform your operations. Our strategic consulting services have helped hundreds of companies reduce costs by 25-40%, improve delivery times by 35%, and achieve operational excellence. We don't just consult—we deliver measurable results that impact your bottom line.",
     features: ["Process Optimization", "Cost Analysis", "Route Planning", "Technology Integration", "Training"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80",
+    image: "/images/hpage.jpg",
   },
 ];
 
@@ -105,11 +105,12 @@ export default function ServicesPage({
               Our Services
             </motion.span>
             <h1 className="mt-6 font-display text-4xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-5xl">
-              Logistics Excellence
+              World-Class Logistics Solutions
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--foreground)]/70">
-              Comprehensive wholesale logistics solutions designed to streamline your supply chain, 
-              reduce costs, and accelerate your business growth across global markets.
+              For over three decades, AMER DUBAI TRADING L.L.C has been the trusted logistics partner for Fortune 500 companies, 
+              government entities, and industry leaders worldwide. Our comprehensive suite of services transforms supply chains, 
+              eliminates inefficiencies, and accelerates your business growth across 28 global markets. We don't just move products—we move possibilities.
             </p>
           </motion.div>
         </div>
@@ -201,10 +202,12 @@ export default function ServicesPage({
             transition={{ duration: 0.7 }}
           >
             <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl">
-              Ready to Optimize Your Supply Chain?
+              Transform Your Supply Chain Today
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--foreground)]/70">
-              Let our logistics experts design a custom solution for your business needs.
+              Join hundreds of industry leaders who trust AMER DUBAI TRADING L.L.C to power their logistics operations. 
+              Our team of experts will design a custom solution that reduces costs, improves efficiency, and accelerates your growth. 
+              Let's discuss how we can transform your supply chain into a competitive advantage.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link

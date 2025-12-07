@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ContactView } from "@/components/cms/contact-view";
 import { getCompanyInfo } from "@/lib/sanity";
 import { Locale } from "@/lib/i18n";
@@ -13,7 +14,11 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const locale = (resolvedParams?.locale ?? "en") as Locale;
   const company = await getCompanyInfo(locale);
 
-  return <ContactView locale={locale} company={company} />;
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
+      <ContactView locale={locale} company={company} />
+    </Suspense>
+  );
 }
 
 export async function generateMetadata({

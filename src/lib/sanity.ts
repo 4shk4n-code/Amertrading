@@ -57,9 +57,9 @@ const fallbackCompany: Record<string, CompanyInfo> = {
   en: {
     _id: "company-info-en",
     name: "AMER DUBAI TRADING L.L.C",
-    mission: "Connecting industries. Powering progress.",
+    mission: "Where Global Excellence Meets Middle Eastern Ambition—Transforming Markets, Empowering Futures, Building Legacies.",
     description:
-      "AMER DUBAI TRADING L.L.C is a multi-sector enterprise leading innovation across automotive, food, fashion, IT, and global commerce.",
+      "AMER DUBAI TRADING L.L.C is a multinational powerhouse that has redefined what's possible in global commerce. With three decades of unwavering excellence, we've grown from a regional distributor into a global leader, seamlessly connecting world-class brands with emerging markets across the Middle East, Asia, and beyond. Our portfolio spans automotive innovation, food security solutions, lifestyle excellence, and cutting-edge technology—each division operating with the precision of a specialist and the power of a global network.",
     heroVideoURL:
       "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4",
     introVideoURL: "/intro-logo.mp4",

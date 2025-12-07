@@ -21,66 +21,66 @@ const industries = [
   {
     icon: Factory,
     title: "Manufacturing",
-    description: "Comprehensive logistics solutions for manufacturing operations, from raw materials to finished products.",
+    description: "Powering the world's most advanced manufacturing operations with precision logistics that never miss a beat. From just-in-time raw material delivery to global distribution of finished products, we ensure your production lines never stop. Our manufacturing clients achieve 99.8% on-time delivery rates and reduce inventory costs by up to 35%.",
     services: ["Material Sourcing", "Production Supply Chain", "Finished Goods Distribution", "Quality Assurance"],
     color: "from-blue-500 to-cyan-500",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&q=80",
+    image: "/images/product1.jpeg",
   },
   {
     icon: ShoppingBag,
     title: "Retail & E-commerce",
-    description: "End-to-end fulfillment and distribution services tailored for retail businesses and online stores.",
+    description: "In the age of instant gratification, we deliver. Our e-commerce fulfillment solutions process millions of orders annually with 98.5% accuracy. From same-day delivery in major cities to seamless returns processing, we turn logistics into a competitive advantage that drives customer loyalty and repeat purchases.",
     services: ["Order Fulfillment", "Inventory Management", "Last-Mile Delivery", "Returns Processing"],
     color: "from-purple-500 to-pink-500",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=80",
+    image: "/images/product2.jpeg",
   },
   {
     icon: Car,
     title: "Automotive",
-    description: "Specialized logistics for automotive parts, components, and finished vehicles across global markets.",
+    description: "The backbone of the automotive industry for over 30 years. We've built strategic partnerships with leading OEMs and aftermarket suppliers, ensuring critical parts reach service centers and assembly lines exactly when needed. Our automotive logistics network spans 28 countries, serving everything from luxury vehicles to commercial fleets.",
     services: ["Parts Distribution", "OEM Supply Chain", "Aftermarket Logistics", "Vehicle Shipping"],
     color: "from-red-500 to-orange-500",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c2c03457?w=800&h=600&fit=crop&q=80",
+    image: "/images/product3.jpeg",
   },
   {
     icon: UtensilsCrossed,
     title: "Food & Beverage",
-    description: "Temperature-controlled logistics ensuring food safety and compliance with health regulations.",
+    description: "When freshness is non-negotiable, trust matters. Our temperature-controlled cold chain logistics maintain perfect conditions from farm to fork, ensuring food safety and regulatory compliance at every step. We've never had a food safety incident—a record that speaks to our uncompromising standards and meticulous attention to detail.",
     services: ["Cold Chain Logistics", "Food Distribution", "Beverage Supply Chain", "Compliance Management"],
     color: "from-green-500 to-emerald-500",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop&q=80",
+    image: "/images/product4.jpeg",
   },
   {
     icon: Shirt,
     title: "Fashion & Apparel",
-    description: "Fast and flexible logistics for fashion brands, from seasonal collections to fast-fashion delivery.",
+    description: "In fashion, timing is everything. Our agile logistics solutions handle everything from high-end seasonal collections to fast-fashion rapid replenishment. We've helped leading fashion brands reduce time-to-market by 40% while maintaining the quality and care your brand demands.",
     services: ["Fashion Distribution", "Seasonal Logistics", "Warehousing Solutions", "Express Delivery"],
     color: "from-pink-500 to-rose-500",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=80",
+    image: "/images/product5.jpeg",
   },
   {
     icon: Computer,
     title: "Technology & Electronics",
-    description: "Secure and efficient handling of sensitive electronics and technology products worldwide.",
+    description: "When precision and security are paramount, trust matters. Our specialized handling of sensitive electronics and IT hardware ensures zero damage rates and complete chain-of-custody documentation. From enterprise servers to consumer electronics, we protect your technology investments every step of the way.",
     services: ["Electronics Shipping", "IT Hardware Distribution", "Secure Warehousing", "Value-Added Services"],
     color: "from-indigo-500 to-purple-500",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80",
+    image: "/images/product6.jpeg",
   },
   {
     icon: Building2,
     title: "Construction",
-    description: "Heavy-duty logistics for construction materials, equipment, and machinery transportation.",
+    description: "Powering the world's most ambitious construction projects with heavy-duty logistics that never compromise. From mega-infrastructure developments to commercial builds, we deliver construction materials, heavy equipment, and machinery exactly when your project timeline demands—because delays cost millions.",
     services: ["Material Transport", "Heavy Equipment Shipping", "Project Logistics", "Site Delivery"],
     color: "from-gray-600 to-gray-800",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f836df2?w=800&h=600&fit=crop&q=80",
+    image: "/images/product7.jpeg",
   },
   {
     icon: Heart,
     title: "Healthcare & Pharmaceuticals",
-    description: "Regulated logistics meeting strict pharmaceutical and medical device compliance standards.",
+    description: "When lives depend on it, excellence isn't optional—it's mandatory. Our pharmaceutical and medical device logistics maintain the strictest regulatory compliance, with full traceability and temperature-controlled environments. We've never had a compliance violation, because in healthcare, perfection is the only acceptable standard.",
     services: ["Pharma Distribution", "Medical Devices", "Regulatory Compliance", "Temperature Control"],
     color: "from-red-400 to-pink-500",
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=600&fit=crop&q=80",
+    image: "/images/product8.jpeg",
   },
 ];
 
@@ -129,11 +129,12 @@ export default function IndustriesPage({
               Industries We Serve
             </motion.span>
             <h1 className="mt-6 font-display text-4xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-5xl">
-              Specialized Solutions
+              Industries We Transform
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--foreground)]/70">
-              We deliver tailored logistics solutions across diverse industries, 
-              understanding the unique requirements of each sector.
+              For three decades, AMER DUBAI TRADING L.L.C has been the trusted logistics partner across 15+ industry verticals. 
+              From Fortune 500 manufacturers to emerging tech startups, we understand that each industry has unique challenges. 
+              That's why we've developed specialized solutions that don't just meet industry standards—they redefine them.
             </p>
           </motion.div>
         </div>
@@ -226,10 +227,12 @@ export default function IndustriesPage({
             transition={{ duration: 0.7 }}
           >
             <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl">
-              Not Seeing Your Industry?
+              Your Industry, Our Expertise
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--foreground)]/70">
-              We adapt our solutions to meet the unique needs of any industry. Let&apos;s discuss your specific requirements.
+              Whether your industry is listed here or not, we have the expertise to transform your logistics operations. 
+              Our team of industry specialists will analyze your unique challenges and design a custom solution that drives results. 
+              Let's discuss how we can elevate your supply chain to world-class standards.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
