@@ -1,5 +1,8 @@
 import type { Product } from "./db-products";
 
+// Re-export Product type for use in other files
+export type { Product };
+
 // Static products data - 13 products with images
 export const staticProducts: Omit<Product, "id" | "createdAt" | "updatedAt">[] = [
   {
