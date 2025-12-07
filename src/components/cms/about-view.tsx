@@ -2,6 +2,7 @@
 
 import type { PortableTextBlock } from "@portabletext/types";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { RichText } from "./rich-text";
 
 type TimelineEntry = {
@@ -19,9 +20,20 @@ type AboutViewProps = {
 export function AboutView({ title, content, timeline = [] }: AboutViewProps) {
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)]">
+      {/* Hero Section with Image */}
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.15),_transparent_65%)]" />
-        <div className="mx-auto flex max-w-5xl flex-col gap-12 px-6">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/hpage2.jpg"
+            alt="About AMER DUBAI TRADING"
+            fill
+            className="object-cover opacity-30"
+            priority
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(199,138,26,0.15),_transparent_65%)]" />
+        </div>
+        <div className="mx-auto flex max-w-5xl flex-col gap-12 px-6 relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,6 +50,67 @@ export function AboutView({ title, content, timeline = [] }: AboutViewProps) {
           >
             <RichText value={content} />
           </motion.div>
+        </div>
+      </section>
+
+      {/* Image Gallery Section */}
+      <section className="border-t border-[var(--card-border)] bg-[var(--card-bg)]/50 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="font-display text-3xl uppercase tracking-[0.35em] text-gold-600 mb-10"
+          >
+            Our Journey
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative h-64 rounded-2xl overflow-hidden border border-[var(--card-border)]"
+            >
+              <Image
+                src="/images/hpage1.jpg"
+                alt="Company Operations"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative h-64 rounded-2xl overflow-hidden border border-[var(--card-border)]"
+            >
+              <Image
+                src="/images/hpage4.jpg"
+                alt="Global Reach"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative h-64 rounded-2xl overflow-hidden border border-[var(--card-border)]"
+            >
+              <Image
+                src="/images/amerback.jpg"
+                alt="Team Excellence"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type ContactViewProps = {
   locale: string;
@@ -59,22 +60,57 @@ export function ContactView({ locale, company }: ContactViewProps) {
 
   return (
     <div className="bg-[var(--background)] text-[var(--foreground)]">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden py-24 border-b border-[var(--card-border)]">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/hpage4.jpg"
+            alt="Contact Us"
+            fill
+            className="object-cover opacity-30"
+            priority
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(199,138,26,0.2),_transparent_65%)]" />
+        </div>
+        <div className="mx-auto max-w-6xl px-6 relative z-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-display text-4xl uppercase tracking-[0.4em] text-gold-600 text-center mb-4"
+          >
+            Contact Us
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-center text-[var(--foreground)]/70 max-w-2xl mx-auto"
+          >
+            {company?.mission ??
+              "Reach out to AMER DUBAI TRADING L.L.C for partnerships, opportunities, and media relations."}
+          </motion.p>
+        </div>
+      </section>
+
       <section className="relative py-24">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle,_rgba(199,138,26,0.2),_transparent_65%)]" />
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2">
           <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="font-display text-4xl uppercase tracking-[0.4em] text-gold-600"
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="relative h-64 rounded-2xl overflow-hidden border border-[var(--card-border)] mb-8"
             >
-              Contact Us
-            </motion.h1>
-            <p className="mt-4 text-[var(--foreground)]/70">
-              {company?.mission ??
-                "Reach out to AMER DUBAI TRADING L.L.C for partnerships, opportunities, and media relations."}
-            </p>
-            <div className="mt-10 space-y-6">
+              <Image
+                src="/images/hpage3.jpg"
+                alt="Our Office"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </motion.div>
+            <div className="space-y-6">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-gold-600">
                   Headquarters
