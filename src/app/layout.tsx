@@ -35,7 +35,31 @@ export default function RootLayout({
           fontFamily:
             "var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
         }}
-        >
+        suppressHydrationWarning
+      >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (typeof window === 'undefined') return;
+                const originalWarn = console.warn;
+                const originalError = console.error;
+                const shouldSuppress = function(m) {
+                  if (!m) return false;
+                  const msg = String(m).toLowerCase();
+                  return (msg.includes('deprecated') && msg.includes('zustand')) ||
+                         (msg.includes('default export is deprecated') && msg.includes('create')) ||
+                         (msg.includes('dialogcontent') && msg.includes('dialogtitle')) ||
+                         (msg.includes('missing') && (msg.includes('description') || msg.includes('aria-describedby'))) ||
+                         msg.includes('was preloaded using link preload but not used') ||
+                         msg.includes('preloaded using link preload');
+                };
+                console.warn = function() { if (!shouldSuppress(arguments[0])) originalWarn.apply(console, arguments); };
+                console.error = function() { if (!shouldSuppress(arguments[0])) originalError.apply(console, arguments); };
+              })();
+            `,
+          }}
+        />
         <SuppressWarnings />
         <ThemeProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>

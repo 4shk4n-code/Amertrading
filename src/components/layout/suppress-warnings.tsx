@@ -13,23 +13,47 @@ export function SuppressWarnings() {
     const originalWarn = console.warn;
     const originalError = console.error;
 
-    // Filter out known dependency warnings
-    const filteredMessages = [
-      "[DEPRECATED] Default export is deprecated. Instead use `import { create } from 'zustand'`",
-      "DialogContent requires a DialogTitle",
-      "Missing `Description` or `aria-describedby`",
-    ];
+    // Filter patterns for known dependency warnings (more flexible matching)
+    const shouldSuppress = (message: string): boolean => {
+      const lowerMessage = message.toLowerCase();
+      
+      // Zustand deprecation warnings
+      if (lowerMessage.includes("deprecated") && lowerMessage.includes("zustand")) {
+        return true;
+      }
+      if (lowerMessage.includes("default export is deprecated") && lowerMessage.includes("create")) {
+        return true;
+      }
+      
+      // Dialog accessibility warnings
+      if (lowerMessage.includes("dialogcontent") && lowerMessage.includes("dialogtitle")) {
+        return true;
+      }
+      if (lowerMessage.includes("missing") && (lowerMessage.includes("description") || lowerMessage.includes("aria-describedby"))) {
+        return true;
+      }
+      
+      // CSS preload warnings (Next.js optimization)
+      if (lowerMessage.includes("was preloaded using link preload but not used")) {
+        return true;
+      }
+      if (lowerMessage.includes("preloaded using link preload")) {
+        return true;
+      }
+      
+      return false;
+    };
 
     console.warn = (...args: unknown[]) => {
       const message = String(args[0] || "");
-      if (!filteredMessages.some((filter) => message.includes(filter))) {
+      if (!shouldSuppress(message)) {
         originalWarn.apply(console, args);
       }
     };
 
     console.error = (...args: unknown[]) => {
       const message = String(args[0] || "");
-      if (!filteredMessages.some((filter) => message.includes(filter))) {
+      if (!shouldSuppress(message)) {
         originalError.apply(console, args);
       }
     };
