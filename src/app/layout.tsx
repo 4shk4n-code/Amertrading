@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 import { buildMetadata } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll";
 import ConditionalAnalyticsWrapper from "@/components/layout/conditional-analytics-wrapper";
+import { SuppressWarnings } from "@/components/layout/suppress-warnings";
 
 
 const inter = FontInter({
@@ -35,6 +36,7 @@ export default function RootLayout({
             "var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
         }}
         >
+        <SuppressWarnings />
         <ThemeProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
           <ConditionalAnalyticsWrapper />

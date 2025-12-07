@@ -101,27 +101,31 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           className="flex items-center gap-2 sm:gap-3 transition-transform duration-300 hover:scale-105 flex-shrink-0 min-w-0"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="relative bg-transparent">
+          <div className="relative bg-transparent border-0 outline-none">
             <Image
               src="/images/amerlogo.png"
               alt="AMER GENERAL TRADING L.L.C"
               width={120}
               height={40}
-              className="h-8 sm:h-10 w-auto object-contain bg-transparent"
+              className="h-8 sm:h-10 w-auto object-contain"
               priority
+              unoptimized
               style={{ 
-                border: 'none !important', 
-                outline: 'none !important',
-                backgroundColor: 'transparent !important',
-                background: 'transparent !important',
-                boxShadow: 'none !important'
+                border: 'none', 
+                outline: 'none',
+                backgroundColor: 'transparent',
+                background: 'transparent',
+                boxShadow: 'none',
+                borderWidth: 0,
+                borderStyle: 'none',
+                borderColor: 'transparent'
               }}
             />
           </div>
-          <span className="font-display text-sm sm:text-lg tracking-[0.25em] text-gold-700 hidden xs:inline">
-            AMER GENERAL TRADING L.L.C
-          </span>
         </Link>
+        <span className="font-display text-sm sm:text-base md:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-gold-700 font-semibold hidden sm:block flex-shrink-0">
+          AMER GENERAL TRADING
+        </span>
         <nav className="hidden items-center gap-2 lg:gap-4 md:flex flex-1 justify-center min-w-0 mx-4">
           {links.map((item) => {
             const hasDropdown = item.hasDropdown && item.key === "divisions" && divisions.length > 0;
@@ -255,25 +259,29 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           <div className="pt-16 border-b border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)]">
             <div className="flex items-center justify-between px-4 sm:px-6 py-4">
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="relative bg-transparent">
+                <div className="relative bg-transparent border-0 outline-none">
                   <Image
                     src="/images/amerlogo.png"
                     alt="AMER GENERAL TRADING L.L.C"
                     width={120}
                     height={40}
-                    className="h-8 sm:h-10 w-auto object-contain bg-transparent"
+                    className="h-8 sm:h-10 w-auto object-contain"
                     priority
+                    unoptimized
                     style={{ 
-                      border: 'none !important', 
-                      outline: 'none !important',
-                      backgroundColor: 'transparent !important',
-                      background: 'transparent !important',
-                      boxShadow: 'none !important'
+                      border: 'none', 
+                      outline: 'none',
+                      backgroundColor: 'transparent',
+                      background: 'transparent',
+                      boxShadow: 'none',
+                      borderWidth: 0,
+                      borderStyle: 'none',
+                      borderColor: 'transparent'
                     }}
                   />
                 </div>
-                <span className="font-display text-sm sm:text-lg tracking-[0.25em] text-gold-700 hidden xs:inline">
-                  AMER GENERAL TRADING L.L.C
+                <span className="font-display text-xs sm:text-sm tracking-[0.15em] text-gold-700 font-semibold">
+                  AMER GENERAL TRADING
                 </span>
               </div>
               <button
