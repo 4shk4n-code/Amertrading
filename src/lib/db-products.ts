@@ -59,7 +59,9 @@ export async function getProducts(filters?: {
 }): Promise<Product[]> {
   try {
     if (!process.env.DATABASE_URL) {
-      console.warn("DATABASE_URL not set, returning empty products array");
+      if (process.env.NODE_ENV === "development") {
+        console.warn("DATABASE_URL not set, returning empty products array");
+      }
       return [];
     }
 
@@ -92,7 +94,9 @@ export async function getProducts(filters?: {
       images: parseImages(product.images),
     })) as Product[];
   } catch (error) {
-    console.error("Error fetching products:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error fetching products:", error);
+    }
     return [];
   }
 }
@@ -101,7 +105,9 @@ export async function getProducts(filters?: {
 export async function getProductById(id: string): Promise<Product | null> {
   try {
     if (!process.env.DATABASE_URL) {
-      console.warn("DATABASE_URL not set, returning null");
+      if (process.env.NODE_ENV === "development") {
+        console.warn("DATABASE_URL not set, returning null");
+      }
       return null;
     }
 
@@ -134,7 +140,9 @@ export async function getProductById(id: string): Promise<Product | null> {
 
     return null;
   } catch (error) {
-    console.error("Error fetching product:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error fetching product:", error);
+    }
     return null;
   }
 }
@@ -159,7 +167,9 @@ export async function createProduct(
       images: parseImages(product.images),
     } as Product;
   } catch (error) {
-    console.error("Error creating product:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error creating product:", error);
+    }
     throw error;
   }
 }
@@ -188,7 +198,9 @@ export async function updateProduct(
       images: parseImages(product.images),
     } as Product;
   } catch (error) {
-    console.error("Error updating product:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error updating product:", error);
+    }
     throw error;
   }
 }
@@ -200,7 +212,9 @@ export async function deleteProduct(id: string): Promise<void> {
       where: { id },
     });
   } catch (error) {
-    console.error("Error deleting product:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error deleting product:", error);
+    }
     throw error;
   }
 }

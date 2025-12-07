@@ -25,6 +25,9 @@ export function ContactView({ locale, company }: ContactViewProps) {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           name: formData.get("name"),
           email: formData.get("email"),
@@ -32,15 +35,25 @@ export function ContactView({ locale, company }: ContactViewProps) {
           locale,
         }),
       });
-      if (res.ok) {
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
         setStatus("sent");
         form.reset();
       } else {
         setStatus("error");
+        // Log error details in development only
+        if (process.env.NODE_ENV === "development") {
+          console.error("Contact form error:", data.error || "Unknown error");
+        }
       }
     } catch (error) {
-      console.error(error);
       setStatus("error");
+      // Log error in development only
+      if (process.env.NODE_ENV === "development") {
+        console.error("Contact form submission error:", error);
+      }
     }
   }
 

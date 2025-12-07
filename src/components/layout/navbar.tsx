@@ -177,6 +177,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 
                 {hasDropdown && openDropdown === item.key && (
                   <div 
+                    role="menu"
                     className="absolute left-0 top-full mt-2 w-64 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] dark:bg-[var(--card-bg)] shadow-lg py-2"
                     onMouseEnter={() => handleMouseEnter(item.key)}
                     onMouseLeave={() => handleMouseLeave()}
@@ -341,6 +342,8 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                         onClick={() => setOpenDropdown(isDropdownOpen ? null : item.key)}
                         className="p-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors"
                         aria-label="Toggle divisions menu"
+                        aria-expanded={isDropdownOpen}
+                        aria-controls={`divisions-dropdown-${item.key}`}
                       >
                         <ChevronDown className={cn(
                           "h-4 w-4 transition-transform",
@@ -351,7 +354,11 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                   </div>
                   
                   {hasDropdown && isDropdownOpen && (
-                    <div className="ml-4 mt-2 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4">
+                    <div 
+                      id={`divisions-dropdown-${item.key}`}
+                      role="menu"
+                      className="ml-4 mt-2 space-y-1 border-l-2 border-gold-200 dark:border-gold-800 pl-4"
+                    >
                       <Link
                         href={`/${locale}/divisions`}
                         onClick={() => setMobileMenuOpen(false)}

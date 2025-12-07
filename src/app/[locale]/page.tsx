@@ -47,11 +47,28 @@ export default async function HomePage({
 }) {
   const resolvedParams = await params;
   const locale = (resolvedParams?.locale ?? "en") as Locale;
-  const [company, divisions, news] = await Promise.all([
-    getCompanyInfo(locale),
-    getDivisions(locale),
-    getNews(locale),
-  ]);
+  
+  // Fetch data with error handling - use fallbacks if any request fails
+  let company = null;
+  let divisions: any[] = [];
+  let news: any[] = [];
+
+  try {
+    [company, divisions, news] = await Promise.allSettled([
+      getCompanyInfo(locale),
+      getDivisions(locale),
+      getNews(locale),
+    ]).then((results) => [
+      results[0].status === "fulfilled" ? results[0].value : null,
+      results[1].status === "fulfilled" ? results[1].value : [],
+      results[2].status === "fulfilled" ? results[2].value : [],
+    ]);
+  } catch (error) {
+    // Silently handle errors - components will use fallback data
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error fetching homepage data:", error);
+    }
+  }
 
   return (
     <Suspense

@@ -2,6 +2,7 @@ import { ReactNode, Suspense } from "react";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { LocaleAttributes } from "@/components/layout/locale-attributes";
+import { ErrorBoundary } from "@/components/layout/error-boundary";
 import { getMessages, isRTL, locales, type Locale } from "@/lib/i18n";
 import { getDivisions } from "@/lib/sanity";
 
@@ -25,20 +26,22 @@ export default async function LocaleLayout({
   const rtl = isRTL(locale);
 
   return (
-    <div className={rtl ? "rtl font-sans" : "font-sans"}>
-      <LocaleAttributes locale={locale} />
-      <Navbar locale={locale} messages={messages} divisions={divisions} />
-      <Suspense
-        fallback={
-          <div className="flex min-h-screen items-center justify-center bg-black text-white">
-            Loading…
-          </div>
-        }
-      >
-        <div className="pt-16 sm:pt-20 md:pt-24">{children}</div>
-      </Suspense>
-      <Footer locale={locale} />
-    </div>
+    <ErrorBoundary>
+      <div className={rtl ? "rtl font-sans" : "font-sans"}>
+        <LocaleAttributes locale={locale} />
+        <Navbar locale={locale} messages={messages} divisions={divisions} />
+        <Suspense
+          fallback={
+            <div className="flex min-h-screen items-center justify-center bg-black text-white">
+              Loading…
+            </div>
+          }
+        >
+          <div className="pt-16 sm:pt-20 md:pt-24">{children}</div>
+        </Suspense>
+        <Footer locale={locale} />
+      </div>
+    </ErrorBoundary>
   );
 }
 

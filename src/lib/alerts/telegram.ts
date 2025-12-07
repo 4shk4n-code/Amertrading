@@ -16,7 +16,9 @@ export async function sendTelegram(message: string) {
   });
 
   if (!response.ok) {
-    console.error("Telegram notification failed", await response.text());
+    if (process.env.NODE_ENV === "development") {
+      console.error("Telegram notification failed", await response.text());
+    }
   }
 }
 
