@@ -15,7 +15,7 @@ const fallbackContent = [
     children: [
       {
         _type: "span",
-        text: "AMER GENERAL TRADING L.L.C unites high-growth industries under one global vision—bridging mobility, food security, fashion, and advanced technologies with uncompromising excellence.",
+        text: "AMER DUBAI TRADING L.L.C unites high-growth industries under one global vision—bridging mobility, food security, fashion, and advanced technologies with uncompromising excellence.",
       },
     ],
   },
@@ -34,7 +34,7 @@ const fallbackTimeline = [
   {
     year: "1995",
     headline: "Incorporation",
-    description: "AMER GENERAL TRADING L.L.C launches its automotive operations.",
+    description: "AMER DUBAI TRADING L.L.C launches its automotive operations.",
   },
   {
     year: "2008",
@@ -82,11 +82,11 @@ export async function generateMetadata({
 
   return buildMetadata({
     title: page?.title
-      ? `${page.title} | AMER GENERAL TRADING L.L.C`
-      : "About AMER GENERAL TRADING L.L.C",
+      ? `${page.title} | AMER DUBAI TRADING L.L.C`
+      : "About AMER DUBAI TRADING L.L.C",
     description:
       description ||
-      "Learn about AMER GENERAL TRADING L.L.C’s vision, leadership, and milestones.",
+      "Learn about AMER DUBAI TRADING L.L.C’s vision, leadership, and milestones.",
     url: `${baseUrl}/${locale}/about`,
   });
 }

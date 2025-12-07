@@ -33,14 +33,14 @@ export async function generateMetadata({
 
   if (!post) {
     return buildMetadata({
-      title: "News | AMER GENERAL TRADING L.L.C",
-      description: "Latest updates from AMER GENERAL TRADING L.L.C.",
+      title: "News | AMER DUBAI TRADING L.L.C",
+      description: "Latest updates from AMER DUBAI TRADING L.L.C.",
       url: `${baseUrl}/${locale}/news`,
     });
   }
 
   return buildMetadata({
-    title: `${post.title} | AMER GENERAL TRADING L.L.C`,
+    title: `${post.title} | AMER DUBAI TRADING L.L.C`,
     description: portableTextToPlainText(post.body).slice(0, 200),
     url: `${baseUrl}/${locale}/news/${post.slug.current}`,
     images: post.image?.asset?.url ? [post.image.asset.url] : undefined,

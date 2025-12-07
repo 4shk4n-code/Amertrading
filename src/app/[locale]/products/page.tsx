@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = buildMetadata({
-  title: "Buy From Us | AMER GENERAL TRADING L.L.C",
+  title: "Buy From Us | AMER DUBAI TRADING L.L.C",
   description: "Browse our product catalog",
 });
 

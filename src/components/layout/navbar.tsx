@@ -104,7 +104,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           <div className="relative bg-transparent border-0 outline-none">
             <Image
               src="/images/amerlogo.png"
-              alt="AMER GENERAL TRADING L.L.C"
+              alt="AMER DUBAI TRADING L.L.C"
               width={120}
               height={40}
               className="h-8 sm:h-10 w-auto object-contain"
@@ -124,7 +124,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
           </div>
         </Link>
         <span className="font-display text-sm sm:text-base md:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-gold-700 font-semibold hidden sm:block flex-shrink-0">
-          AMER GENERAL TRADING
+          AMER DUBAI TRADING
         </span>
         <nav className="hidden items-center gap-2 lg:gap-4 md:flex flex-1 justify-center min-w-0 mx-4">
           {links.map((item) => {
@@ -264,7 +264,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
               <div className="relative bg-transparent border-0 outline-none">
                 <Image
                   src="/images/amerlogo.png"
-                  alt="AMER GENERAL TRADING L.L.C"
+                  alt="AMER DUBAI TRADING L.L.C"
                   width={120}
                   height={40}
                   className="h-8 sm:h-10 w-auto object-contain"
@@ -283,7 +283,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                 />
               </div>
               <span className="font-display text-xs sm:text-sm tracking-[0.15em] text-gold-700 font-semibold">
-                AMER GENERAL TRADING
+                AMER DUBAI TRADING
               </span>
             </div>
             <button

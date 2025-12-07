@@ -16,7 +16,7 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${product.name} | Products | AMER GENERAL TRADING L.L.C`,
+    title: `${product.name} | Products | AMER DUBAI TRADING L.L.C`,
     description: product.description,
   });
 }

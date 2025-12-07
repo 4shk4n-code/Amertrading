@@ -56,10 +56,10 @@ export type NewsPost = {
 const fallbackCompany: Record<string, CompanyInfo> = {
   en: {
     _id: "company-info-en",
-    name: "AMER GENERAL TRADING L.L.C",
+    name: "AMER DUBAI TRADING L.L.C",
     mission: "Connecting industries. Powering progress.",
     description:
-      "AMER GENERAL TRADING L.L.C is a multi-sector enterprise leading innovation across automotive, food, fashion, IT, and global commerce.",
+      "AMER DUBAI TRADING L.L.C is a multi-sector enterprise leading innovation across automotive, food, fashion, IT, and global commerce.",
     heroVideoURL:
       "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4",
     introVideoURL: "/intro-logo.mp4",
@@ -204,7 +204,7 @@ const fallbackNews: Record<string, NewsPost[]> = {
   en: [
     {
       _id: "news-smart-mobility-en",
-      title: "AMER GENERAL TRADING Expands into Smart Mobility",
+      title: "AMER DUBAI TRADING Expands into Smart Mobility",
       slug: { current: "amer-trading-expands-into-smart-mobility" },
       body: [
         {
@@ -212,7 +212,7 @@ const fallbackNews: Record<string, NewsPost[]> = {
           children: [
             {
               _type: "span",
-              text: "AMER GENERAL TRADING L.L.C announced its expansion into smart-mobility and EV components as part of its 2025 growth roadmap.",
+              text: "AMER DUBAI TRADING L.L.C announced its expansion into smart-mobility and EV components as part of its 2025 growth roadmap.",
             },
           ],
         },
@@ -466,7 +466,7 @@ export async function getPage(locale: string, slug: string) {
             ? "تواصل معنا"
             : locale === "fa"
             ? "تماس با ما"
-            : "Connect With AMER GENERAL TRADING L.L.C",
+            : "Connect With AMER DUBAI TRADING L.L.C",
         slug: { current: "contact" },
         content: fallbackContactContent(locale),
         locale,
@@ -505,7 +505,7 @@ function fallbackAboutContent(locale: string): PortableTextBlock[] {
           "از قطعات خودروی ممتاز تا لجستیک غذایی هوشمند و سخت‌افزار هوشمند، صنایع را با رهبری هدفمند و تمرکز بر تأثیر هدایت می‌کنیم.",
         ]
       : [
-          "For three decades, AMER GENERAL TRADING L.L.C has united ambitious teams across continents to deliver mobility, nourishment, style, and digital resilience for tomorrow's markets.",
+          "For three decades, AMER DUBAI TRADING L.L.C has united ambitious teams across continents to deliver mobility, nourishment, style, and digital resilience for tomorrow's markets.",
           "From premium auto parts to smart food logistics and intelligent hardware, we scale industries with purpose-driven leadership and a relentless focus on impact.",
         ];
 

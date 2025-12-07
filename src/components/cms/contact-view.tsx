@@ -72,7 +72,7 @@ export function ContactView({ locale, company }: ContactViewProps) {
             </motion.h1>
             <p className="mt-4 text-[var(--foreground)]/70">
               {company?.mission ??
-                "Reach out to AMER GENERAL TRADING L.L.C for partnerships, opportunities, and media relations."}
+                "Reach out to AMER DUBAI TRADING L.L.C for partnerships, opportunities, and media relations."}
             </p>
             <div className="mt-10 space-y-6">
               <div>
@@ -234,7 +234,7 @@ export function ContactView({ locale, company }: ContactViewProps) {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="AMER GENERAL TRADING L.L.C Location - Industrial Area 6, Sharjah, UAE"
+                title="AMER DUBAI TRADING L.L.C Location - Industrial Area 6, Sharjah, UAE"
                 className="w-full h-full"
               />
             </div>

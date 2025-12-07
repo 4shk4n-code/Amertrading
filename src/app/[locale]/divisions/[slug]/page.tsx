@@ -42,17 +42,17 @@ export async function generateMetadata({
 
   if (!division) {
     return buildMetadata({
-      title: "Division | AMER GENERAL TRADING L.L.C",
-      description: "Discover AMER GENERAL TRADING L.L.C divisions.",
+      title: "Division | AMER DUBAI TRADING L.L.C",
+      description: "Discover AMER DUBAI TRADING L.L.C divisions.",
       url: `${baseUrl}/${locale}/divisions`,
     });
   }
 
   return buildMetadata({
-    title: `${division.name} | AMER GENERAL TRADING L.L.C`,
+    title: `${division.name} | AMER DUBAI TRADING L.L.C`,
     description:
       division.description ??
-      "Discover this AMER GENERAL TRADING L.L.C division.",
+      "Discover this AMER DUBAI TRADING L.L.C division.",
     url: `${baseUrl}/${locale}/divisions/${division.slug.current}`,
     images: division.image?.asset?.url ? [division.image.asset.url] : undefined,
   });

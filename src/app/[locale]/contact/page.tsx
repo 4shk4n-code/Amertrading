@@ -25,10 +25,10 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amertrading.com";
 
   return buildMetadata({
-    title: "Contact AMER GENERAL TRADING L.L.C",
+    title: "Contact AMER DUBAI TRADING L.L.C",
     description:
       company?.mission ??
-      "Partner with AMER GENERAL TRADING L.L.C across automotive, food, fashion, IT, and markets.",
+      "Partner with AMER DUBAI TRADING L.L.C across automotive, food, fashion, IT, and markets.",
     url: `${baseUrl}/${locale}/contact`,
   });
 }

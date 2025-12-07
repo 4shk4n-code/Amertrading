@@ -70,7 +70,7 @@ export function Footer({ locale }: FooterProps) {
               transition={{ duration: 0.6 }}
             >
               <h3 className="font-display text-xl uppercase tracking-[0.3em] text-gold-600 mb-4">
-                AMER GENERAL TRADING L.L.C
+                AMER DUBAI TRADING L.L.C
               </h3>
               <p className="mb-6 text-[var(--foreground)]/70 text-sm leading-relaxed">
                 Leading wholesale logistics and trading company serving global markets 
@@ -238,7 +238,7 @@ export function Footer({ locale }: FooterProps) {
           className="border-t border-[var(--card-border)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm text-[var(--foreground)]/60">
-            © {currentYear} AMER GENERAL TRADING L.L.C. All rights reserved.
+            © {currentYear} AMER DUBAI TRADING L.L.C. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-sm text-[var(--foreground)]/60">
             <Globe className="h-4 w-4" />

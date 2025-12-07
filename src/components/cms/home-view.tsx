@@ -61,7 +61,7 @@ const journeyMilestones = [
     year: "1994",
     title: "First Automotive Imports",
     description:
-      "AMER GENERAL TRADING L.L.C launches as a specialist distributor, forging ties with leading OEM brands.",
+      "AMER DUBAI TRADING L.L.C launches as a specialist distributor, forging ties with leading OEM brands.",
   },
   {
     year: "2008",
@@ -200,7 +200,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/amerback.jpg"
-            alt="AMER General Trading"
+            alt="AMER Dubai Trading"
             fill
             priority
             quality={85}
@@ -302,7 +302,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight tracking-[0.1em] sm:tracking-[0.15em] text-white"
             style={{ textShadow: '0 4px 20px rgba(0,0,0,0.95), 0 2px 10px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.8)' }}
           >
-            {company?.name ?? "AMER GENERAL TRADING L.L.C"}
+            {company?.name ?? "AMER DUBAI TRADING L.L.C"}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 40 }}
@@ -659,7 +659,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               </div>
               <div className="mt-12 rounded-3xl border border-[rgba(28,26,23,0.08)] bg-gold-100/40 p-6 text-sm text-[var(--foreground)]">
                 <p className="text-[var(--foreground)]/85">
-                  “AMER GENERAL TRADING L.L.C stands out as a partner that scales with
+                  “AMER DUBAI TRADING L.L.C stands out as a partner that scales with
                   integrity. Their production agility and insights helped us
                   rebuild supply chains in record time.”
                 </p>

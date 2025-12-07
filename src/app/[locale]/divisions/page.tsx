@@ -24,9 +24,9 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amertrading.com";
 
   return buildMetadata({
-    title: "Divisions | AMER GENERAL TRADING L.L.C",
+    title: "Divisions | AMER DUBAI TRADING L.L.C",
     description:
-      "Explore AMER GENERAL TRADING L.L.C’s multi-industry divisions across automotive, food, lifestyle, IT hardware, and trading.",
+      "Explore AMER DUBAI TRADING L.L.C’s multi-industry divisions across automotive, food, lifestyle, IT hardware, and trading.",
     url: `${baseUrl}/${locale}/divisions`,
   });
 }

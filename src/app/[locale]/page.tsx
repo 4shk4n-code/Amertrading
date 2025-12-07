@@ -30,10 +30,10 @@ export async function generateMetadata({
   return buildMetadata({
     title: company?.name
       ? `${company.name} | Global Multi-Industry Leader`
-      : "AMER GENERAL TRADING L.L.C",
+      : "AMER DUBAI TRADING L.L.C",
     description:
       company?.description ??
-      "AMER GENERAL TRADING L.L.C powers mobility, food, fashion, technology, and trade worldwide.",
+      "AMER DUBAI TRADING L.L.C powers mobility, food, fashion, technology, and trade worldwide.",
     locale: OG_LOCALE_MAP[locale],
     url: `${baseUrl}/${locale}`,
     images: company?.logo?.asset?.url ? [company.logo.asset.url] : undefined,
