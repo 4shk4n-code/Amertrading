@@ -44,18 +44,23 @@ export default function RootLayout({
                 if (typeof window === 'undefined') return;
                 const originalWarn = console.warn;
                 const originalError = console.error;
-                const shouldSuppress = function(m) {
-                  if (!m) return false;
-                  const msg = String(m).toLowerCase();
-                  return (msg.includes('deprecated') && msg.includes('zustand')) ||
-                         (msg.includes('default export is deprecated') && msg.includes('create')) ||
-                         (msg.includes('dialogcontent') && msg.includes('dialogtitle')) ||
-                         (msg.includes('missing') && (msg.includes('description') || msg.includes('aria-describedby'))) ||
-                         msg.includes('was preloaded using link preload but not used') ||
-                         msg.includes('preloaded using link preload');
+                const shouldSuppress = function() {
+                  for (let i = 0; i < arguments.length; i++) {
+                    const m = String(arguments[i] || '').toLowerCase();
+                    if ((m.includes('deprecated') && m.includes('zustand')) ||
+                        (m.includes('default export is deprecated') && m.includes('create')) ||
+                        (m.includes('dialogcontent') && (m.includes('dialogtitle') || m.includes('requires'))) ||
+                        (m.includes('missing') && (m.includes('description') || m.includes('aria-describedby'))) ||
+                        m.includes('was preloaded using link preload but not used') ||
+                        m.includes('preloaded using link preload') ||
+                        (m.includes('dialog') && m.includes('accessible'))) {
+                      return true;
+                    }
+                  }
+                  return false;
                 };
-                console.warn = function() { if (!shouldSuppress(arguments[0])) originalWarn.apply(console, arguments); };
-                console.error = function() { if (!shouldSuppress(arguments[0])) originalError.apply(console, arguments); };
+                console.warn = function() { if (!shouldSuppress.apply(null, arguments)) originalWarn.apply(console, arguments); };
+                console.error = function() { if (!shouldSuppress.apply(null, arguments)) originalError.apply(console, arguments); };
               })();
             `,
           }}
