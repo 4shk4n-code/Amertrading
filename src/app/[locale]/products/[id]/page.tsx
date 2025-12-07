@@ -51,7 +51,7 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ id: string; locale: string }>;
 }) {
-  const { id } = await params;
+  const { id, locale } = await params;
   const product = await fetchProduct(id);
 
   if (!product || !product.active) {
