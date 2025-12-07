@@ -88,7 +88,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
       {/* Backdrop overlay when mobile menu is open */}
       {mobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[45] md:hidden"
+          className="fixed inset-0 bg-black/60 z-[45] md:hidden"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
           suppressHydrationWarning
