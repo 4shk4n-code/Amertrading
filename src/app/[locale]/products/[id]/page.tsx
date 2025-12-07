@@ -3,7 +3,6 @@ import { getStaticProductById } from "@/lib/static-products";
 import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export async function generateMetadata({
@@ -70,11 +69,7 @@ export default async function ProductDetailPage({
           </Link>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             {/* Product Images */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               {product.images && product.images.length > 0 ? (
                 <div className="space-y-4">
                   <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg">
@@ -90,11 +85,8 @@ export default async function ProductDetailPage({
                   {product.images.length > 1 && (
                     <div className="grid grid-cols-4 gap-4">
                       {product.images.slice(1, 5).map((image: string, idx: number) => (
-                        <motion.div
+                        <div
                           key={idx}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.1 * (idx + 1) }}
                           className="relative aspect-square overflow-hidden rounded-lg border border-[var(--card-border)] cursor-pointer hover:border-gold-500 transition-colors"
                         >
                           <Image
@@ -104,7 +96,7 @@ export default async function ProductDetailPage({
                             className="object-cover"
                             unoptimized
                           />
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -114,14 +106,10 @@ export default async function ProductDetailPage({
                   No Image Available
                 </div>
               )}
-            </motion.div>
+            </div>
 
             {/* Product Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               {product.featured && (
                 <span className="mb-4 inline-block rounded-full bg-gold-600 px-4 py-1.5 text-xs font-semibold text-white shadow-lg">
                   ⭐ Featured Product
@@ -198,7 +186,7 @@ export default async function ProductDetailPage({
                   Contact Sales
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

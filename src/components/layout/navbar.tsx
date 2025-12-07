@@ -61,11 +61,16 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
   const links = useMemo(
     () =>
       navItems.map((item) => {
-        const slug = item.href ? `/${locale}/${item.href}` : `/${locale}`;
+        // For external links, use the href directly; for internal links, create a slug
+        const slug = item.external 
+          ? item.href 
+          : (item.href ? `/${locale}/${item.href}` : `/${locale}`);
         const active =
-          pathname === slug ||
-          (item.href === "" && pathname === `/${locale}`) ||
-          pathname?.startsWith(`${slug}/`);
+          !item.external && (
+            pathname === slug ||
+            (item.href === "" && pathname === `/${locale}`) ||
+            pathname?.startsWith(`${slug}/`)
+          );
         return {
           ...item,
           slug,
