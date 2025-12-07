@@ -110,7 +110,7 @@ export default function ServicesPage({
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--foreground)]/70">
               For over three decades, AMER DUBAI TRADING L.L.C has been the trusted logistics partner for Fortune 500 companies, 
               government entities, and industry leaders worldwide. Our comprehensive suite of services transforms supply chains, 
-              eliminates inefficiencies, and accelerates your business growth across 28 global markets. We don't just move products—we move possibilities.
+              eliminates inefficiencies, and accelerates your business growth across 28 global markets. We don&apos;t just move products—we move possibilities.
             </p>
           </motion.div>
         </div>
@@ -207,7 +207,7 @@ export default function ServicesPage({
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--foreground)]/70">
               Join hundreds of industry leaders who trust AMER DUBAI TRADING L.L.C to power their logistics operations. 
               Our team of experts will design a custom solution that reduces costs, improves efficiency, and accelerates your growth. 
-              Let's discuss how we can transform your supply chain into a competitive advantage.
+              Let&apos;s discuss how we can transform your supply chain into a competitive advantage.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link

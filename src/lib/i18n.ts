@@ -24,7 +24,7 @@ export async function getMessages(locale: Locale) {
     }
     // JSON imports in Next.js can be either mod.default or mod itself
     return mod.default || mod;
-  } catch (error) {
+  } catch {
     // Fallback to English if import fails
     try {
       const mod = await import("@/messages/en.json");

@@ -134,7 +134,7 @@ export default function IndustriesPage({
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--foreground)]/70">
               For three decades, AMER DUBAI TRADING L.L.C has been the trusted logistics partner across 15+ industry verticals. 
               From Fortune 500 manufacturers to emerging tech startups, we understand that each industry has unique challenges. 
-              That's why we've developed specialized solutions that don't just meet industry standards—they redefine them.
+              That&apos;s why we&apos;ve developed specialized solutions that don&apos;t just meet industry standards—they redefine them.
             </p>
           </motion.div>
         </div>
@@ -232,7 +232,7 @@ export default function IndustriesPage({
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--foreground)]/70">
               Whether your industry is listed here or not, we have the expertise to transform your logistics operations. 
               Our team of industry specialists will analyze your unique challenges and design a custom solution that drives results. 
-              Let's discuss how we can elevate your supply chain to world-class standards.
+              Let&apos;s discuss how we can elevate your supply chain to world-class standards.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
