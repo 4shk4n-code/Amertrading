@@ -12,12 +12,16 @@ const inter = FontInter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-playfair",
+  preload: true,
+  fallback: ["Georgia", "serif"],
 });
 
 export const metadata: Metadata = buildMetadata();
@@ -27,8 +31,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amertrading.com";
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "AMER DUBAI TRADING L.L.C",
+    url: baseUrl,
+    logo: `${baseUrl}/icon.png`,
+    description: "Global multi-industry leader in auto parts, food, IT, clothing, and trade.",
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} bg-background text-foreground antialiased`}
         style={{

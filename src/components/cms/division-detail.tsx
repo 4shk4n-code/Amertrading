@@ -140,10 +140,11 @@ export function DivisionDetail({ division, locale = "en" }: DivisionDetailProps)
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={feature.image}
-                    alt={feature.title}
+                    alt={`${feature.title} - ${feature.description.substring(0, 80)}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-60"
-                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
                 </div>

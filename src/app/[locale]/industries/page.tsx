@@ -182,10 +182,11 @@ export default function IndustriesPage({
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
                       src={industry.image}
-                      alt={industry.title}
+                      alt={`${industry.title} industry - ${industry.description.substring(0, 100)}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      unoptimized
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-br ${industry.color} opacity-20 transition-opacity duration-500 group-hover:opacity-30`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
@@ -285,10 +286,11 @@ export default function IndustriesPage({
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={solution.image}
-                    alt={solution.title}
+                    alt={`${solution.title} - ${solution.description.substring(0, 80)}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
                 </div>
@@ -359,10 +361,11 @@ export default function IndustriesPage({
                 <div className="relative mb-6 h-40 w-full overflow-hidden rounded-xl">
                   <Image
                     src={story.image}
-                    alt={story.industry}
+                    alt={`${story.industry} success story - ${story.client}`}
                     fill
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-gold-600 mb-2">

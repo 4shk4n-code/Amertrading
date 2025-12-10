@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { LocaleAttributes } from "@/components/layout/locale-attributes";
 import { getMessages, isRTL, locales, type Locale } from "@/lib/i18n";
 import { getDivisions, type Division } from "@/lib/sanity";
+import { generateWebSiteSchema } from "@/lib/schema";
 
 type LocaleLayoutProps = {
   children: ReactNode;
@@ -38,9 +39,14 @@ export default async function LocaleLayout({
   }
   
   const rtl = isRTL(locale);
+  const websiteSchema = generateWebSiteSchema();
 
   return (
     <div className={rtl ? "rtl font-sans" : "font-sans"}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <LocaleAttributes locale={locale} />
       <Navbar locale={locale} messages={messages} divisions={divisions} />
       <Suspense

@@ -158,10 +158,11 @@ export default function ServicesPage({
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt={`${service.title} - ${service.description.substring(0, 100)}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      unoptimized
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
                   </div>
@@ -263,10 +264,11 @@ export default function ServicesPage({
                 <div className="relative h-40 w-full overflow-hidden">
                   <Image
                     src={service.image}
-                    alt={service.title}
+                    alt={`${service.title} - ${service.description.substring(0, 80)}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
                 </div>
@@ -340,10 +342,11 @@ export default function ServicesPage({
                 <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl">
                   <Image
                     src={process.image}
-                    alt={process.title}
+                    alt={`${process.step} - ${process.title}: ${process.description.substring(0, 60)}`}
                     fill
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
                   <div className="absolute top-4 left-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold-600 text-lg font-bold text-white">
