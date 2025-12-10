@@ -29,7 +29,7 @@ export default async function DivisionPage({ params }: DivisionPageProps) {
   if (!division) {
     notFound();
   }
-  return <DivisionDetail division={division} />;
+  return <DivisionDetail division={division} locale={locale} />;
 }
 
 export async function generateMetadata({

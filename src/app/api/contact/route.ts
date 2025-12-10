@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
       }
     } catch (dbError) {
       // Log only in development, continue execution
+      // Prisma might not be initialized - that's okay, we'll just skip DB save
       if (process.env.NODE_ENV === "development") {
         console.error("Error saving contact message to database:", dbError);
       }

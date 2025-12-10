@@ -17,8 +17,10 @@ export function buildMetadata(options: MetadataOptions = {}): Metadata {
   const url = options.url ?? defaultSEO.openGraph.url;
   const images = options.images ?? [defaultSEO.openGraph.images[0].url];
   const locale = options.locale ?? defaultSEO.openGraph.locale;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amertrading.com";
 
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description,
     icons: {

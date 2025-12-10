@@ -216,6 +216,170 @@ export default function IndustriesPage({
         </div>
       </section>
 
+      {/* Industry Solutions Section */}
+      <section className="border-t border-[var(--card-border)] bg-[var(--card-bg)]/30 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl mb-6">
+              Industry-Specific Solutions
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-[var(--foreground)]/70">
+              Every industry has unique challenges. Our specialized solutions are designed to address the specific needs of your sector, 
+              ensuring optimal performance and maximum efficiency.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Customized Logistics Networks",
+                description: "We design logistics networks tailored to your industry's specific requirements, from temperature-controlled facilities for pharmaceuticals to secure warehouses for electronics.",
+                image: "/images/product9.jpeg",
+                stats: "98.5% Accuracy"
+              },
+              {
+                title: "Regulatory Compliance",
+                description: "Navigate complex regulatory environments with confidence. Our compliance experts ensure your operations meet all local and international standards across 28 markets.",
+                image: "/images/product10.jpeg",
+                stats: "100% Compliance Rate"
+              },
+              {
+                title: "Technology Integration",
+                description: "Leverage cutting-edge logistics technology including real-time tracking, automated inventory management, and predictive analytics to optimize your supply chain.",
+                image: "/images/product11.jpeg",
+                stats: "24/7 Visibility"
+              },
+              {
+                title: "Scalable Infrastructure",
+                description: "Our infrastructure scales with your business. Whether you're a startup or a Fortune 500 company, we have the capacity and flexibility to support your growth.",
+                image: "/images/product12.jpeg",
+                stats: "Unlimited Scale"
+              },
+              {
+                title: "Risk Management",
+                description: "Comprehensive risk management strategies protect your supply chain from disruptions. We maintain contingency plans and alternative routes to ensure business continuity.",
+                image: "/images/product13.jpeg",
+                stats: "99.9% Uptime"
+              },
+              {
+                title: "Cost Optimization",
+                description: "Our data-driven approach identifies cost-saving opportunities throughout your supply chain, reducing expenses by an average of 25-35% while improving service levels.",
+                image: "/images/product1.jpeg",
+                stats: "35% Cost Reduction"
+              },
+            ].map((solution, index) => (
+              <motion.div
+                key={solution.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg transition-all duration-300 hover:shadow-xl"
+              >
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={solution.image}
+                    alt={solution.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-gold-600">
+                    {solution.stats}
+                  </div>
+                  <h3 className="mb-3 font-display text-xl uppercase tracking-[0.1em] text-[var(--foreground)]">
+                    {solution.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[var(--foreground)]/70">
+                    {solution.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories Section */}
+      <section className="border-t border-[var(--card-border)] py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl mb-6">
+              Industry Success Stories
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-[var(--foreground)]/70">
+              See how we&apos;ve transformed logistics operations across different industries, delivering measurable results that drive business growth.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                industry: "Automotive",
+                client: "Leading OEM Manufacturer",
+                result: "Reduced delivery times by 40% and cut logistics costs by 28% across 15 countries.",
+                image: "/images/product2.jpeg"
+              },
+              {
+                industry: "Food & Beverage",
+                client: "Regional Food Distributor",
+                result: "Achieved 100% cold chain compliance and expanded distribution network to 8 new markets.",
+                image: "/images/product3.jpeg"
+              },
+              {
+                industry: "E-commerce",
+                client: "Online Retail Platform",
+                result: "Scaled fulfillment operations to handle 500% growth while maintaining 99.2% order accuracy.",
+                image: "/images/product4.jpeg"
+              },
+            ].map((story, index) => (
+              <motion.div
+                key={story.industry}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 shadow-lg"
+              >
+                <div className="relative mb-6 h-40 w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={story.image}
+                    alt={story.industry}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-gold-600 mb-2">
+                  {story.industry}
+                </div>
+                <h3 className="mb-3 font-display text-lg uppercase tracking-[0.1em] text-[var(--foreground)]">
+                  {story.client}
+                </h3>
+                <p className="text-sm leading-relaxed text-[var(--foreground)]/70">
+                  {story.result}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative overflow-hidden border-t border-[var(--card-border)] bg-gradient-to-r from-white via-[rgba(224,176,84,0.08)] to-[rgba(199,138,26,0.12)] py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(224,176,84,0.18),_transparent_75%)]" />

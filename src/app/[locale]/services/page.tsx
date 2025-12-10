@@ -191,6 +191,177 @@ export default function ServicesPage({
         </div>
       </section>
 
+      {/* Additional Services Section */}
+      <section className="border-t border-[var(--card-border)] bg-[var(--card-bg)]/30 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl mb-6">
+              Additional Services
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-[var(--foreground)]/70">
+              Beyond our core services, we offer specialized solutions to address every aspect of your logistics and supply chain needs.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Customs Brokerage",
+                description: "Expert customs clearance services ensuring smooth cross-border transactions and regulatory compliance.",
+                image: "/images/product5.jpeg"
+              },
+              {
+                title: "Insurance Services",
+                description: "Comprehensive cargo insurance solutions protecting your shipments from origin to destination.",
+                image: "/images/product6.jpeg"
+              },
+              {
+                title: "Documentation",
+                description: "Complete documentation services including certificates of origin, commercial invoices, and export licenses.",
+                image: "/images/product7.jpeg"
+              },
+              {
+                title: "Value-Added Services",
+                description: "Labeling, repackaging, quality inspection, and other value-added services to meet your specific requirements.",
+                image: "/images/product8.jpeg"
+              },
+              {
+                title: "Project Cargo",
+                description: "Specialized handling for oversized, heavy, or complex project cargo requiring custom solutions.",
+                image: "/images/product9.jpeg"
+              },
+              {
+                title: "Express Delivery",
+                description: "Time-sensitive delivery services with guaranteed transit times for urgent shipments.",
+                image: "/images/product10.jpeg"
+              },
+              {
+                title: "Reverse Logistics",
+                description: "Efficient returns management and reverse logistics solutions to optimize your returns process.",
+                image: "/images/product11.jpeg"
+              },
+              {
+                title: "Consulting Services",
+                description: "Strategic logistics consulting to optimize your supply chain, reduce costs, and improve efficiency.",
+                image: "/images/product12.jpeg"
+              },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="group relative overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+              >
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="mb-2 font-display text-lg uppercase tracking-[0.1em] text-[var(--foreground)]">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[var(--foreground)]/70">
+                    {service.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="border-t border-[var(--card-border)] py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-3xl uppercase tracking-[0.3em] text-[var(--foreground)] md:text-4xl mb-6">
+              Our Process
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg text-[var(--foreground)]/70">
+              A proven methodology that ensures seamless execution and exceptional results
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-4">
+            {[
+              {
+                step: "01",
+                title: "Consultation",
+                description: "We begin with a comprehensive analysis of your logistics needs, challenges, and objectives.",
+                image: "/images/product13.jpeg"
+              },
+              {
+                step: "02",
+                title: "Planning",
+                description: "Our experts design a customized solution tailored to your specific requirements and industry standards.",
+                image: "/images/product1.jpeg"
+              },
+              {
+                step: "03",
+                title: "Implementation",
+                description: "Seamless execution with dedicated project managers ensuring every detail is handled perfectly.",
+                image: "/images/product2.jpeg"
+              },
+              {
+                step: "04",
+                title: "Optimization",
+                description: "Continuous monitoring and optimization to improve performance and reduce costs over time.",
+                image: "/images/product3.jpeg"
+              },
+            ].map((process, index) => (
+              <motion.div
+                key={process.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl">
+                  <Image
+                    src={process.image}
+                    alt={process.title}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold-600 text-lg font-bold text-white">
+                    {process.step}
+                  </div>
+                </div>
+                <h3 className="mb-2 font-display text-xl uppercase tracking-[0.1em] text-[var(--foreground)]">
+                  {process.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-[var(--foreground)]/70">
+                  {process.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative overflow-hidden border-t border-[var(--card-border)] bg-gradient-to-r from-white via-[rgba(224,176,84,0.08)] to-[rgba(199,138,26,0.12)] py-24">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(224,176,84,0.18),_transparent_75%)]" />
