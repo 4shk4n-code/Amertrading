@@ -214,17 +214,17 @@ export default function ServicesPage({
               {
                 title: "Customs Brokerage",
                 description: "Expert customs clearance services ensuring smooth cross-border transactions and regulatory compliance.",
-                image: "/images/product5.jpeg"
+                image: "/images/hpage1.jpg"
               },
               {
                 title: "Insurance Services",
                 description: "Comprehensive cargo insurance solutions protecting your shipments from origin to destination.",
-                image: "/images/product6.jpeg"
+                image: "/images/hpage2.jpg"
               },
               {
                 title: "Documentation",
                 description: "Complete documentation services including certificates of origin, commercial invoices, and export licenses.",
-                image: "/images/product7.jpeg"
+                image: "/images/product6.jpeg"
               },
               {
                 title: "Value-Added Services",
@@ -314,19 +314,19 @@ export default function ServicesPage({
                 step: "02",
                 title: "Planning",
                 description: "Our experts design a customized solution tailored to your specific requirements and industry standards.",
-                image: "/images/product1.jpeg"
+                image: "/images/hpage3.jpg"
               },
               {
                 step: "03",
                 title: "Implementation",
                 description: "Seamless execution with dedicated project managers ensuring every detail is handled perfectly.",
-                image: "/images/product2.jpeg"
+                image: "/images/hpage4.jpg"
               },
               {
                 step: "04",
                 title: "Optimization",
                 description: "Continuous monitoring and optimization to improve performance and reduce costs over time.",
-                image: "/images/product3.jpeg"
+                image: "/images/product1.jpeg"
               },
             ].map((process, index) => (
               <motion.div

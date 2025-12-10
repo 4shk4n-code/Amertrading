@@ -240,31 +240,31 @@ export default function IndustriesPage({
               {
                 title: "Customized Logistics Networks",
                 description: "We design logistics networks tailored to your industry's specific requirements, from temperature-controlled facilities for pharmaceuticals to secure warehouses for electronics.",
-                image: "/images/product9.jpeg",
+                image: "/images/hpage1.jpg",
                 stats: "98.5% Accuracy"
               },
               {
                 title: "Regulatory Compliance",
                 description: "Navigate complex regulatory environments with confidence. Our compliance experts ensure your operations meet all local and international standards across 28 markets.",
-                image: "/images/product10.jpeg",
+                image: "/images/hpage2.jpg",
                 stats: "100% Compliance Rate"
               },
               {
                 title: "Technology Integration",
                 description: "Leverage cutting-edge logistics technology including real-time tracking, automated inventory management, and predictive analytics to optimize your supply chain.",
-                image: "/images/product11.jpeg",
+                image: "/images/product6.jpeg",
                 stats: "24/7 Visibility"
               },
               {
                 title: "Scalable Infrastructure",
                 description: "Our infrastructure scales with your business. Whether you're a startup or a Fortune 500 company, we have the capacity and flexibility to support your growth.",
-                image: "/images/product12.jpeg",
+                image: "/images/hpage3.jpg",
                 stats: "Unlimited Scale"
               },
               {
                 title: "Risk Management",
                 description: "Comprehensive risk management strategies protect your supply chain from disruptions. We maintain contingency plans and alternative routes to ensure business continuity.",
-                image: "/images/product13.jpeg",
+                image: "/images/hpage4.jpg",
                 stats: "99.9% Uptime"
               },
               {
