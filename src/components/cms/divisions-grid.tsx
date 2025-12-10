@@ -11,7 +11,7 @@ const divisionDomains: Record<string, string> = {
   "auto-parts": "https://auto.amertrading.ae",
   "clothing-lifestyle": "https://style.amertrading.ae",
   "it-hardware": "https://tech.amertrading.ae",
-  "markets-trading": "https://food.amertrading.ae",
+  "markets-trading": "https://markets.amertrading.ae",
 };
 
 type DivisionsGridProps = {

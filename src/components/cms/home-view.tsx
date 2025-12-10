@@ -97,7 +97,7 @@ const divisionDomains: Record<string, string> = {
   "auto-parts": "https://auto.amertrading.ae",
   "clothing-lifestyle": "https://style.amertrading.ae",
   "it-hardware": "https://tech.amertrading.ae",
-  "markets-trading": "https://food.amertrading.ae",
+  "markets-trading": "https://markets.amertrading.ae",
 };
 
 export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
@@ -311,7 +311,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
             className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed text-white"
             style={{ textShadow: '0 2px 12px rgba(0,0,0,0.95), 0 1px 6px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8)' }}
           >
-            {company?.mission ?? "Empowering growth across global industries."}
+            {company?.mission ?? "Premium Quality Products at the Lowest Prices—Delivering Excellence Without Compromise. Your Trusted Partner for High-Quality Goods at Unbeatable Value."}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -592,8 +592,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               transition={{ duration: 0.7 }}
               className="relative z-10 font-display text-4xl leading-tight text-white drop-shadow-lg md:text-5xl"
             >
-              Building resilient industries with precision, partnership, and
-              purpose.
+              Premium Quality Products at the Lowest Prices—Your Trusted Partner for Excellence and Value.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -602,10 +601,7 @@ export function HomeView({ company, divisions, locale, news }: HomeViewProps) {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="relative z-10 rounded-2xl bg-white/95 p-6 text-lg text-[var(--foreground)]/75 shadow-lg"
             >
-              We align mobility, nutrition, lifestyle, and technology ventures
-              under one collaborative strategy. Our teams orchestrate supply
-              chains, capital, and intelligence that keep cities moving and
-              communities thriving.
+              We deliver exceptional products at unbeatable prices across mobility, nutrition, lifestyle, and technology. Our commitment to high-quality standards and cost-effective solutions ensures you get the best value—premium quality goods at the lowest prices in the market. Experience the perfect balance of excellence and affordability.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

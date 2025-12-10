@@ -57,9 +57,9 @@ const fallbackCompany: Record<string, CompanyInfo> = {
   en: {
     _id: "company-info-en",
     name: "AMER DUBAI TRADING L.L.C",
-    mission: "Where Global Excellence Meets Middle Eastern Ambition—Transforming Markets, Empowering Futures, Building Legacies.",
+    mission: "Premium Quality Products at the Lowest Prices—Delivering Excellence Without Compromise. Your Trusted Partner for High-Quality Goods at Unbeatable Value.",
     description:
-      "AMER DUBAI TRADING L.L.C is a multinational powerhouse that has redefined what's possible in global commerce. With three decades of unwavering excellence, we've grown from a regional distributor into a global leader, seamlessly connecting world-class brands with emerging markets across the Middle East, Asia, and beyond. Our portfolio spans automotive innovation, food security solutions, lifestyle excellence, and cutting-edge technology—each division operating with the precision of a specialist and the power of a global network.",
+      "AMER DUBAI TRADING L.L.C delivers exceptional products at the most competitive prices in the market. With three decades of excellence, we combine world-class quality with unbeatable value, ensuring you get the best products at the lowest prices. Our commitment to high-quality standards and cost-effective solutions has made us the preferred choice for businesses across the Middle East, Asia, and beyond. Experience the perfect balance of premium quality and affordable pricing—where excellence meets value.",
     heroVideoURL:
       "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4",
     introVideoURL: "/intro-logo.mp4",
@@ -68,9 +68,9 @@ const fallbackCompany: Record<string, CompanyInfo> = {
   ar: {
     _id: "company-info-ar",
     name: "امير تريدينغ القابضة",
-    mission: "ربط الصناعات وتمكين النمو.",
+    mission: "منتجات عالية الجودة بأقل الأسعار—نوفر التميز دون تنازلات. شريكك الموثوق للحصول على بضائع عالية الجودة بقيمة لا تُقاوم.",
     description:
-      "مجموعة متعددة القطاعات تقود الابتكار عبر السيارات، الأغذية، الأزياء، تقنية المعلومات والتجارة العالمية.",
+      "توفر شركة امير تريدينغ القابضة منتجات استثنائية بأكثر الأسعار تنافسية في السوق. مع ثلاثة عقود من التميز، نجمع بين الجودة العالمية والقيمة التي لا تُقاوم، مما يضمن حصولك على أفضل المنتجات بأقل الأسعار. التزامنا بمعايير الجودة العالية والحلول الموفرة جعلنا الخيار المفضل للشركات في جميع أنحاء الشرق الأوسط وآسيا وما بعدها. اختبر التوازن المثالي بين الجودة الممتازة والأسعار المعقولة—حيث يلتقي التميز بالقيمة.",
     heroVideoURL:
       "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4",
     introVideoURL: "/intro-logo.mp4",
@@ -79,9 +79,9 @@ const fallbackCompany: Record<string, CompanyInfo> = {
   fa: {
     _id: "company-info-fa",
     name: "هولدینگ آمر تریدینگ",
-    mission: "اتصال صنایع و توانمندسازی پیشرفت.",
+    mission: "محصولات با کیفیت برتر با کمترین قیمت—ارائه تعالی بدون سازش. شریک قابل اعتماد شما برای کالاهای با کیفیت با ارزش بی‌نظیر.",
     description:
-      "هولدینگ آمر تریدینگ در حوزه‌های خودرو، مواد غذایی، پوشاک، فناوری اطلاعات و تجارت جهانی پیشرو است.",
+      "هولدینگ آمر تریدینگ محصولات استثنایی را با رقابتی‌ترین قیمت‌ها در بازار ارائه می‌دهد. با سه دهه تعالی، ما کیفیت جهانی را با ارزش بی‌نظیر ترکیب می‌کنیم و اطمینان می‌دهیم که بهترین محصولات را با کمترین قیمت دریافت می‌کنید. تعهد ما به استانداردهای کیفیت بالا و راه‌حل‌های مقرون به صرفه، ما را به انتخاب ترجیحی کسب‌وکارها در سراسر خاورمیانه، آسیا و فراتر از آن تبدیل کرده است. تعادل کامل بین کیفیت برتر و قیمت‌گذاری مقرون به صرفه را تجربه کنید—جایی که تعالی با ارزش ملاقات می‌کند.",
     heroVideoURL:
       "https://cdn.coverr.co/videos/coverr-spotlight-on-the-city-6498/1080p.mp4",
     introVideoURL: "/intro-logo.mp4",

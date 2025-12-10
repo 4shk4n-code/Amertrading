@@ -217,7 +217,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                     {divisions.map((division) => {
                       const divisionDomains: Record<string, string> = {
                         "food-markets": "https://food.amertrading.ae",
-                        "markets-trading": "https://food.amertrading.ae",
+                        "markets-trading": "https://markets.amertrading.ae",
                       };
                       const subdomainUrl = division.slug?.current && divisionDomains[division.slug.current];
                       
@@ -394,7 +394,7 @@ export function Navbar({ locale, messages, divisions = [] }: NavbarProps) {
                     {divisions.map((division) => {
                       const divisionDomains: Record<string, string> = {
                         "food-markets": "https://food.amertrading.ae",
-                        "markets-trading": "https://food.amertrading.ae",
+                        "markets-trading": "https://markets.amertrading.ae",
                       };
                       const subdomainUrl = division.slug?.current && divisionDomains[division.slug.current];
                       
